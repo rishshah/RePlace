@@ -26,6 +26,9 @@ def login(request):
 		else:
 			return render(request, "company/login.html",context={'error':''})
 
+def register(request):
+	return render(request, "company/home.html")
+
 @login_required()
 def logout(request):
 	data={'name':request.user.username}
