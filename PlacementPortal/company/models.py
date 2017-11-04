@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MinValueValidator, RegexValidator, MaxValueValidator
+from django.core.validators import MinValueValidator, RegexValidator, MaxValueValidator, MaxLengthValidator, MinLengthValidator
 
 phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 
@@ -29,3 +29,22 @@ class JAF:
     accomodation = models.TextField("Accomodation details", null=False, blank=False)
     duration = models.IntegerField("Internship duration (days)", validators=[MinValueValidator(7)], null=False, blank=False)
     resume_number = models.IntegerField("Resume no. wanted", validators=[MinValueValidator(0), MaxValueValidator(3)], null=True, blank=True)
+
+class JAFTest:
+    jaf = models.ForeignKey("JAF", verbose_name="JAF", null=False, blank=False, on_delete=models.CASCADE)
+    location = models.CharField("Test venue/URL", max_length=50, null=True, blank=True)
+    start_time = models.DateTimeField("Test time", null=True, blank=True)
+    description = models.TextField("Test details", null=True, blank=True)
+    test_type = models.ForeignKey("TestType", verbose_name="Test type", null=False, blank=False, on_delete=models.CASCADE)
+    duration = models.FloatField("Test duration (minutes)")
+
+class TestType:
+    type = models.CharField("Test type", max_length=50, primary_key=True)
+
+class Eligibility:
+    jaf = models.ForeignKey("JAF", verbose_name="JAF", null=False, blank=False, on_delete=models.CASCADE)
+    department = models.ForeignKey("Department", verbose_name="Department", null=False, blank=False, on_delete=models.CASCADE)
+    program = models.ForeignKey("Program", verbose_name="Program", null=False, blank=False, on_delete=models.CASCADE)
+    cpi_cutoff = models.FloatField("CPI", validators=[MinValueValidator(0.0),MaxValueValidator(10.0)], null=False, blank=False)
+    stipend = models.DecimalField("Compensation", decimal_places=2, null=False, blank=False)
+    currency = models.CharField("Unit",validators=[MinLengthValidator(3), MaxLengthValidator(3)])
