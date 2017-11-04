@@ -9,7 +9,6 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
-
 # Create your views here.
 def login(request):
 	if request.POST :
