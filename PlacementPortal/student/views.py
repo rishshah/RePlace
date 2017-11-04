@@ -13,16 +13,15 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def login(request):
 	if request.POST :
-		user = authenticate(username=request.POST['id'], password=request.POST['password'])
+		user = authenticate(username=request.POST['username'], password=request.POST['password'])
 		if user is not None:  # A backend authenticated the credentials
-			print("XXX2")
 			if user.is_active:
 				auth_login(request, user)
 				return HttpResponseRedirect('/student/home/')
-		print("XXX1")
 		return render(request, "student/login.html",context={'error':'invalid credentials'})
 	else:
-		if(request.user.is_authenticated):
+		print(request.user.is_authenticated())
+		if(request.user.is_authenticated()):
 			return HttpResponseRedirect('/student/home/')
 		else:
 			return render(request, "student/login.html",context={'error':''})
@@ -33,6 +32,6 @@ def logout(request):
 	auth_logout(request)
 	return render(request, "student/logout.html",context=data)
 
-@login_required()
+@login_required(login_url='/student/login/')
 def home(request):
 	return render(request, "student/home.html")
