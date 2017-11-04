@@ -20,7 +20,6 @@ def login(request):
 				return HttpResponseRedirect('/student/home/')
 		return render(request, "student/login.html",context={'error':'invalid credentials'})
 	else:
-		print(request.user.is_authenticated())
 		if(request.user.is_authenticated()):
 			return HttpResponseRedirect('/student/home/')
 		else:
