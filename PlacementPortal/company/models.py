@@ -30,21 +30,29 @@ class JAF(models.Model):
     duration = models.IntegerField("Internship duration (days)", validators=[MinValueValidator(7)], null=False, blank=False)
     resume_number = models.IntegerField("Resume no. wanted", validators=[MinValueValidator(0), MaxValueValidator(3)], null=True, blank=True)
 
-class JAFTest:
-    jaf = models.ForeignKey("JAF", verbose_name="JAF", null=False, blank=False, on_delete=models.CASCADE)
+class JAFTest(models.Model):
+    jaf = models.ForeignKey("company.JAF", verbose_name="JAF", null=False, blank=False, on_delete=models.CASCADE)
+    test_number = models.IntegerField("Test no.", null=False, blank=False)
     location = models.CharField("Test venue/URL", max_length=50, null=True, blank=True)
     start_time = models.DateTimeField("Test time", null=True, blank=True)
     description = models.TextField("Test details", null=True, blank=True)
     test_type = models.ForeignKey("TestType", verbose_name="Test type", null=False, blank=False, on_delete=models.CASCADE)
     duration = models.FloatField("Test duration (minutes)")
 
-class TestType:
+    class Meta:
+        unique_together = (("test_number", "jaf"),)
+
+
+class TestType(models.Model):
     type = models.CharField("Test type", max_length=50, primary_key=True)
 
-class Eligibility:
+class Eligibility(models.Model):
     jaf = models.ForeignKey("JAF", verbose_name="JAF", null=False, blank=False, on_delete=models.CASCADE)
-    department = models.ForeignKey("Department", verbose_name="Department", null=False, blank=False, on_delete=models.CASCADE)
-    program = models.ForeignKey("Program", verbose_name="Program", null=False, blank=False, on_delete=models.CASCADE)
+    department = models.ForeignKey("student.Department", verbose_name="Department", null=False, blank=False, on_delete=models.CASCADE)
+    program = models.ForeignKey("student.Program", verbose_name="Program", null=False, blank=False, on_delete=models.CASCADE)
     cpi_cutoff = models.FloatField("CPI", validators=[MinValueValidator(0.0),MaxValueValidator(10.0)], null=False, blank=False)
-    stipend = models.DecimalField("Compensation", decimal_places=2, null=False, blank=False)
-    currency = models.CharField("Unit",validators=[MinLengthValidator(3), MaxLengthValidator(3)])
+    stipend = models.DecimalField("Compensation", decimal_places=2, max_digits=10, null=False, blank=False)
+    currency = models.CharField("Unit",validators=[MinLengthValidator(3), MaxLengthValidator(3)], max_length=3, null=False, blank=False)
+
+    class Meta:
+        unique_together = (("department", "jaf", "program"),)

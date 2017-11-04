@@ -51,3 +51,6 @@ class Resume(models.Model):
         (2, "One page Nontech"),
         (3, "CV"),
     ), null=False, blank=False)
+
+    class Meta:
+        unique_together = (("student", "resume_number"),)

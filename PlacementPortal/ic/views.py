@@ -11,11 +11,13 @@ from django.contrib.auth.decorators import login_required
 from company.models import JAF
 from student.models import Student
 
+from .models import *
+
 # Create your views here.
 def login(request):
 	if request.POST :
 		user = authenticate(username=request.POST['username'], password=request.POST['password'])
-		if user is not None:  # A backend authenticated the credentials
+		if user is not None and IC.objects.filter(user=user).count() == 1:  # A backend authenticated the credentials
 			if user.is_active:
 				auth_login(request, user)
 				return HttpResponseRedirect('/ic/home/')
