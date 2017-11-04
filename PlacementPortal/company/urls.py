@@ -6,7 +6,7 @@ Examples:
 Function views
     1. Add an import:  from my_app import views
     2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
+# Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
 Including another URLconf
@@ -18,7 +18,8 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^login/$', views.login, name = 'login'),
-    url(r'^logout/$', views.logout, name = 'logout'),
-    url(r'^register/$', views.register, name = 'register'),
+    url(r'$', views.home, name = 'home'),
+    url(r'login/$', views.login, name = 'login'),
+    url(r'logout/$', views.logout, name = 'logout'),
+    url(r'register/$', views.register, name = 'register'),
 ]
