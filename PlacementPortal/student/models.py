@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 
 phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 
-class Department:
+class Department(models.Model):
     name = models.CharField(max_length=30, primary_key=True, blank=False)
 
-class Program:
+class Program(models.Model):
     name = models.CharField(max_length=50, primary_key=True, blank=False)
 
 
-class Student:
+class Student(models.Model):
     id = models.AutoField("Student ID", primary_key=True)
     name = models.CharField("Full name", max_length=50, null=False, blank=False)
     email = models.EmailField("Email ID", null=False, blank=False)
@@ -30,7 +30,7 @@ class Student:
     class Meta:
         permissions = (("be_student",),)
 
-class Application:
+class Application(models.Model):
     student = models.ForeignKey("Student", verbose_name="Applicant", null=False, blank=False, on_delete=models.CASCADE)
     jaf = models.ForeignKey("JAF", verbose_name="Job application", null=False, blank=False, on_delete=models.CASCADE)
     review = models.TextField("Job review", null=True, blank=True)
@@ -43,7 +43,7 @@ class Application:
     class Meta:
         unique_together = (("driver", "restaurant"),)
 
-class Resume:
+class Resume(models.Model):
     student = models.ForeignKey("Student", verbose_name="Resume of", null=False, blank=False, on_delete=models.CASCADE)
     resume_number = models.IntegerField("Resume number", choices=(
         (0,"One page"),
