@@ -9,12 +9,12 @@
 
 <div id="Container" style="margin: 20% auto; width:25%;align-items: center;">
 
-	<form action="{% url 'login' %}" method="post" id="form">
+	<form action="{% url 'student:login' %}" method="post" id="form">{% csrf_token %}
 	  <input type="text" name="username" placeholder="Username" >
 	  <input type="password" name="password" placeholder="Password">
-	  <input type="button" class="waves-effect waves-light btn" value="Login">
+	  <input type="submit" class="waves-effect waves-light btn" value="Login">
 	</form> 
-
+	<p>{{error}}</p>
 </div>
 
 </body>
