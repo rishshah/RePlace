@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^replace/', include('replace.urls')),
     url(r'^ic/', include('ic.urls')),
     url(r'^company/', include('company.urls')),
-    url(r'^student/', include('student.urls'))
+    url(r'^student/', include('student.urls')),
 ]
