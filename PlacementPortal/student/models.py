@@ -20,9 +20,9 @@ class Student(models.Model):
     cpi = models.FloatField("CPI", validators=[MinValueValidator(0.0),MaxValueValidator(10.0)], null=False, blank=False)
     # ldap_id = models.CharField("LDAP ID", validators=[MinLengthValidator(9), MaxValueValidator(9)], null=False, blank=False, unique=True)
     # ldap_password = models.CharField("LDAP password", max_length=100, validators=[MinLengthValidator(8)], null=False, blank=False)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="object")
-    department = models.ForeignKey("Department", verbose_name="Department", null=False, blank=False, on_delete=models.CASCADE)
-    program = models.ForeignKey("Program", verbose_name="Program", null=False, blank=False, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student")
+    department = models.ForeignKey("student.Department", verbose_name="Department", null=False, blank=False, on_delete=models.CASCADE)
+    program = models.ForeignKey("student.Program", verbose_name="Program", null=False, blank=False, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -31,8 +31,8 @@ class Student(models.Model):
         permissions = (("be_student",),)
 
 class Application(models.Model):
-    student = models.ForeignKey("Student", verbose_name="Applicant", null=False, blank=False, on_delete=models.CASCADE)
-    jaf = models.ForeignKey("JAF", verbose_name="Job application", null=False, blank=False, on_delete=models.CASCADE)
+    student = models.ForeignKey("student.Student", verbose_name="Applicant", null=False, blank=False, on_delete=models.CASCADE)
+    jaf = models.ForeignKey("company.JAF", verbose_name="Job application", null=False, blank=False, on_delete=models.CASCADE)
     review = models.TextField("Job review", null=True, blank=True)
     is_selected = models.BooleanField("Selected?", null=False, blank=False)
     progress = models.IntegerField("Number of tests passed", null=False, blank=False)
@@ -41,10 +41,10 @@ class Application(models.Model):
         return "%s's application for %s"%(self.student, self.jaf)
 
     class Meta:
-        unique_together = (("driver", "restaurant"),)
+        unique_together = (("student", "jaf"),)
 
 class Resume(models.Model):
-    student = models.ForeignKey("Student", verbose_name="Resume of", null=False, blank=False, on_delete=models.CASCADE)
+    student = models.ForeignKey("student.Student", verbose_name="Resume of", null=False, blank=False, on_delete=models.CASCADE)
     resume_number = models.IntegerField("Resume number", choices=(
         (0,"One page"),
         (1, "Two page Tech"),
