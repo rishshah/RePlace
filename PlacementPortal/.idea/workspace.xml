@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83503208-1074-41fa-bb26-9fdadadd9fc8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitattributes" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/PlacementPortal.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dumpsqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/replace/models.py" afterPath="$PROJECT_DIR$/replace/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/company/models.py" afterPath="$PROJECT_DIR$/company/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/student/models.py" afterPath="$PROJECT_DIR$/student/models.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,10 +15,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/replace/models.py">
+        <entry file="file://$PROJECT_DIR$/student/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="21" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="264">
+              <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -41,6 +35,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/replace/models.py" />
+        <option value="$PROJECT_DIR$/student/models.py" />
       </list>
     </option>
   </component>
@@ -80,7 +75,7 @@
             <path>
               <item name="PlacementPortal" type="b2602c69:ProjectViewProjectNode" />
               <item name="PlacementPortal" type="462c0819:PsiDirectoryNode" />
-              <item name="replace" type="462c0819:PsiDirectoryNode" />
+              <item name="student" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -238,6 +233,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="21" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/student/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
