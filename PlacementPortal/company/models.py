@@ -38,6 +38,7 @@ class JAFTest(models.Model):
     description = models.TextField("Test details", null=True, blank=True)
     test_type = models.ForeignKey("TestType", verbose_name="Test type", null=False, blank=False, on_delete=models.CASCADE)
     duration = models.FloatField("Test duration (minutes)")
+    deadline = models.DateTimeField("Last date to sign", null=False, blank=False)
 
     class Meta:
         unique_together = (("test_number", "jaf"),)
@@ -52,7 +53,7 @@ class Eligibility(models.Model):
     program = models.ForeignKey("student.Program", verbose_name="Program", null=False, blank=False, on_delete=models.CASCADE)
     cpi_cutoff = models.FloatField("CPI", validators=[MinValueValidator(0.0),MaxValueValidator(10.0)], null=False, blank=False)
     stipend = models.DecimalField("Compensation", decimal_places=2, max_digits=10, null=False, blank=False)
-    currency = models.CharField("Unit",validators=[MinLengthValidator(3), MaxLengthValidator(3)], max_length=3, null=False, blank=False)
+    currency = models.CharField("Unit",validators=[MinLengthValidator(3), MaxLengthValidator(3)], max_length=3, null=False, blank=False, default="INR")
 
     class Meta:
         unique_together = (("department", "jaf", "program"),)
