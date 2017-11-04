@@ -1,14 +1,14 @@
 {% extends 'ic/root.html' %}
 {% block content %}
 {% include 'ic/nav.html' %}
-<div id="Container" style="margin: 18% auto; width:24%;text-align: center;">
-	Internship Coordinator
-	<form action="{% url 'login' %}" method="post" id="form">
-		<div class="input-field col s6">
-		  <input type="text" name="username" placeholder="Username" >
-		  <input type="password" name="password" placeholder="Password">
+<div id="Container" style="margin: 12% auto; width:24%;text-align: center;background-color: rgba(0, 0, 0, 0.3); padding: 50px;">
+	<h4>Internship Coordinator</h4>
+	<form action="{% url 'ic:login' %}" method="post" id="form">{% csrf_token %}
+		<div class="input-field col s12">
+		  	<input type="text" name="username" placeholder="Username"  class="validate">
+		  	<input type="password" name="password" placeholder="Password">
+	  		<input type="submit" class="waves-effect waves-light btn grey darken-1" value="Login">
 		</div>
-	  <input type="submit" class="waves-effect waves-light btn grey darken-1" value="Login">
 	</form> 
 </div>
 {% endblock %}
