@@ -107,3 +107,6 @@ pyvenv.cfg
 .venv/
 venv/
 ENV/
+
+# pycharm
+.idea/
