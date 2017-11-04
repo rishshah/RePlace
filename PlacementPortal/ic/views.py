@@ -6,7 +6,7 @@ def index(request):
     return HttpResponse("This is login IC.")
 
 def login(request):
-    return HttpResponse("This is login IC.")
+    return render(request,'ic/login.html')
 
 def logout(request):
     return HttpResponse("This is logout IC")
