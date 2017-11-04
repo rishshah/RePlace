@@ -23,7 +23,6 @@ def login(request):
 		if(request.user.is_authenticated()):
 			return HttpResponseRedirect('/company/home/')
 		else:
-			print("XXX")
 			return render(request, "company/login.html",context={'error':''})
 
 def register(request):
@@ -35,6 +34,6 @@ def logout(request):
 	auth_logout(request)
 	return render(request, "company/logout.html",context=data)
 
-@login_required(login_url='/company/login')
+@login_required(login_url='/company/login/')
 def home(request):
 	return render(request, "company/home.html")
