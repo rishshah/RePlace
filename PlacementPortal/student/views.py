@@ -25,8 +25,7 @@ def login(request):
 		if(request.user.is_authenticated):
 			return HttpResponseRedirect('/student/home/')
 		else:
-			return HttpResponse("abcd");
-			# return render(request, "student/login.html",context={'error':''})
+			return render(request, "student/login.html",context={'error':''})
 
 @login_required()
 def logout(request):
