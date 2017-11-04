@@ -8,6 +8,8 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
+from company.models import JAF
+from student.models import Student
 
 # Create your views here.
 def login(request):
@@ -32,4 +34,8 @@ def logout(request):
 
 @login_required(login_url='/ic/login/')
 def home(request):
-	return render(request, "ic/home.html")
+	jaf_list = JAF.objects.all()
+	verified_students = Student.objects.filter(verified = True)
+	unverified_students = Student.objects.filter(verified = False)
+	data = {'jaf_list':jaf_list, 'verified_students':verified_students, 'unverified_students':unverified_students}
+	return render(request, "ic/home.html", context = data)

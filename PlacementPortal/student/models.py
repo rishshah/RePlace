@@ -23,7 +23,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student")
     department = models.ForeignKey("student.Department", verbose_name="Department", null=False, blank=False, on_delete=models.CASCADE)
     program = models.ForeignKey("student.Program", verbose_name="Program", null=False, blank=False, on_delete=models.CASCADE)
-
+    verified = models.BooleanField("Verification Status", null=False, blank=False)
     def __str__(self):
         return self.name
 
