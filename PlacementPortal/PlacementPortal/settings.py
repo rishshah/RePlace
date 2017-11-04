@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'company.apps.CompanyConfig',
     'ic.apps.IcConfig',
     'student.apps.StudentConfig',
+    'replace.apps.ReplaceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
