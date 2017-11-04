@@ -12,7 +12,9 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def login(request):
+	print("XXX1")
 	if request.POST :
+		print("XXX2")
 		user = authenticate(username=request.POST['username'], password=request.POST['password'])
 		if user is not None:  # A backend authenticated the credentials
 			if user.is_active:
