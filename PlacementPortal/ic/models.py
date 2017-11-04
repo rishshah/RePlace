@@ -9,5 +9,5 @@ class IC(models.Model):
     # ic_email = models.EmailField("IC Email Id", null=False, blank=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="ic")
 
-    class Meta:
-        permissions = (("be_ic",),)
+    # class Meta:
+    #     permissions = ("be_ic",),

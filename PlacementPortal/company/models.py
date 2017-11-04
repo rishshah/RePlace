@@ -11,8 +11,8 @@ class Company(models.Model):
     phone_number = models.CharField("Phone number", validators=[phone_regex], max_length=15, blank=True)
     category = models.ForeignKey("company.Category", verbose_name="Category", null=False, blank=False, on_delete=models.CASCADE)
 
-    class Meta:
-        permissions = (("be_company",),)
+    # class Meta:
+    #     permissions = ("be_company",)
 
 class Category(models.Model):
     type = models.CharField(max_length=30, primary_key=True, blank=False)

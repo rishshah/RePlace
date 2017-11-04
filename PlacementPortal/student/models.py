@@ -27,8 +27,8 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta:
-        permissions = (("be_student",),)
+    # class Meta:
+    #     permissions = ("be_student",)
 
 class Application(models.Model):
     student = models.ForeignKey("student.Student", verbose_name="Applicant", null=False, blank=False, on_delete=models.CASCADE)
