@@ -110,3 +110,4 @@ ENV/
 
 # pycharm
 .idea/
+PlacementPortal/db.sqlite3
