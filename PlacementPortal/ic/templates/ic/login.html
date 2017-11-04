@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<body>
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
+{% extends 'ic/root.html' %}
+{% block content %}
 <div id="Container" style="margin: 20% auto; width:24%;text-align: center;">
 	Internship Coordinator
 	<form action="/login" method="post" id="form">
@@ -16,8 +9,5 @@
 		</div>
 	  <input type="submit" class="waves-effect waves-light btn" value="Login">
 	</form> 
-
 </div>
-
-</body>
-</html>
+{% endblock %}
