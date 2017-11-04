@@ -1,0 +1,13 @@
+{% extends 'ic/root.html' %}
+{% block content %}
+<div id="Container" style="margin: 20% auto; width:24%;text-align: center;">
+	Internship Coordinator
+	<form action="/login" method="post" id="form">
+		<div class="input-field col s6">
+		  <input type="text" name="username" placeholder="Username" >
+		  <input type="password" name="password" placeholder="Password">
+		</div>
+	  <input type="submit" class="waves-effect waves-light btn" value="Login">
+	</form> 
+</div>
+{% endblock %}
