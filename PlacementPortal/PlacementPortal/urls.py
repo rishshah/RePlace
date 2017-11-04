@@ -22,5 +22,4 @@ urlpatterns = [
     url(r'^ic/', include('ic.urls')),
     url(r'^company/', include('company.urls')),
     url(r'^student/', include('student.urls'))
-
 ]
