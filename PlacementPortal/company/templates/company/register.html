@@ -12,13 +12,12 @@
 		    <select name="company-category">
 		    	  <option value="" disabled selected>Choose Company Category</option>
 		    	  {%for category in category_list %}
-				  <option value={category}>{category}</option>
+				  <option value={{ category }}>{{ category }}</option>
 				  {% endfor %}
 				  <option value="saab">Saab</option>
 				  <option value="mercedes">Mercedes</option>
 				  <option value="audi">Audi</option>
 			</select>
-
 	  		<input type="submit" class="waves-effect waves-light btn grey darken-1" value="Register">
 		</div>
 	</form> 
