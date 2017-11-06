@@ -72,6 +72,6 @@ def home(request):
 	if (not auth(request.user)):
 		return redirect('/replace')
 	company = get_company(request.user)
-	jaf_list = JAF.objects.all(company = company)
+	jaf_list = JAF.objects.filter(company = company)
 	data = {"jaf_list":jaf_list}
 	return render(request, "company/home.html", context = data)
