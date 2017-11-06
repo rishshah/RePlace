@@ -55,7 +55,10 @@ def home(request):
 def view_jaf(request,jaf_id):
 	if (not auth(request.user)):
 		return redirect('/replace')
-	jaf = JAF.objects.filter(id = jaf_id)
-	data = {'jaf':jaf}
+	jaf = JAF.objects.get(pk = pk)
+	if (jaf is None):
+		return redirect('/replace')
+	application_list = Application.objects.filter(jaf = jaf)
+	jaf.student_count = application_list.count()
+	data = {'jaf':jaf, 'applicants':application_list}
 	return render(request, "ic/jaf.html", context = data)
-	
