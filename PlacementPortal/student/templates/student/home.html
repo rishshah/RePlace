@@ -1,32 +1,34 @@
-{% extends 'ic/root.html' %}
-{% block content %}
-{% include 'ic/nav.html' %}
-<div class="row">
-    <div class="col l6 m6 s12">
-        <span class="card-title">Filters</span>
-    </div>
-</div>
-<div id="jaff_container" class="jaff_container">
-	<table class="highlight bordered  responsive-table">
-		<thead>
-			<tr>
-	  			<th>Jaff ID</th> 	
-	  			<th>Company</th>  
-	  			<th>Job Profile</th>
-	  			<th>Resume Number</th>	
-			</tr>
-		</thead>
-		 <tbody>
-		{% for jaf in jaf_list %}
-		  	<tr>
-		  		<td>{{ jaf.id }}</td> 	
-		  		<td>{{ jaf.company }}</td>  
-		  		<td>{{ jaf.profile }}</td>
-		  		<td>{{ jaf.resume_number }}</td>
-			</tr>
-		{% endfor %}
-		</tbody>
-	</table>
 
-</div>
+{% extends 'student/root.html' %}
+{% block content %}
+	{% include 'student/nav.html' %}
+    <div class="row">
+        <div class="col xl6 offset-xl3 l6 offset-l3 m12 s12 jaff_container">
+            <span class="card">Filters</span>
+        </div>
+    </div>
+	<div id="jaff_container" class="jaff_container row">
+		<div class="col xl6 offset-xl3 l6 offset-l3 m12 s12">
+			<table class="highlight bordered  responsive-table">
+				<thead>
+					<tr>
+						<th>JAF ID</th>
+						<th>Company</th>
+						<th>Job Profile</th>
+						<th>Resume Number</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for jaf in jaf_list %}
+						<tr>
+							<td>{{ jaf.id }}</td>
+							<td>{{ jaf.company }}</td>
+							<td>{{ jaf.profile }}</td>
+							<td>{{ jaf.resume_number }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
 {% endblock %}

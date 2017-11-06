@@ -1,5 +1,5 @@
 #for basic rendering of html pages
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -13,29 +13,37 @@ from .models import *
 from company.models import JAF
 
 
+
+
+def auth(user):
+    return Student.objects.filter(user=user).exists()
+
 # Create your views here.
 def login(request):
-	if request.POST :
-		user = authenticate(username=request.POST['username'], password=request.POST['password'])
-		if user is not None and Student.objects.filter(user=user).count() == 1:  # A backend authenticated the credentials
-			if user.is_active:
-				auth_login(request, user)
-				return HttpResponseRedirect('/student/home/')
-		return render(request, "student/login.html",context={'error':'invalid credentials'})
-	else:
-		if(request.user.is_authenticated()):
-			return HttpResponseRedirect('/student/home/')
-		else:
-			return render(request, "student/login.html",context={'error':''})
+    if request.POST :
+        user = authenticate(username=request.POST['username'], password=request.POST['password'])
+        if user is not None and auth(user):  # A backend authenticated the credentials
+            if user.is_active:
+                auth_login(request, user)
+                return HttpResponseRedirect('/student/home/')
+        return render(request, "student/login.html",context={'error':'invalid credentials'})
+    else:
+        if(request.user.is_authenticated() and auth(request.user)):
+            return HttpResponseRedirect('/student/home/')
+        else:
+            return render(request, "student/login.html",context={'error':''})
 
 @login_required()
 def logout(request):
-	data={'name':request.user.username}
-	auth_logout(request)
-	return render(request, "student/logout.html",context=data)
+    if (not auth(request.user)):
+        return redirect('/replace')
+    auth_logout(request)
+    return redirect('/replace')
 
 @login_required(login_url='/student/login/')
 def home(request):
     jaf_list = JAF.objects.all()
     data = {'jaf_list': jaf_list}
-    return render(request, "student/home.html", context=data)
+    if (not auth(request.user)):
+        return redirect('/replace')
+    return render(request, "student/home.html",  context=data)
