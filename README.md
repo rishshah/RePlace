@@ -16,18 +16,31 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Logout working
 - Company registration form created
 - Home Page for IC made and jafs are visible
- 
+- Company registration testing 
+- IC home page table css 
+- Home Page Content
+- Join selection django	
+
 ### In Progress
-- Company registration testing 			DEPAL
 - Filters for students in progress 		MEET
-- Home Page Content 					RISHABH
-- IC home page table css 				SOURABH 
 - Data creation for css testing 		MEET
-- Join selection django					DEPAL
 - Create home page students				RISHABH
+- Parallax in home page 				RISHABH
 
 ###ToDo (For First Demo)
 - Complete all in progress 				
 - IC tabs for resume selection status 	MEET SOURABH
 - Student check home page for resume status and other fields RISHABH 
 - Show basic jaf information 			SOURABH
+- resume related view backend 			DEPAL
+- send number of students applied to all views DEPAL
+###Filers to make
+
+- Can sign
+- Signed, Unsigned
+- CPI (later) (range)
+- Stipend (range)
+- Company category
+- Job Profile
+- Post deadline
+- Pending Jafs

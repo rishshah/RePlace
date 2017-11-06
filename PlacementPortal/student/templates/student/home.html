@@ -1,26 +1,26 @@
-
 {% extends 'student/root.html' %}
 {% block content %}
 	{% include 'student/nav.html' %}
-    <div class="row">
-	<div id="jaff_container" class="jaff_container row">
-		<div class="col xl6 offset-xl3 l6 offset-l3 m12 s12">
-			<table class="highlight bordered  responsive-table">
+	<div class="row" style="min-height: 400px">
+		<div class="jaf_container col xl6 offset-xl3 l6 offset-l3 m12 s12">
+			<table class="highlight bordered responsive-table">
 				<thead>
 					<tr>
-						<th>JAF ID</th>
+						<th>Jaff ID</th>
 						<th>Company</th>
 						<th>Job Profile</th>
 						<th>Resume Number</th>
+						<th>Students Applied</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for jaf in jaf_list %}
 						<tr>
-							<td>{{ jaf.id }}</td>
+							<td><a href="{% url 'ic:view_jaf' jaf.id %}">{{ jaf.id }}</a></td>
 							<td>{{ jaf.company }}</td>
 							<td>{{ jaf.profile }}</td>
 							<td>{{ jaf.resume_number }}</td>
+							<td>{{ jaf.student_count }}</td>
 						</tr>
 					{% endfor %}
 				</tbody>
