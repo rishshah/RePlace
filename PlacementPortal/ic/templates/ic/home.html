@@ -1,0 +1,11 @@
+{% extends 'ic/root.html' %}
+{% block content %}
+{% include 'ic/nav.html' %}
+
+<ul>
+{% for jaf in jaf_list %}
+  <li>jaf.company 	jaf.id 	jaf.profile</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

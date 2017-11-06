@@ -1,7 +1,7 @@
 {% extends 'ic/root.html' %}
 {% block content %}
 {% include 'ic/nav.html' %}
-<div id="Container" style="margin: 12% auto; width:24%;text-align: center;background-color: rgba(0, 0, 0, 0.3); padding: 50px;">
+<div id="Container" style="margin-left: 0% auto; width:24%;height:100vh;text-align: center;background-color: rgba(0, 0, 0, 0.3); padding: 50px;">
 	<h4>Internship Coordinator</h4>
 	<form action="{% url 'ic:login' %}" method="post" id="form">{% csrf_token %}
 		<div class="input-field col s12">
