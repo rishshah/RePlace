@@ -22,7 +22,6 @@ def login(request):
 				auth_login(request, user)
 				return HttpResponseRedirect('/ic/home/')
 		return render(request, "ic/login.html",context={'error':'invalid credentials'})
-		# return HttpResponseRedirect('/ic/home/')
 	else:
 		if(request.user.is_authenticated()):
 			return HttpResponseRedirect('/ic/home/')
