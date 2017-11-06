@@ -1,14 +1,16 @@
-{% extends 'company/root.html' %}
+{% extends 'student/root.html' %}
 {% block content %}
-<!-- {% include 'ic/nav.html' %} -->
-<div id="Container" style="margin: 15% auto; width:24%; text-align: center;background-color: rgba(254, 254, 254, 0.9); padding: 60px;">
-	<h4>Student Login</h4>
-	<form action="{% url 'student:login' %}" method="post" id="form">{% csrf_token %}
-		<div class="input-field col s12">
-		  	<input type="text" name="username" placeholder="Username"  class="validate">
-		  	<input type="password" name="password" placeholder="Password">
-	  		<input type="submit" class="waves-effect waves-light btn grey darken-1" value="Login">
+
+<div class="row login_container">
+	<div class="col xl4 offset-xl4 l4 offset-l4 m4 offset-m4 s12">
+		<div class="login_background">
+			<h4>Student</h4>
+			<form action="{% url 'student:login' %}" method="post" id="form">{% csrf_token %}
+				  	<input type="text" name="username" placeholder="Username"  class="validate">
+				  	<input type="password" name="password" placeholder="Password">
+			  		<input type="submit" class="waves-effect waves-light btn grey darken-1" value="Login">
+			</form>
 		</div>
-	</form> 
+	<div> 
 </div>
 {% endblock %}

@@ -23,6 +23,7 @@
 				<form action="{% url 'company:register' %}" method="post" id="form">{% csrf_token %}
 					<div class="input-field col s12">
 					  	<input type="text" name="company-name" placeholder="Company Name"  class="validate">
+		 			 	<input type="text" name="company-username" placeholder="Company Username"  class="validate">
 					    <select name="company-category">
 					    	  <option value="" disabled selected>Choose Company Category</option>
 					    	  {%for category in category_list %}
