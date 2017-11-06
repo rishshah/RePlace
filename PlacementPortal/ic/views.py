@@ -48,3 +48,12 @@ def home(request):
 	unverified_students = Student.objects.filter(resume_verified = False)
 	data = {'jaf_list':jaf_list, 'verified_students':verified_students, 'unverified_students':unverified_students}
 	return render(request, "ic/home.html", context = data)
+
+@login_required(login_url='/ic/login/')
+def view_jaf(request,jaf_id):
+	if (not auth(request.user)):
+		return redirect('/replace')
+	jaf = JAF.objects.filter(id = jaf_id)
+	data = {'jaf':jaf}
+	return render(request, "ic/jaf.html", context = data)
+	
