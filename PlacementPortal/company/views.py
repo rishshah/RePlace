@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from .models import *
 
 def auth(user):
-	return Company.objects.filter(user=user).count() == 1
+	return Company.objects.filter(user=user).exists()
 
 # Create your views here.
 def login(request):

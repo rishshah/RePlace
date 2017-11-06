@@ -14,7 +14,7 @@ from .models import *;
 
 
 def auth(user):
-	return Student.objects.filter(user=user).count() == 1
+	return Student.objects.filter(user=user).exists()
 
 # Create your views here.
 def login(request):

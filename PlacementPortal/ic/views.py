@@ -14,7 +14,7 @@ from student.models import Student
 from .models import *
 
 def auth(user):
-	return IC.objects.filter(user=user).count() == 1
+	return IC.objects.filter(user=user).exists()
 
 
 # Create your views here.
