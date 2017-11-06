@@ -33,6 +33,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Student check home page for resume status and other fields RISHABH 
 - Show basic jaf information 			SOURABH
 - resume related view backend 			DEPAL
+- send number of students applied to all views DEPAL
 ###Filers to make
 
 - Can sign
