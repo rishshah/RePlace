@@ -33,10 +33,11 @@ def register(request):
 		return render(request, "company/register.html", context = data)
 	else:
 		company_name = request.POST['company-name']
+		company_username = request.POST['company-username']
 		password = request.POST['password']
 		phone_number = request.POST['phone-number']
 		category = request.POST['company-category']
-		print(company_name, password, phone_number, category)
+		print(company_name, company_username, password, phone_number, category)
 		return HttpResponse("Company Registered!")
 
 @login_required()

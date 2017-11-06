@@ -6,6 +6,7 @@
 	<form action="{% url 'company:register' %}" method="post" id="form">{% csrf_token %}
 		<div class="input-field col s12">
 		  	<input type="text" name="company-name" placeholder="Company Name"  class="validate">
+		  	<input type="text" name="company-username" placeholder="Company Username"  class="validate">
 		  	<input type="password" name="password" placeholder="Password">
 		  	<input type="password" name="confirm-password" placeholder="Confirm Password">
 		  	<input type="number" name="phone-number" placeholder="Phone Number"  class="validate">
