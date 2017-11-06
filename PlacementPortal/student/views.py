@@ -35,9 +35,8 @@ def login(request):
 def logout(request):
 	if (not auth(request.user)):
 		return redirect('/replace')
-	data={'name':request.user.username}
 	auth_logout(request)
-	return render(request, "student/logout.html",context=data)
+	return redirect('/replace')
 
 @login_required(login_url='/student/login/')
 def home(request):
