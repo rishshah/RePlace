@@ -21,9 +21,10 @@ class Student(models.Model):
     # ldap_id = models.CharField("LDAP ID", validators=[MinLengthValidator(9), MaxValueValidator(9)], null=False, blank=False, unique=True)
     # ldap_password = models.CharField("LDAP password", max_length=100, validators=[MinLengthValidator(8)], null=False, blank=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student")
+    resume_verified = models.BooleanField("Resume verified?", default=False, null=False, blank=False)
     department = models.ForeignKey("student.Department", verbose_name="Department", null=False, blank=False, on_delete=models.CASCADE)
     program = models.ForeignKey("student.Program", verbose_name="Program", null=False, blank=False, on_delete=models.CASCADE)
-
+    verified = models.BooleanField("Verification Status", null=False, blank=False)
     def __str__(self):
         return self.name
 
@@ -34,8 +35,8 @@ class Application(models.Model):
     student = models.ForeignKey("student.Student", verbose_name="Applicant", null=False, blank=False, on_delete=models.CASCADE)
     jaf = models.ForeignKey("company.JAF", verbose_name="Job application", null=False, blank=False, on_delete=models.CASCADE)
     review = models.TextField("Job review", null=True, blank=True)
-    is_selected = models.BooleanField("Selected?", null=False, blank=False)
-    progress = models.IntegerField("Number of tests passed", null=False, blank=False)
+    is_selected = models.BooleanField("Selected?", null=False, blank=False, default=False)
+    progress = models.IntegerField("Number of tests passed", null=False, blank=False, default=0)
 
     def __str__(self):
         return "%s's application for %s"%(self.student, self.jaf)
