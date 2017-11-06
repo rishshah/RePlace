@@ -13,24 +13,37 @@
 	</nav>
     <a class="modal-trigger" href="#modal1">Modal</a>
     <script>$(document).ready(function(){
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
+
   });</script>
 </div>
 
 <div id="modal1" class="modal col l6">
     <div class="modal-content">
-      <h5>Filters</h5>
+      <h5 class="center">Filters</h5>
 
               <a href="#!"><input type="checkbox" id="inp1" />
               <label for="inp1" class="black-text">Eligible</label></a>
                 <br>
+        <br>
               <a href="#!"><input type="checkbox" id="inp2" />
               <label for="inp2" class="black-text">Signed</label></a>
-                <br>
-              <a href="#!"><input type="checkbox" id="inp3" />
-              <label for="inp3" class="black-text">Signed</label></a>
-
+                <br> From
+                <div class="input-field inline">
+                    <input id="min_stipend" type="email" class="validate">
+                    <label for="min_stipend" data-error="wrong" data-success="right">Min stipend</label>
+                </div> to <div class="input-field inline">
+                    <input id="max_stipend" type="email" class="validate">
+                    <label for="max_stipend" data-error="wrong" data-success="right">Max stipend</label>
+                </div>
+                <br> From
+                <div class="input-field inline">
+                    <input id="min_cpi" type="email" class="validate">
+                    <label for="min_stipend" data-error="wrong" data-success="right">Min CPI cutoff</label>
+                </div> to <div class="input-field inline">
+                    <input id="max_cpi" type="email" class="validate">
+                    <label for="max_stipend" data-error="wrong" data-success="right">Max CPI cutoff</label>
+                </div>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
