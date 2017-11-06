@@ -1,14 +1,52 @@
 {% extends 'company/root.html' %}
 {% block content %}
 <!-- {% include 'ic/nav.html' %} -->
-<div id="Container" style="margin: 15% auto; width:24%; text-align: center;background-color: rgba(254, 254, 254, 0.9); padding: 60px;">
-	<h4>Company Login</h4>
-	<form action="{% url 'company:login' %}" method="post" id="form">{% csrf_token %}
-		<div class="input-field col s12">
-		  	<input type="text" name="username" placeholder="Username"  class="validate">
-		  	<input type="password" name="password" placeholder="Password">
-	  		<input type="submit" class="waves-effect waves-light btn grey darken-1" value="Login">
+<div class="row">
+    <div class="login_container">
+		<div class="col xl6 offset-xl3 l6 offset-l3 m6 offset-m3 s12 login_background" style="padding: 30px;">
+		    <div class="col s12 m12 l12">
+		      	<ul class="tabs" style="color:black">
+		        <li class="tab col s12 m6 l6"><a href="#login">Login</a></li>
+		        <li class="tab col s12 m6 l6"><a class="active" href="#register">Register</a></li>
+		        </ul>
+		    </div>
+			<div id ="login" style="padding-top: 100px">
+				<h4>Company Login</h4>
+				<form action="{% url 'company:login' %}" method="post" id="form">{% csrf_token %}
+					  	<input type="text" name="username" placeholder="Username"  class="validate">
+					  	<input type="password" name="password" placeholder="Password">
+				  		<input type="submit" class="waves-effect waves-light btn grey darken-1" value="Login">
+				</form>
+			</div>
+			<div id ="register" style="padding-top: 100px">
+				<h4>Company Registration</h4>
+				<form action="{% url 'company:register' %}" method="post" id="form">{% csrf_token %}
+					<div class="input-field col s12">
+					  	<input type="text" name="company-name" placeholder="Company Name"  class="validate">
+		 			 	<input type="text" name="company-username" placeholder="Company Username"  class="validate">
+					    <select name="company-category">
+					    	  <option value="" disabled selected>Choose Company Category</option>
+					    	  {%for category in category_list %}
+							  <option value={{ category }}>{{ category }}</option>
+							  {% endfor %}
+							  <option value="saab">Saab</option>
+							  <option value="mercedes">Mercedes</option>
+							  <option value="audi">Audi</option>
+						</select>
+					  	<input type="password" name="password" placeholder="Password">
+					  	<input type="password" name="confirm-password" placeholder="Confirm Password">
+					  	<input type="number" name="phone-number" placeholder="Phone Number"  class="validate">
+				  		<input type="submit" class="waves-effect waves-light btn grey darken-1" value="Register">
+					</div>
+				</form> 
+			</div>
 		</div>
-	</form> 
-</div>
+	</div>
+	<script>
+	     $(document).ready(function() {
+	        $('select').material_select();
+	    	$('ul.tabs').tabs();
+	    });
+	</script>	
+  </div>
 {% endblock %}

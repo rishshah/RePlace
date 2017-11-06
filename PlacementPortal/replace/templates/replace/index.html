@@ -1,0 +1,50 @@
+{% extends 'replace/root.html' %}
+{% load static %}
+{% block content %}
+{% include 'replace/nav.html' %}
+<div style="background-image: url('{% static 'images/placements.jpg' %}'); background-size: 100% auto; width:100%; height:450px;padding-top:100px; padding-right: 20px; padding-left: 20px"> 
+	<div class="row">
+        <div class="col s12 m4"  style="padding:20px">
+          	<div class="card black" style="height:200px;opacity: 0.8;">
+            	<div class="card-content white-text">
+              		<span class="card-title" style="text-align:center">
+              			<a href="{%url 'ic:login' %}"><h4 style="color:rgba(255, 255, 255, 1);">Coordinator Login</h4></a>
+              		</span>
+            	</div>
+          	</div>
+        </div>
+        <div class="col s12 m4" style="padding:20px">
+          	<div class="card black"  style="height:200px;opacity: 0.8;">
+            	<div class="card-content white-text">
+              		<span class="card-title" style="text-align:center">
+              			<a href="{%url 'student:login' %}"><h4 style="color:rgba(255, 255, 255, 1);">Student Login</h4></a>
+              		</span>
+            	</div>
+          	</div>
+        </div>
+        <div class="col s12 m4"  style="padding:20px">
+          	<div class="card black"  style="height:200px;opacity: 0.8;">
+            	<div class="card-content white-text">
+              		<span class="card-title" style="text-align:center">
+              			<a href="{%url 'company:login' %}"><h4 style="color:rgba(255, 255, 255, 1);">Company Login</h4></a>
+              		</span>
+            	</div>
+          	</div>
+        </div>
+    </div>
+</div>
+
+<div id="Container">
+<p>
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis odio dui, in gravida leo rhoncus eget. Maecenas rutrum ante molestie sapien ullamcorper, ut accumsan nunc vehicula. Mauris feugiat, purus at placerat fringilla, eros ex accumsan mi, a accumsan orci libero sit amet felis. Sed condimentum odio ac dui vulputate posuere. Etiam posuere quam mi, ac porttitor ipsum aliquam quis. Nullam commodo elit lectus, quis iaculis mi consectetur nec. Donec ornare pretium fringilla.
+</p><p>
+Phasellus mattis convallis diam vestibulum hendrerit. Quisque venenatis sit amet augue et lobortis. Suspendisse interdum venenatis nisi sed tempor. Praesent porta porta augue, sit amet pretium sem malesuada quis. Integer ultrices laoreet aliquam. Praesent cursus lacus eu dui consequat, non auctor felis molestie. Integer quis tortor enim. Nullam ut dapibus urna, at dictum mi. Mauris id gravida arcu. Phasellus ullamcorper velit sit amet luctus convallis. Donec suscipit odio in facilisis accumsan.
+</p><p>
+Maecenas mattis pharetra orci ut vulputate. Duis non ligula euismod tortor efficitur ultricies. Pellentesque vel urna non felis ornare porta non a ligula. Nam placerat augue sit amet diam placerat vulputate vitae dictum ligula. In efficitur eros arcu, et vestibulum nulla vehicula vitae. Phasellus quis felis in enim dapibus lobortis. Pellentesque sodales quam sed diam pellentesque, vitae mattis metus sollicitudin. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut iaculis felis a nunc tristique tempor. Mauris in purus venenatis, feugiat dolor at, rhoncus elit. Etiam molestie vitae odio non pretium.
+</p><p>
+Pellentesque pharetra nunc in enim placerat ultrices sit amet scelerisque sem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi tincidunt, nunc non vehicula egestas, leo nunc feugiat augue, viverra facilisis leo elit vel dui. Ut tempor placerat sapien pharetra auctor. Donec vel tincidunt urna. Suspendisse potenti. Sed sollicitudin neque non magna sodales, vitae mattis ante eleifend. Sed et dui vehicula, egestas erat ac, porttitor ante. Morbi quis vehicula ex. Donec vel sollicitudin metus, non aliquet enim. Vivamus sed aliquam elit. Duis malesuada sit amet ligula sit amet pharetra.
+</p><p>
+Nullam scelerisque turpis nec dolor iaculis, ut dignissim tellus tincidunt. Fusce nec aliquam tellus. Aliquam pulvinar risus a lacus ultricies porttitor. Mauris tempus odio sit amet lectus bibendum tincidunt. Suspendisse venenatis elementum lobortis. Praesent quis molestie arcu. Ut risus magna, egestas ac faucibus luctus, facilisis sit amet nulla. Donec orci massa, pretium eget pretium quis, laoreet nec augue. Curabitur molestie nulla consequat ipsum congue ornare. Sed volutpat scelerisque cursus. Aenean rutrum, justo nec ornare commodo, urna purus posuere tortor, a fermentum erat velit quis arcu.	
+</p>
+</div>
+{% endblock %}
