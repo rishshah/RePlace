@@ -11,11 +11,14 @@ from django.contrib.auth.decorators import login_required
 
 from .models import *
 
+def auth(user):
+	return Company.objects.filter(user=user).count() == 1
+
 # Create your views here.
 def login(request):
 	if request.POST :
 		user = authenticate(username=request.POST['username'], password=request.POST['password'])
-		if user is not None and Company.objects.filter(user=user).count() == 1:  # A backend authenticated the credentials
+		if user is not None and auth(user):  # A backend authenticated the credentials
 			if user.is_active:
 				auth_login(request, user)
 				return HttpResponseRedirect('/company/home/')
@@ -33,18 +36,23 @@ def register(request):
 		return render(request, "company/register.html", context = data)
 	else:
 		company_name = request.POST['company-name']
+		company_username = request.POST['company-username']
 		password = request.POST['password']
 		phone_number = request.POST['phone-number']
 		category = request.POST['company-category']
-		print(company_name, password, phone_number, category)
+		print(company_name, company_username, password, phone_number, category)
 		return HttpResponse("Company Registered!")
 
 @login_required()
 def logout(request):
+	if (not auth(request.user)):
+		return redirect('/replace')
 	data={'name':request.user.username}
 	auth_logout(request)
 	return render(request, "company/logout.html",context=data)
 
 @login_required(login_url='/company/login/')
 def home(request):
+	if (not auth(request.user)):
+		return redirect('/replace')
 	return render(request, "company/home.html")

@@ -13,12 +13,15 @@ from student.models import Student
 
 from .models import *
 
+def auth(user):
+	return IC.objects.filter(user=user).count() == 1
+
+
 # Create your views here.
 def login(request):
 	if request.POST :
 		user = authenticate(username=request.POST['username'], password=request.POST['password'])
-		print(IC.objects.filter(user=user).count());
-		if user is not None and IC.objects.filter(user=user).count() == 1:  # A backend authenticated the credentials
+		if user is not None and auth(user):  # A backend authenticated the credentials
 			if user.is_active:
 				auth_login(request, user)
 				return HttpResponseRedirect('/ic/home/')
@@ -31,12 +34,17 @@ def login(request):
 
 @login_required()
 def logout(request):
+	if (not auth(request.user)):
+		return redirect('/replace')
 	data={'name':request.user.username}
 	auth_logout(request)
 	return render(request, "ic/logout.html",context=data)
 
-# @login_required(login_url='/ic/login/')
+
+@login_required(login_url='/ic/login/')
 def home(request):
+	if (not auth(request.user)):
+		return redirect('/replace')
 	jaf_list = JAF.objects.all()
 	verified_students = Student.objects.filter(resume_verified = True)
 	unverified_students = Student.objects.filter(resume_verified = False)
