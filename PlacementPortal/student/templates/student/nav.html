@@ -1,10 +1,35 @@
 <div class="navbar-fixed">
-	<nav>
+    <nav>
 		<div class="nav-wrapper black">
 			<a href="{% url 'replace:index' %}" class="brand-logo">Placement Portal</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a class="modal-trigger" href="#modal1">Filters</a></li>
 				<li><a href="{% url 'ic:logout'%}">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
+    <a class="modal-trigger" href="#modal1">Modal</a>
+    <script>$(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });</script>
+</div>
+
+<div id="modal1" class="modal col l6">
+    <div class="modal-content">
+      <h5>Filters</h5>
+
+              <a href="#!"><input type="checkbox" id="inp1" />
+              <label for="inp1" class="black-text">Eligible</label></a>
+                <br>
+              <a href="#!"><input type="checkbox" id="inp2" />
+              <label for="inp2" class="black-text">Signed</label></a>
+                <br>
+              <a href="#!"><input type="checkbox" id="inp3" />
+              <label for="inp3" class="black-text">Signed</label></a>
+
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+    </div>
 </div>
