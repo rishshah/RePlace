@@ -26,7 +26,7 @@ def login(request):
 		data = {'tab':'login','category_list':category_list,'error':'invalid credentials'}
 		return render(request, "company/login.html",context=data)
 	else:
-		if(request.user.is_authenticated()):
+		if(request.user.is_authenticated() and auth(request.user)):
 			return HttpResponseRedirect('/company/home/')
 		else:
 			data = {'tab':'login','category_list':category_list,'error':''}

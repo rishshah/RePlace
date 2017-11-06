@@ -1,9 +1,9 @@
 {% extends 'ic/root.html' %}
 {% block content %}
 <!-- {% include 'ic/nav.html' %} -->
-<div id="login_container" class="row">
+<div class="row login_container">
 	<div class="col xl4 offset-xl4 l4 offset-l4 m4 offset-m4 s12">
-		<div id="login_background">
+		<div class="login_background">
 			<h4>Internship Coordinator</h4>
 			<form action="{% url 'ic:login' %}" method="post" id="form">{% csrf_token %}
 				  	<input type="text" name="username" placeholder="Username"  class="validate">
