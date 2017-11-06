@@ -1,17 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<body  background="{% static 'ic/images/placements.jpg' %}";   style="background-size: 100%;" >
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
-<link rel="stylesheet" href="{% static 'ic/css/home.css' %}">
-<link rel="stylesheet" href="{% static 'ic/css/login.css' %}">
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
-	{% block content %}
-    {% endblock %}
-
-</body>
+	<body  background="{% static 'ic/images/placements.jpg' %}";   style="background-size: 100%;" >
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		<link rel="stylesheet" href="{% static 'ic/css/home.css' %}">
+		<link rel="stylesheet" href="{% static 'ic/css/login.css' %}">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+		{% block content %}
+		{% endblock %}
+	</body>
 </html>
