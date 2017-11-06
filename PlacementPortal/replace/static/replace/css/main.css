@@ -12,7 +12,8 @@
 }
 .login_button.col > .card{
 	height:100px;
-	opacity: 0.8;
+	opacity: 0.95;
+	border-radius: 10px;
 }
 
 .login_title.card-title{
@@ -21,4 +22,53 @@
 
 .login_title.card-title > a{
 	color:black;
+}
+
+#content h3{
+	text-align: center;
+}
+
+.parallax > img{
+ 	width: 100px;
+ 	height: 300px;
+}
+
+nav ul a{
+    font-size: 1.1rem; 
+} 
+
+
+nav .brand-logo > img{
+	width:80px;
+	height:80px;
+	vertical-align: middle;
+}
+
+nav {
+    height: 90px;
+    line-height: 90px;
+}
+
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
+    height: 90px;
+    line-height: 90px;
+}
+
+nav .button-collapse i {
+    height: 90px;
+    line-height: 90px;
+}
+
+nav .brand-logo { 
+ 	font-size: 2.7rem; 
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+@media only screen and (min-width: 601px){
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        height: 90px;
+        line-height: 90px;
+    }
 }

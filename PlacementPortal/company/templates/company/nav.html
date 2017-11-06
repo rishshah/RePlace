@@ -1,7 +1,10 @@
+{% load static %}
 <div class="navbar-fixed">
 	<nav>
 		<div class="nav-wrapper black">
-			<a href="{% url 'replace:index' %}" class="brand-logo">Placement Portal</a>
+			<a href="{% url 'replace:index' %}" class="brand-logo">
+				<img src="{% static 'replace/images/iitb_logo.png' %}">
+			Placement Portal</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="{% url 'ic:logout'%}">Logout</a></li>
 			</ul>

@@ -9,7 +9,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from company.models import JAF
-from student.models import Student
+from student.models import Student, Application
 
 from .models import *
 
@@ -43,8 +43,22 @@ def logout(request):
 def home(request):
 	if (not auth(request.user)):
 		return redirect('/replace')
-	jaf_list = JAF.objects.all()
+	jaf_list = list(JAF.objects.all())
+	for jaf in jaf_list:
+		jaf.student_count  = Application.objects.filter(jaf = jaf).count()
 	verified_students = Student.objects.filter(resume_verified = True)
 	unverified_students = Student.objects.filter(resume_verified = False)
 	data = {'jaf_list':jaf_list, 'verified_students':verified_students, 'unverified_students':unverified_students}
 	return render(request, "ic/home.html", context = data)
+
+@login_required(login_url='/ic/login/')
+def view_jaf(request,pk):
+	if (not auth(request.user)):
+		return redirect('/replace')
+	jaf = JAF.objects.get(pk = pk)
+	if (jaf is None):
+		return redirect('/replace')
+	application_list = Application.objects.filter(jaf = jaf)
+	jaf.student_count = application_list.count()
+	data = {'jaf':jaf, 'applicants':application_list}
+	return render(request, "ic/jaf.html", context = data)
