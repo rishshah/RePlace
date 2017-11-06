@@ -11,11 +11,16 @@ class Company(models.Model):
     phone_number = models.CharField("Phone number", validators=[phone_regex], max_length=15, blank=True)
     category = models.ForeignKey("company.Category", verbose_name="Category", null=False, blank=False, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
     # class Meta:
     #     permissions = ("be_company",)
 
 class Category(models.Model):
     type = models.CharField(max_length=30, primary_key=True, blank=False)
+
+    def __str__(self):
+        return self.type
 
 class JAF(models.Model):
     id = models.AutoField("JAF no.", primary_key=True)
@@ -23,12 +28,15 @@ class JAF(models.Model):
     description = models.TextField("Job description", null=False, blank=False)
     other_details = models.TextField("Other details", null=True, blank=True)
     requirements = models.TextField("Job requirements", null=False, blank=False)
-    job_year = models.IntegerField("Registration year", validators=[MinValueValidator(1958), MaxValueValidator(2018)], null=False, blank = False)
+    job_year = models.IntegerField("Internship year", validators=[MinValueValidator(1958), MaxValueValidator(2018)], null=False, blank = False)
     posting = models.CharField("Place of posting", max_length=50, null=False, blank=False)
     profile = models.CharField("Job profile", max_length=50, null=False, blank=False)
     accomodation = models.TextField("Accomodation details", null=False, blank=False)
-    duration = models.IntegerField("Internship duration (days)", validators=[MinValueValidator(7)], null=False, blank=False)
+    duration = models.IntegerField("Internship duration (weeks)", validators=[MinValueValidator(1)], null=False, blank=False)
     resume_number = models.IntegerField("Resume no. wanted", validators=[MinValueValidator(0), MaxValueValidator(3)], null=True, blank=True)
+
+    def __str__(self):
+        return "JAF no. %d (%s)" % (self.id, self.company)
 
 class JAFTest(models.Model):
     jaf = models.ForeignKey("company.JAF", verbose_name="JAF", null=False, blank=False, on_delete=models.CASCADE)
@@ -40,12 +48,18 @@ class JAFTest(models.Model):
     duration = models.FloatField("Test duration (minutes)")
     deadline = models.DateTimeField("Last date to sign", null=False, blank=False)
 
+    def __str__(self):
+        return "Test no. %d for %s" % (self.test_number, self.jaf)
+
     class Meta:
         unique_together = (("test_number", "jaf"),)
 
 
 class TestType(models.Model):
     type = models.CharField("Test type", max_length=50, primary_key=True)
+
+    def __str__(self):
+        return self.type
 
 class Eligibility(models.Model):
     jaf = models.ForeignKey("JAF", verbose_name="JAF", null=False, blank=False, on_delete=models.CASCADE)
@@ -54,6 +68,9 @@ class Eligibility(models.Model):
     cpi_cutoff = models.FloatField("CPI", validators=[MinValueValidator(0.0),MaxValueValidator(10.0)], null=False, blank=False)
     stipend = models.DecimalField("Compensation", decimal_places=2, max_digits=10, null=False, blank=False)
     currency = models.CharField("Unit",validators=[MinLengthValidator(3), MaxLengthValidator(3)], max_length=3, null=False, blank=False, default="INR")
+
+    def __str__(self):
+        return "%s: (Dept=%s, Program=%s)" % (self.jaf, self.department, self.program)
 
     class Meta:
         unique_together = (("department", "jaf", "program"),)
