@@ -16,12 +16,13 @@ from .models import *
 # Create your views here.
 def login(request):
 	if request.POST :
-		user = authenticate(username=request.POST['username'], password=request.POST['password'])
-		if user is not None and IC.objects.filter(user=user).count() == 1:  # A backend authenticated the credentials
-			if user.is_active:
-				auth_login(request, user)
-				return HttpResponseRedirect('/ic/home/')
-		return render(request, "ic/login.html",context={'error':'invalid credentials'})
+		# user = authenticate(username=request.POST['username'], password=request.POST['password'])
+		# if user is not None and IC.objects.filter(user=user).count() == 1:  # A backend authenticated the credentials
+		# 	if user.is_active:
+		# 		auth_login(request, user)
+		# 		return HttpResponseRedirect('/ic/home/')
+		# return render(request, "ic/login.html",context={'error':'invalid credentials'})
+		return HttpResponseRedirect('/ic/home/')
 	else:
 		if(request.user.is_authenticated()):
 			return HttpResponseRedirect('/ic/home/')
@@ -34,7 +35,7 @@ def logout(request):
 	auth_logout(request)
 	return render(request, "ic/logout.html",context=data)
 
-@login_required(login_url='/ic/login/')
+# @login_required(login_url='/ic/login/')
 def home(request):
 	jaf_list = JAF.objects.all()
 	verified_students = Student.objects.filter(verified = True)
