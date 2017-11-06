@@ -17,6 +17,7 @@ from .models import *
 def login(request):
 	if request.POST :
 		user = authenticate(username=request.POST['username'], password=request.POST['password'])
+		print(IC.objects.filter(user=user).count());
 		if user is not None and IC.objects.filter(user=user).count() == 1:  # A backend authenticated the credentials
 			if user.is_active:
 				auth_login(request, user)
