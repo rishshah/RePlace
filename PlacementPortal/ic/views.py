@@ -16,13 +16,12 @@ from .models import *
 # Create your views here.
 def login(request):
 	if request.POST :
-		# user = authenticate(username=request.POST['username'], password=request.POST['password'])
-		# if user is not None and IC.objects.filter(user=user).count() == 1:  # A backend authenticated the credentials
-		# 	if user.is_active:
-		# 		auth_login(request, user)
-		# 		return HttpResponseRedirect('/ic/home/')
-		# return render(request, "ic/login.html",context={'error':'invalid credentials'})
-		return HttpResponseRedirect('/ic/home/')
+		user = authenticate(username=request.POST['username'], password=request.POST['password'])
+		if user is not None and IC.objects.filter(user=user).count() == 1:  # A backend authenticated the credentials
+			if user.is_active:
+				auth_login(request, user)
+				return HttpResponseRedirect('/ic/home/')
+		return render(request, "ic/login.html",context={'error':'invalid credentials'})
 	else:
 		if(request.user.is_authenticated()):
 			return HttpResponseRedirect('/ic/home/')

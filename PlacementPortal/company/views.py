@@ -27,7 +27,12 @@ def login(request):
 			return render(request, "company/login.html",context={'error':''})
 
 def register(request):
-	return render(request, "company/home.html")
+	if (request.GET):
+		category_list = Category.objects.all()
+		data = {'category_list':category_list}
+		return render(request, "company/register.html", context = data)
+	else:
+		return render(request, "company/register.html")
 
 @login_required()
 def logout(request):
