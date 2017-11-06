@@ -28,8 +28,7 @@
 	text-align: center;
 }
 
-.parallax > img{
- 	width: 100px;
+.parallax-container{
  	height: 300px;
 }
 nav ul a{
