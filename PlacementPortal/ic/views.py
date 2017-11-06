@@ -16,13 +16,13 @@ from .models import *
 # Create your views here.
 def login(request):
 	if request.POST :
-		# user = authenticate(username=request.POST['username'], password=request.POST['password'])
-		# if user is not None and IC.objects.filter(user=user).count() == 1:  # A backend authenticated the credentials
-		# 	if user.is_active:
-		# 		auth_login(request, user)
-		# 		return HttpResponseRedirect('/ic/home/')
-		# return render(request, "ic/login.html",context={'error':'invalid credentials'})
-		return HttpResponseRedirect('/ic/home/')
+		user = authenticate(username=request.POST['username'], password=request.POST['password'])
+		if user is not None and IC.objects.filter(user=user).count() == 1:  # A backend authenticated the credentials
+			if user.is_active:
+				auth_login(request, user)
+				return HttpResponseRedirect('/ic/home/')
+		return render(request, "ic/login.html",context={'error':'invalid credentials'})
+		# return HttpResponseRedirect('/ic/home/')
 	else:
 		if(request.user.is_authenticated()):
 			return HttpResponseRedirect('/ic/home/')
@@ -38,7 +38,7 @@ def logout(request):
 # @login_required(login_url='/ic/login/')
 def home(request):
 	jaf_list = JAF.objects.all()
-	verified_students = Student.objects.filter(verified = True)
-	unverified_students = Student.objects.filter(verified = False)
+	verified_students = Student.objects.filter(resume_verified = True)
+	unverified_students = Student.objects.filter(resume_verified = False)
 	data = {'jaf_list':jaf_list, 'verified_students':verified_students, 'unverified_students':unverified_students}
 	return render(request, "ic/home.html", context = data)

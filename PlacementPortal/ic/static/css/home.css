@@ -1,7 +1,7 @@
 .jaff_container {
 	margin: 15% auto;
-	width:24%;
+	width:60%;
 	text-align: center;
-	background-color: rgba(254, 254, 254, 1);
-	padding: 60px;
+	background-color: rgba(220, 220, 220, 0.9);
+	padding: 10px;
 }
