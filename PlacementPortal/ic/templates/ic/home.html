@@ -1,32 +1,31 @@
 {% extends 'ic/root.html' %}
 {% block content %}
-{% include 'ic/nav.html' %}
-<div class="row">
-	<div class="jaf_container col xl6 offset-xl3 l6 offset-l3 m12 s12">
-		<table class="highlight bordered responsive-table">
-			<thead>
-				<tr>
-		  			<th>Jaff ID</th> 	
-		  			<th>Company</th>  
-		  			<th>Job Profile</th>
-		  			<th>Resume Number</th>	
-		  			<th>Students Applied</th>		
-				</tr>
-			</thead>
-			 <tbody>
-			{% for jaf in jaf_list %}
-			  	<tr>
-			  		<td><a href="{% url 'ic:view_jaf' jaf.id %}">{{ jaf.id }}</a></td> 	
-			  		<td>{{ jaf.company }}</td>  
-			  		<td>{{ jaf.profile }}</td>
-			  		<td>{{ jaf.resume_number }}</td>
-			  		<td>{{ jaf.student_count }}</td>
-				</tr>
-			{% endfor %}
-			</tbody>
-		</table>
+	{% include 'ic/nav.html' %}
+	<div class="row">
+		<div class="jaf_container col xl6 offset-xl3 l6 offset-l3 m12 s12">
+			<table class="highlight bordered responsive-table">
+				<thead>
+					<tr>
+						<th>Jaff ID</th>
+						<th>Company</th>
+						<th>Job Profile</th>
+						<th>Resume Number</th>
+						<th>Students Applied</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for jaf in jaf_list %}
+						<tr>
+							<td><a href="{% url 'ic:view_jaf' jaf.id %}">{{ jaf.id }}</a></td>
+							<td>{{ jaf.company }}</td>
+							<td>{{ jaf.profile }}</td>
+							<td>{{ jaf.resume_number }}</td>
+							<td>{{ jaf.student_count }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</div>
-</div>
-{% include 'replace/footer.html' %}
+	{% include 'replace/footer.html' %}
 {% endblock %}
-
