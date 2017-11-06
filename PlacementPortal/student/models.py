@@ -7,8 +7,14 @@ phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number mus
 class Department(models.Model):
     name = models.CharField(max_length=30, primary_key=True, blank=False)
 
+    def __str__(self):
+        return self.name
+
 class Program(models.Model):
     name = models.CharField(max_length=50, primary_key=True, blank=False)
+    
+    def __str__(self):
+        return self.name
 
 
 class Student(models.Model):
@@ -24,7 +30,7 @@ class Student(models.Model):
     resume_verified = models.BooleanField("Resume verified?", default=False, null=False, blank=False)
     department = models.ForeignKey("student.Department", verbose_name="Department", null=False, blank=False, on_delete=models.CASCADE)
     program = models.ForeignKey("student.Program", verbose_name="Program", null=False, blank=False, on_delete=models.CASCADE)
-    verified = models.BooleanField("Verification Status", null=False, blank=False)
+
     def __str__(self):
         return self.name
 
@@ -52,6 +58,9 @@ class Resume(models.Model):
         (2, "One page Nontech"),
         (3, "CV"),
     ), null=False, blank=False)
+
+    def __str__(self):
+        return "%s's resume no. %d" % (self.student, self.resume_number)
 
     class Meta:
         unique_together = (("student", "resume_number"),)
