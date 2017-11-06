@@ -1,13 +1,14 @@
 {% extends 'company/root.html' %}
 {% block content %}
-<div id="Container" style="margin: 20% auto; width:24%;text-align: center;">
-	Company Login
-	<form  method="post" id="form">
-		<div class="input-field col s6">
-		  <input type="text" name="username" placeholder="Username" >
-		  <input type="password" name="password" placeholder="Password">
+<!-- {% include 'ic/nav.html' %} -->
+<div id="Container" style="margin: 15% auto; width:24%; text-align: center;background-color: rgba(254, 254, 254, 0.9); padding: 60px;">
+	<h4>Company Login</h4>
+	<form action="{% url 'company:login' %}" method="post" id="form">{% csrf_token %}
+		<div class="input-field col s12">
+		  	<input type="text" name="username" placeholder="Username"  class="validate">
+		  	<input type="password" name="password" placeholder="Password">
+	  		<input type="submit" class="waves-effect waves-light btn grey darken-1" value="Login">
 		</div>
-	  <input type="submit" class="waves-effect waves-light btn" value="Login">
 	</form> 
 </div>
 {% endblock %}

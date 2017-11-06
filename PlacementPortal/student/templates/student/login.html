@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html>
-<body>
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
-<div id="Container" style="margin: 20% auto; width:25%;align-items: center;">
-
+{% extends 'company/root.html' %}
+{% block content %}
+<!-- {% include 'ic/nav.html' %} -->
+<div id="Container" style="margin: 15% auto; width:24%; text-align: center;background-color: rgba(254, 254, 254, 0.9); padding: 60px;">
+	<h4>Student Login</h4>
 	<form action="{% url 'student:login' %}" method="post" id="form">{% csrf_token %}
-	  <input type="text" name="username" placeholder="Username" >
-	  <input type="password" name="password" placeholder="Password">
-	  <input type="submit" class="waves-effect waves-light btn" value="Login">
+		<div class="input-field col s12">
+		  	<input type="text" name="username" placeholder="Username"  class="validate">
+		  	<input type="password" name="password" placeholder="Password">
+	  		<input type="submit" class="waves-effect waves-light btn grey darken-1" value="Login">
+		</div>
 	</form> 
-	<p>{{error}}</p>
 </div>
-
-</body>
-</html>
+{% endblock %}
