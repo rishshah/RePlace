@@ -1,11 +1,28 @@
 {% extends 'ic/root.html' %}
 {% block content %}
 {% include 'ic/nav.html' %}
+<div id="jaff_container" class="jaff_container">
+	<table class="highlight bordered  responsive-table">
+		<thead>
+			<tr>
+	  			<th>Jaff ID</th> 	
+	  			<th>Company</th>  
+	  			<th>Job Profile</th>
+	  			<th>Resume Number</th>	
+			</tr>
+		</thead>
+		 <tbody>
+		{% for jaf in jaf_list %}
+		  	<tr>
+		  		<td>{{ jaf.id }}</td> 	
+		  		<td>{{ jaf.company }}</td>  
+		  		<td>{{ jaf.profile }}</td>
+		  		<td>{{ jaf.resume_number }}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
 
-<ul>
-{% for jaf in jaf_list %}
-  <li>jaf.company 	jaf.id 	jaf.profile</li>
-{% endfor %}
-</ul>
+</div>
 
 {% endblock %}

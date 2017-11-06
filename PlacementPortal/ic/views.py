@@ -35,10 +35,10 @@ def logout(request):
 	auth_logout(request)
 	return render(request, "ic/logout.html",context=data)
 
-@login_required(login_url='/ic/login/')
+# @login_required(login_url='/ic/login/')
 def home(request):
 	jaf_list = JAF.objects.all()
-	verified_students = Student.objects.filter(verified = True)
-	unverified_students = Student.objects.filter(verified = False)
+	verified_students = Student.objects.filter(resume_verified = True)
+	unverified_students = Student.objects.filter(resume_verified = False)
 	data = {'jaf_list':jaf_list, 'verified_students':verified_students, 'unverified_students':unverified_students}
 	return render(request, "ic/home.html", context = data)
