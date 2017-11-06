@@ -27,7 +27,17 @@ def login(request):
 			return render(request, "company/login.html",context={'error':''})
 
 def register(request):
-	return render(request, "company/home.html")
+	if (request.method == "GET"):
+		category_list = Category.objects.all()
+		data = {'category_list':category_list}
+		return render(request, "company/register.html", context = data)
+	else:
+		company_name = request.POST['company-name']
+		password = request.POST['password']
+		phone_number = request.POST['phone-number']
+		category = request.POST['company-category']
+		print(company_name, password, phone_number, category)
+		return HttpResponse("Company Registered!")
 
 @login_required()
 def logout(request):
