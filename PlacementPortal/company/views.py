@@ -13,7 +13,8 @@ from .models import *
 
 def auth(user):
 	return Company.objects.filter(user=user).exists()
-
+def get_company(user):
+	return Company.objects.get(user = user)
 # Create your views here.
 def login(request):
 	category_list = Category.objects.all()
@@ -70,4 +71,7 @@ def logout(request):
 def home(request):
 	if (not auth(request.user)):
 		return redirect('/replace')
-	return render(request, "company/home.html")
+	company = get_company(request.user)
+	jaf_list = JAF.objects.all(company = company)
+	data = {"jaf_list":jaf_list}
+	return render(request, "company/home.html", context = data)
