@@ -52,7 +52,7 @@ def home(request):
 	return render(request, "ic/home.html", context = data)
 
 @login_required(login_url='/ic/login/')
-def view_jaf(request,jaf_id):
+def view_jaf(request,pk):
 	if (not auth(request.user)):
 		return redirect('/replace')
 	jaf = JAF.objects.get(pk = pk)
