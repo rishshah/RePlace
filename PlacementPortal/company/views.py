@@ -43,8 +43,9 @@ def register(request):
 		company_username = request.POST['company-username']
 		password = request.POST['password']
 		phone_number = request.POST['phone-number']
-		category = request.POST['company-category']
-		if (Company.object.filter(name = company_name).exists()):
+		category_name = request.POST['company-category']
+		category = Category.objects.get(type = category_name)
+		if (Company.objects.filter(name = company_name).exists()):
 			print ("duplicate company name")
 			data = {'tab':'register','category_list':category_list,'error':'company name already exists'}
 			return render(request, "company/login.html", context = data)
@@ -52,7 +53,11 @@ def register(request):
 			print ("duplicate username")
 			data = {'tab':'register','category_list':category_list,'error':'username already exists'}
 			return render(request, "company/login.html", context = data)
-		user = User.objects.create(username = company_username, password = password)
+		if (category is None):
+			print ("invalid category")
+			data = {'tab':'register','category_list':category_list,'error':'invalid category'}
+			return render(request, "company/login.html", context = data)
+		user = User.objects.create_user(username = company_username, password = password)
 		user.save()
 		company = Company(name = company_name, user = user, phone_number = phone_number, category = category)
 		company.save()
