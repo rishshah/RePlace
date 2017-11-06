@@ -9,7 +9,9 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
-from .models import *;
+from .models import *
+from company.models import JAF
+
 
 # Create your views here.
 def login(request):
@@ -34,4 +36,6 @@ def logout(request):
 
 @login_required(login_url='/student/login/')
 def home(request):
-	return render(request, "student/home.html")
+    jaf_list = JAF.objects.all()
+    data = {'jaf_list': jaf_list}
+    return render(request, "student/home.html", context=data)

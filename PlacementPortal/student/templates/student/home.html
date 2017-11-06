@@ -1,0 +1,14 @@
+{% extends 'ic/root.html' %}
+{% block content %}
+{% include 'ic/nav.html' %}
+<div id="jaff_container" class="jaff_container">
+	<ul>
+	{% for jaf in jaf_list %}
+	  <li>{{ jaf.company }} 	{{ jaf.id }} 	{{ jaf.profile }}</li>
+	{% endfor %}
+	  <li>jaf.company jaf.id 	jaf.profile</li>
+	</ul>
+
+</div>
+
+{% endblock %}
