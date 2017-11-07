@@ -1,23 +1,27 @@
 {% load static %}
 <div class="navbar-fixed">
-    <nav>
-		<div class="nav-wrapper black">
-			<a href="{% url 'replace:index' %}" class="brand-logo">
-				<img src="{% static 'replace/images/iitb_logo.png' %}">
-			Placement Portal</a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a class="modal-trigger" href="#modal1">Filters</a></li>
-				<li><a href="{% url 'student:logout'%}">Logout</a></li>
-			</ul>
-		</div>
-	</nav>
-    <a class="modal-trigger" href="#modal1">Modal</a>
-    <script>$(document).ready(function(){
-    $('.modal').modal();
-
-  });</script>
+  <nav>
+    <div class="nav-wrapper black">
+      <a href="{% url 'replace:index' %}" class="brand-logo">
+        <img src="{% static 'replace/images/iitb_logo.png' %}">
+      Placement Portal</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="{% url 'student:logout'%}">Logout</a></li>
+      </ul>
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="{% url 'student:logout'%}">Logout</a></li>
+      </ul>
+      <ul id="nav-mobile" class="right">
+        <li>
+          <a class="dropdown-button button-collapse" href="#!" data-activates="dropdown1">
+            <i class="material-icons right">menu</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <a class="modal-trigger" href="#modal1">Modal</a>
 </div>
-
 <div id="modal1" class="modal col l6">
     <div class="modal-content">
       <h5 class="center">Filters</h5>
@@ -49,3 +53,15 @@
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
     </div>
 </div>
+<script>
+$( document ).ready(function() {
+$(".dropdown-button").dropdown({ hover: true, constrainWidth: false });
+$('.modal').modal();
+$(document).on('click', 'a[href^="#"]', function (event) {
+event.preventDefault();
+$('html, body').animate({
+scrollTop: $($.attr(this, 'href')).offset().top
+}, 500);
+});
+});
+</script>

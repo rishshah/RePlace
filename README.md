@@ -20,6 +20,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - IC home page table css 
 - Home Page Content
 - Join selection django	
+- Show basic jaf information 
 
 ### In Progress
 - Filters for students in progress 		MEET
@@ -30,10 +31,16 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 ###ToDo (For First Demo)
 - Complete all in progress 				
 - IC tabs for resume selection status 	MEET SOURABH
+- CSS change in login pages
+- Home page scroll animation
 - Student check home page for resume status and other fields RISHABH 
-- Show basic jaf information 			SOURABH
 - resume related view backend 			DEPAL
 - send number of students applied to all views DEPAL
+
+###Bugs
+- Navigation menu on small screen
+- Highlight of cards
+
 ###Filers to make
 
 - Can sign

@@ -5,91 +5,89 @@
   <div id="main_container">
     <div class="row">
       <div class="col s12 m4 login_button">
-        <div class="card white">
-          <div class="card-content black-text">
-            <span class="login_title card-title">
-              <a href="{%url 'ic:login' %}">Coordinator Login</a>
-            </span>
-          </div>
+        <div class="card white hoverable">
+          <a class="waves-effect"  href="{%url 'ic:login' %}">
+            <div class="card-content black-text">
+              <span class="login_title card-title">
+                Coordinator Login
+              </span>
+            </div>
+          </a>
         </div>
       </div>
       <div class="col s12 m4 login_button">
-        <div class="card white" >
-          <div class="card-content black-text">
-            <span class="card-title login_title">
-              <a href="{%url 'student:login' %}">Student Login</a>
-            </span>
-          </div>
+        <div class="card white hoverable" >
+          <a class="waves-effect"  href="{%url 'student:login' %}">
+            <div class="card-content black-text">
+              <span class="card-title login_title">
+                Student Login
+              </span>
+            </div>
+          </a>
         </div>
       </div>
       <div class="col s12 m4 login_button">
-        <div class="card white">
-          <div class="card-content black-text">
-            <span class="card-title login_title">
-              <a href="{%url 'company:login' %}">Company Login</a>
-            </span>
-          </div>
+        <div class="card white hoverable">
+          <a class="waves-effect"  href="{%url 'company:login' %}">
+            <div class="card-content black-text">
+              <span class="card-title login_title">
+                Company Login
+              </span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
   </div>
   <!-- <div class="container col m8 offset-m2 s12 l8 offset-l2 xl8 offset-xl2"> -->
-    <div id="content">
-      <div class = "card grey lighten-3">
-        <div id="about_us" class = "card-content">
-          <h3>About Us</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis odio dui, in gravida leo rhoncus eget. Maecenas rutrum ante molestie sapien ullamcorper, ut accumsan nunc vehicula. Mauris feugiat, purus at placerat fringilla, eros ex accumsan mi, a accumsan orci libero sit amet felis. Sed condimentum odio ac dui vulputate posuere. Etiam posuere quam mi, ac porttitor ipsum aliquam quis. Nullam commodo elit lectus, quis iaculis mi consectetur nec. Donec ornare pretium fringilla.
-          </p>
-        </div>
-      </div>
-      <div class="parallax-container">
-        <div class="parallax"><img src="{%static 'replace/images/parallax1.jpg' %}"></div>
-      </div>
-      <div class = "card white">
-        <div id="academics" class = "card-content">
-          <h3>Academics</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis odio dui, in gravida leo rhoncus eget. Maecenas rutrum ante molestie sapien ullamcorper, ut accumsan nunc vehicula. Mauris feugiat, purus at placerat fringilla, eros ex accumsan mi, a accumsan orci libero sit amet felis. Sed condimentum odio ac dui vulputate posuere. Etiam posuere quam mi, ac porttitor ipsum aliquam quis. Nullam commodo elit lectus, quis iaculis mi consectetur nec. Donec ornare pretium fringilla.
-          </p>
-        </div>
-      </div>
-      <div class="parallax-container">
-        <div class="parallax"><img src="{%static 'replace/images/parallax2.jpg' %}"></div>
-      </div>
-      <div class = "card grey lighten-3">
-        <div id="procedure" class = "card-content">
-          <h3>Procedure</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis odio dui, in gravida leo rhoncus eget. Maecenas rutrum ante molestie sapien ullamcorper, ut accumsan nunc vehicula. Mauris feugiat, purus at placerat fringilla, eros ex accumsan mi, a accumsan orci libero sit amet felis. Sed condimentum odio ac dui vulputate posuere. Etiam posuere quam mi, ac porttitor ipsum aliquam quis. Nullam commodo elit lectus, quis iaculis mi consectetur nec. Donec ornare pretium fringilla.
-          </p>
-        </div>
-      </div>
-      <div class = "card white">
-        <div id="student_profile" class = "card-content">
-          <h3>Student Profile</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis odio dui, in gravida leo rhoncus eget. Maecenas rutrum ante molestie sapien ullamcorper, ut accumsan nunc vehicula. Mauris feugiat, purus at placerat fringilla, eros ex accumsan mi, a accumsan orci libero sit amet felis. Sed condimentum odio ac dui vulputate posuere. Etiam posuere quam mi, ac porttitor ipsum aliquam quis. Nullam commodo elit lectus, quis iaculis mi consectetur nec. Donec ornare pretium fringilla.
-          </p>
-        </div>
-      </div>
-      <div class="parallax-container">
-        <div class="parallax"><img src="{%static 'replace/images/parallax3.jpg' %}"></div>
-      </div>
-      <div class = "card grey lighten-3">
-        <div id="contact_us" class = "card-content">
-          <h3>Contact Us</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis odio dui, in gravida leo rhoncus eget. Maecenas rutrum ante molestie sapien ullamcorper, ut accumsan nunc vehicula. Mauris feugiat, purus at placerat fringilla, eros ex accumsan mi, a accumsan orci libero sit amet felis. Sed condimentum odio ac dui vulputate posuere. Etiam posuere quam mi, ac porttitor ipsum aliquam quis. Nullam commodo elit lectus, quis iaculis mi consectetur nec. Donec ornare pretium fringilla.
-          </p>
-        </div>
+  <div id="content">
+    <div class = "card grey lighten-3">
+      <div  class = "card-content">
+        <h3 id="about_us">About Us</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis odio dui, in gravida leo rhoncus eget. Maecenas rutrum ante molestie sapien ullamcorper, ut accumsan nunc vehicula. Mauris feugiat, purus at placerat fringilla, eros ex accumsan mi, a accumsan orci libero sit amet felis. Sed condimentum odio ac dui vulputate posuere. Etiam posuere quam mi, ac porttitor ipsum aliquam quis. Nullam commodo elit lectus, quis iaculis mi consectetur nec. Donec ornare pretium fringilla.
+        </p>
       </div>
     </div>
+    <div class="parallax-container">
+      <div class="parallax"><img src="{%static 'replace/images/parallax1.jpg' %}"></div>
+    </div>
+    <div class = "card white">
+      <div  class = "card-content">
+        <h3 id="academics">Academics</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis odio dui, in gravida leo rhoncus eget. Maecenas rutrum ante molestie sapien ullamcorper, ut accumsan nunc vehicula. Mauris feugiat, purus at placerat fringilla, eros ex accumsan mi, a accumsan orci libero sit amet felis. Sed condimentum odio ac dui vulputate posuere. Etiam posuere quam mi, ac porttitor ipsum aliquam quis. Nullam commodo elit lectus, quis iaculis mi consectetur nec. Donec ornare pretium fringilla.
+        </p>
+      </div>
+    </div>
+    <div class="parallax-container">
+      <div class="parallax"><img src="{%static 'replace/images/parallax2.jpg' %}"></div>
+    </div>
+    <div class = "card grey lighten-3">
+      <div  class = "card-content">
+        <h3 id="procedure">Procedure</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis odio dui, in gravida leo rhoncus eget. Maecenas rutrum ante molestie sapien ullamcorper, ut accumsan nunc vehicula. Mauris feugiat, purus at placerat fringilla, eros ex accumsan mi, a accumsan orci libero sit amet felis. Sed condimentum odio ac dui vulputate posuere. Etiam posuere quam mi, ac porttitor ipsum aliquam quis. Nullam commodo elit lectus, quis iaculis mi consectetur nec. Donec ornare pretium fringilla.
+        </p>
+      </div>
+    </div>
+    <div class="parallax-container">
+      <div class="parallax"><img src="{%static 'replace/images/parallax3.jpg' %}"></div>
+    </div>
+    <div class = "card white">
+      <div class = "card-content">
+        <h3 id="student_profile" >Student Profile</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis odio dui, in gravida leo rhoncus eget. Maecenas rutrum ante molestie sapien ullamcorper, ut accumsan nunc vehicula. Mauris feugiat, purus at placerat fringilla, eros ex accumsan mi, a accumsan orci libero sit amet felis. Sed condimentum odio ac dui vulputate posuere. Etiam posuere quam mi, ac porttitor ipsum aliquam quis. Nullam commodo elit lectus, quis iaculis mi consectetur nec. Donec ornare pretium fringilla.
+        </p>
+      </div>
+    </div>
+  </div>
   <!-- </div> -->
   {% include 'replace/footer.html' %}
   <script>
-    $(document).ready(function(){
-      $('.parallax').parallax();
-    });
+  $(document).ready(function(){
+  $('.parallax').parallax();
+  });
   </script>
 {% endblock %}
