@@ -13,12 +13,13 @@ from .models import *
 
 def auth(user):
 	return Company.objects.filter(user=user).exists()
+
 def get_company(user):
 	return Company.objects.get(user = user)
 # Create your views here.
 def login(request):
 	category_list = Category.objects.all()
-	if request.POST :
+	if request.method == "POST" :
 		user = authenticate(username=request.POST['username'], password=request.POST['password'])
 		if user is not None and auth(user):  # A backend authenticated the credentials
 			if user.is_active:

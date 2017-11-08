@@ -1,7 +1,6 @@
 #for basic rendering of html pages
-from django.shortcuts import render, render_to_response, redirect
-from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 
 #for authentication login and logout
 from django.contrib.auth import login as auth_login
@@ -10,7 +9,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
 from .models import *
-from company.models import JAF
+from company.models import JAF, Category
 
 
 
@@ -43,8 +42,15 @@ def logout(request):
 
 @login_required(login_url='/student/login/')
 def home(request):
-    jaf_list = JAF.objects.all()
-    data = {'jaf_list': jaf_list}
     if (not auth(request.user)):
         return redirect('/replace')
+    if request.method=="POST":
+        print(request.POST)
+        all_categorys = [category.type for category in Category.objects.all()]
+        categorys = [key for key in request.POST.keys() if key in all_categorys]
+        jaf_list = JAF.objects.all()
+        jaf_list = jaf_list.filter(company__category__type__in=categorys)
+    else:
+        jaf_list = JAF.objects.all()
+    data = {'jaf_list': jaf_list}
     return render(request, "student/home.html",  context=data)
