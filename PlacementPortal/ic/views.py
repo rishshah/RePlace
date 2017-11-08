@@ -60,5 +60,5 @@ def view_jaf(request,pk):
 		return redirect('/replace')
 	application_list = Application.objects.filter(jaf = jaf)
 	jaf.student_count = application_list.count()
-	data = {'jaf':jaf, 'applicants':application_list}
+	data = {'jaf':jaf, 'application_list':application_list}
 	return render(request, "ic/jaf.html", context = data)

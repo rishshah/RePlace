@@ -1,23 +1,28 @@
 {% load static %}
 <div class="navbar-fixed">
-    <nav>
-		<div class="nav-wrapper black">
-			<a href="{% url 'replace:index' %}" class="brand-logo">
-				<img src="{% static 'replace/images/iitb_logo.png' %}">
-			Placement Portal</a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a class="modal-trigger" href="#modal1">Filters</a></li>
-				<li><a href="{% url 'student:logout'%}">Logout</a></li>
-			</ul>
-		</div>
-	</nav>
-    <a class="modal-trigger" href="#modal1">Modal</a>
-    <script>$(document).ready(function(){
-    $('.modal').modal();
-
-  });</script>
+  <nav>
+    <div class="nav-wrapper black">
+      <a href="{% url 'replace:index' %}" class="brand-logo">
+        <img src="{% static 'replace/images/iitb_logo.png' %}">
+      Placement Portal</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="{% url 'student:logout'%}">Logout</a></li>
+        <li><a class="modal-trigger" href="#modal1">Filter</a></li>
+      </ul>
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="{% url 'student:logout'%}">Logout</a></li>
+        <li><a class="modal-trigger" href="#modal1">Filter</a></li>
+      </ul>
+      <ul id="nav-mobile" class="right">
+        <li>
+          <a class="dropdown-button button-collapse" href="#!" data-activates="dropdown1">
+            <i class="material-icons right">menu</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </div>
-
 <div id="modal1" class="modal col l6">
     <form action="/student/home/" method="post">
     <div class="modal-content">
@@ -48,19 +53,19 @@
         <br>
         <div class="row">
             <div class="col l3">
-        <a href="#!"><input type="checkbox" id="i1" name="I1" checked="true"/>
+        <a href="#!"><input type="checkbox" id="i1" name="I1" />
               <label for="i1" class="black-text">I1</label></a></div>
 
             <div class="col l3">
-        <a href="#!"><input type="checkbox" id="i2" name="I2" checked="true" />
+        <a href="#!"><input type="checkbox" id="i2" name="I2" />
               <label for="i2" class="black-text">I2</label></a></div>
 
             <div class="col l3">
-        <a href="#!"><input type="checkbox" id="i3" name="I3" checked="true" />
+        <a href="#!"><input type="checkbox" id="i3" name="I3" />
               <label for="i3" class="black-text">I3</label></a></div>
 
             <div class="col l3">
-        <a href="#!"><input type="checkbox" id="i4" name="I4" checked="true" />
+        <a href="#!"><input type="checkbox" id="i4" name="I4" />
               <label for="i4" class="black-text">I4</label></a></div>
         </div>
     </div>
@@ -70,3 +75,9 @@
          {% csrf_token %}
     </form>
 </div>
+<script>
+$( document ).ready(function() {
+    $(".dropdown-button").dropdown({ hover: true, constrainWidth: false });
+    $('.modal').modal();
+});
+</script>

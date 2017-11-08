@@ -8,6 +8,28 @@
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="{% url 'company:logout'%}">Logout</a></li>
 			</ul>
+			<ul id="dropdown1" class="dropdown-content">
+				<li><a href="{% url 'company:logout'%}">Logout</a></li>
+			</ul>
+			<ul id="nav-mobile" class="right">
+				<li>
+					<a class="dropdown-button button-collapse" href="#!" data-activates="dropdown1">
+						<i class="material-icons right">menu</i>
+					</a>
+				</li>
+			</ul>
 		</div>
 	</nav>
 </div>
+<script>
+	$( document ).ready(function() {
+		$(".dropdown-button").dropdown({ hover: true, constrainWidth: false });
+		
+		$(document).on('click', 'a[href^="#"]', function (event) {
+		event.preventDefault();
+		$('html, body').animate({
+		scrollTop: $($.attr(this, 'href')).offset().top
+		}, 500);
+		});
+	});
+</script>

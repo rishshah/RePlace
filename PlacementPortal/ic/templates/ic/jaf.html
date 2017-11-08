@@ -1,12 +1,23 @@
 {% extends 'ic/root.html' %}
 {% block content %}
 {% include 'ic/nav.html' %}
- <div class="row">
+ <div class="jaf row">
     <div class="col col xl6 offset-xl3 l6 offset-l3 m12 s12">
-        <div class="card blue-grey darken-1">
-        	<div class="card-content white-text">
-              <span class="card-title">{{jaf.id}} {{jaf.company.name}}</span>
-              <p>{{jaf.description}}</p>
+        <div class="card grey lighten-4">
+        	<div class="card-content black-text">
+              <div class="row">
+              	<span class="card-title center"> JAF of {{jaf.company.name}} ({{jaf.id}}) </span> 
+              </div>
+              <div class="row">
+	              <p>Description<hr>{{jaf.description}}</p>
+              </div>
+              <div class="row">
+              	<p>Other Details<hr>{{jaf.other_details}}</p>
+              </div>
+              <div class="row">
+              	<p>Requirements<hr>{{jaf.requirements}}</p>
+              </div>
+              
             </div>
             <div class="card-action">
               <a href="#">This is a link</a>
@@ -15,6 +26,31 @@
         </div>
     </div>
  </div>
-
+<div class="row">
+	<div class="jaf_container col xl6 offset-xl3 l6 offset-l3 m12 s12">
+		<table class="highlight bordered responsive-table">
+			<thead>
+				<tr>
+		  			<th>Student ID</th> 	
+		  			<th>Name</th>  
+		  			<th>Department</th>
+		  			<th>Email</th>	
+		  			<th>Program</th>		
+				</tr>
+			</thead>
+			 <tbody>
+			{% for application in application_list %}
+			  	<tr>
+			  		<td><a href="{% url 'ic:view_jaf' jaf.id %}">{{ application.student.id }}</a></td> 	
+			  		<td>{{ application.student.name }}</td>  
+			  		<td>{{ applicant.student.department }}</td>
+			  		<td>{{ applicant.student.email }}</td>
+			  		<td>{{ applicant.student.program }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
 <!-- {% include 'replace/footer.html' %} -->
 {% endblock %}
