@@ -63,14 +63,14 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/replace) to get to the home page of 
 - See​ ​ progress​ ​ level​ ​ of​ ​ shortlisted​ ​ students​ ​ according​ ​ to​ ​ various​ ​ sequential​ ​ tests​ ( ​if time​ ​ permits)
 - Give​ ​ final​ ​ selections​ ​ and​ ​ see​ ​ the​ ​ confirmation​ ​ status​ ​ by​ ​ selected​ ​ students.
 
-###Bugs To Fix
+### Bugs To Fix
 
-###Filers 
+### Filers 
 
-####Done
+#### Done
 - Company category
 
-####ToDo
+#### ToDo
 - Can sign
 - Signed, Unsigned
 - CPI (later) (range)
