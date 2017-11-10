@@ -1,101 +1,151 @@
-<!--
-Job Profile {select from these with other field}
-Job Description {large text}
-	Other Details 	{large text}
-Job Requirements {Bullets (Add more)}
-Internship Year
-internship duration
-Place of Posting
-Accomodation Details
-Resume Type Wanted {One out of 5}
--->
 {% extends 'company/root.html' %}
 {% block content %}
 	{% include 'company/nav.html' %}
 	<div class="row new_jaf_form col xl8 offset-xl2 l8 offset-l2 m8 offset-m2 s10">
-		<div class="row">
-			<h4>JAF Form</h4>
-		</div>
+		<h4>Job Application Form</h4>
 		<form class="col s12" method="post" action="{% url 'company:new_jaf' %}">{% csrf_token %}
-			<div class="row">
-				<div class="input-field col s6">
-					<i class="material-icons prefix tiny">dashboard</i>
-					<select multiple>
-						<option value="" disabled selected>Choose job profiles</option>
-						<option value="1">Web Development</option>
-						<option value="2">App Development</option>
-						<option value="3">Algorithm Creation</option>
-						<option value="4">Research</option>
-						<option value="5">Finance</option>
-						<option value="6">Machine Learning</option>
-						<option value="8">Management</option>
-						<option value="9">Marketting</option>
-					</select>
-					<label>Job Profile</label>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="input-field col s6">
-					<i class="material-icons prefix tiny">mode_edit</i>
-					<textarea id="icon_description" class="materialize-textarea validate" data-length="200"></textarea>
-					<label for="icon_description">Job Description</label>
-				</div>
-				<div class="input-field col s6">
-					<i class="material-icons prefix tiny">mode_edit</i>
-					<textarea id="icon_details" class="materialize-textarea validate" data-length="200"></textarea>
-					<label for="icon_details">Other Details</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col s6">
-					<i class="material-icons prefix small">event</i>
-					<label>Signing Deadline</label>
-					<input class="datepicker validate">
-				</div>
-				<div class="input-field col s6">
-					<i class="material-icons prefix tiny">date_range</i>
-					<input type="text" class="validate">
-					<label>Internship Duration (in weeks)</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s6">
-					<i class="material-icons prefix tiny">mode_edit</i>
-					<textarea id="icon_description2" class="materialize-textarea validate" data-length="200"></textarea>
-					<label for="icon_description2">Job Requirements</label>
-				</div>
-				<div class="input-field col s6">
-					<i class="material-icons prefix tiny">mode_edit</i>
-					<textarea id="icon_details2" class="materialize-textarea validate" data-length="200"></textarea>
-					<label for="icon_details2">Accomodation Details</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s6">
-					<i class="material-icons prefix tiny">place</i>
-					<input type="text" class="validate">
-					<label>Place Of Posting</label>
-				</div>
-				<div class="input-field col s6">
-					<i class="material-icons prefix tiny">filter_list</i>
-					<select>
-						<option value="" disabled selected>Choose Resume Type</option>
-						<option value="1">One-Page Tech</option>
-						<option value="2">Two-Page Tech</option>
-						<option value="3">One-Page Non-Tech</option>
-						<option value="4">Two-Page Non-Tech</option>
-					</select>
-					<label>Resume Type</label>
-				</div>
-			</div>
-			<div class="row">
-				<input id="submit" type="submit" class="waves-effect waves-light btn grey darken-4" value="Submit">
-			</div>
+			<ul class="stepper horizontal">
+				<li class="step active">
+					<div class="step-title waves-effect">Description</div>
+					<div class="step-content">
+						<div class="row">
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">dashboard</i>
+								<select multiple>
+									<option value="" disabled selected>Choose job profiles</option>
+									<option value="1">Web Development</option>
+									<option value="2">App Development</option>
+									<option value="3">Algorithm Creation</option>
+									<option value="4">Research</option>
+									<option value="5">Finance</option>
+									<option value="6">Machine Learning</option>
+									<option value="8">Management</option>
+									<option value="9">Marketting</option>
+								</select>
+								<label>Job Profile</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">mode_edit</i>
+								<textarea id="icon_description" class="materialize-textarea validate" data-length="200"></textarea>
+								<label for="icon_description">Job Description</label>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">mode_edit</i>
+								<textarea id="icon_description2" class="materialize-textarea validate" data-length="200"></textarea>
+								<label for="icon_description2">Job Requirements</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">place</i>
+								<input type="text" class="validate">
+								<label>Place Of Posting</label>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">filter_list</i>
+								<select>
+									<option value="" disabled selected>Choose Resume Type</option>
+									<option value="1">One-Page Tech</option>
+									<option value="2">Two-Page Tech</option>
+									<option value="3">One-Page Non-Tech</option>
+									<option value="4">Two-Page Non-Tech</option>
+								</select>
+								<label>Resume Type</label>
+							</div>
+						</div>
+						<div class="step-actions">
+							<button class="waves-effect waves-light btn grey darken-4 next-step">CONTINUE</button>
+						</div>				
+					</div>
+				</li>
+				<li class="step">
+					<div class="step-title waves-effect">Deadlines</div>
+					<div class="step-content">
+						<div class="row">
+							<div class="col s6">
+								<i class="material-icons prefix small">event</i>
+								<label>Signing Deadline</label>
+								<input class="datepicker validate">
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">date_range</i>
+								<input type="text" class="validate">
+								<label>Internship Duration (in weeks)</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">mode_edit</i>
+								<textarea id="icon_details2" class="materialize-textarea validate" data-length="200"></textarea>
+								<label for="icon_details2">Accomodation Details</label>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">mode_edit</i>
+								<textarea id="icon_details" class="materialize-textarea validate" data-length="200"></textarea>
+								<label for="icon_details">Other Details</label>
+							</div>
+						</div>
+						<div class="step-actions">
+							<button class="waves-effect waves-light btn grey darken-4 next-step">CONTINUE</button>
+							<button class="waves-effect waves-light grey darken-4 btn previous-step">BACK</button>
+						</div>
+					</div>
+				</li>
+				<li class="step">
+					<div class="step-title waves-effect">Eligibility</div>
+					<div class="step-content">
+						<div class="row">
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">school</i>
+								<select multiple>
+									<option value="" disabled selected>Choose Programs</option>
+									<option value="1">UG 1st Year</option>
+									<option value="2">UG 2nd Year</option>
+									<option value="3">UG 3rd Year</option>
+								</select>
+								<label>Programs</label>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">school</i>
+								<select multiple>
+									<option value="" disabled selected>Choose Departments</option>
+									<option value="1">Meta</option>
+									<option value="2">Chemical</option>
+									<option value="3">CS</option>
+								</select>
+								<label>Departments</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s3">
+								<i class="material-icons prefix small">grade</i>
+								<input type="number" step="0.1" min="4" max="10" class="validate">
+								<label>CPI cutoff</label>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">attach_money</i>
+								<input type="number" class="validate">
+								<label>Stipend</label>
+							</div>
+							<div class="input-field col s3">
+								<i class="material-icons prefix tiny">attach_money</i>
+								<input type="text" class="validate">
+								<label>Currency</label>
+							</div>
+						</div>
+						<div class="step-actions">
+							<button type="submit" class="waves-effect waves-light btn grey darken-4">SUBMIT</button>
+							<button class="waves-effect waves-light grey darken-4 btn previous-step">BACK</button>
+						</div>
+					</div>
+				</li>
+			</ul>
 		</form>
 	</div>
 	{% include 'replace/footer.html' %}
-	<script type="text/javascript">			
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('select').material_select();
 			$('.datepicker').pickadate({
@@ -106,6 +156,9 @@ Resume Type Wanted {One out of 5}
 				clear: 'Clear',
 				close: 'Ok',
 				closeOnSelect: false // Close upon selecting a date,
+			});
+			$(function(){
+				$('.stepper').activateStepper();
 			});
 		});
 	</script>

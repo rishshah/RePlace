@@ -23,7 +23,8 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/replace) to get to the home page of 
 - Show basic jaf information 
 - Parallax in home page
 - Home page scroll animation
-
+- Jaf form almost complete
+ 
 ### In Progress
 - Filters for students in progress 		MEET
 - Data creation population				MEET
@@ -33,9 +34,8 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/replace) to get to the home page of 
 - Student check home page for resume status and other fields RISHABH 
 - resume related view backend 			DEPAL
 - send number of students applied to all views DEPAL
-- create JAF form in comapany home page RISHABH
-### Plans 
 
+### Plans 
 - Login​ ​ and​ ​ Logout​ ​ for​ ​ all​ ​ users
 
 #### Admin

@@ -1,14 +1,26 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-	<body  background="{% static 'company/images/placements.jpg' %}";   style="background-size: 200%; background-repeat: no-repeat;" >
+	<body  background="{% static 'company/images/placements.jpg' %}";   style="background-size: 100%; background-repeat: no-repeat;" >
+		<!-- Materializecss compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		
+		<!--Import Google Icon Font-->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!--Import Materialize-Stepper CSS (after importing materialize.css) -->
+		<link rel="stylesheet" href="{% static 'company/css/materialize-stepper.min.css' %}">
+		
 		<link rel="stylesheet" href="{% static 'replace/css/main.css' %}">
 		<link rel="stylesheet" href="{% static 'company/css/company.css' %}">
+		
+		<!-- Materializecss compiled and minified JavaScript -->
+		<!-- jQuery -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<!-- jQueryValidation Plugin (optional) -->
+		 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+		<!--Import Materialize-Stepper JavaScript (after the jquery.validate.js and materialize.js) -->
+		<script src="{% static 'company/js/materialize-stepper.min.js' %}"></script>
 		{% block content %}
 		{% endblock %}
 	</body>
