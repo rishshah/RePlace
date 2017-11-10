@@ -13,3 +13,51 @@
 	text-align: center;
 	padding: 60px;
 }
+
+.new_jaf_form {
+	margin: 15% 10% 10% 10%;
+	background-color: rgba(255, 255, 255, 0.95);
+	padding: 20px;
+	border-radius: 20px;
+}
+
+.new_jaf_form h4{
+	text-align: center;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #888888;
+    opacity: 1 !important;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly])+label,
+input[type=number]:not(.browser-default):focus:not([readonly])+label, 
+textarea.materialize-textarea:focus:not([readonly])+label {
+    color: black;
+}
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]), 
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid black;
+    -webkit-box-shadow: 0 1px 0 0 black;
+    box-shadow: 0 1px 0 0 black;
+}
+
+.input-field .prefix ~ input, .input-field .prefix ~ textarea , .input-field .prefix ~ div.select-wrapper {
+    margin-left: 3rem;
+    width: 92%;
+    width: calc(100% - 3rem); 
+}
+.material-icons.active {
+ 	color: green;
+}
+.dropdown-content {
+    max-height:250px;
+}
+.dropdown-content li > span {
+	color: black;
+}
+
+.picker__date-display, .picker__weekday-display{
+    background-color: black;
+}

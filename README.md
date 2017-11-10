@@ -33,7 +33,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/replace) to get to the home page of 
 - Student check home page for resume status and other fields RISHABH 
 - resume related view backend 			DEPAL
 - send number of students applied to all views DEPAL
-
+- create JAF form in comapany home page RISHABH
 ### Plans 
 
 - Login​ ​ and​ ​ Logout​ ​ for​ ​ all​ ​ users
@@ -64,6 +64,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/replace) to get to the home page of 
 - Give​ ​ final​ ​ selections​ ​ and​ ​ see​ ​ the​ ​ confirmation​ ​ status​ ​ by​ ​ selected​ ​ students.
 
 ### Bugs To Fix
+- Combine all login pages
 
 ### Filers 
 

@@ -77,7 +77,17 @@ def logout(request):
 def home(request):
 	if (not auth(request.user)):
 		return redirect('/replace')
+	print("XXX3")
 	company = get_company(request.user)
 	jaf_list = JAF.objects.filter(company = company)
 	data = {"jaf_list":jaf_list}
 	return render(request, "company/home.html", context = data)
+
+@login_required(login_url='/company/login/')
+def new_jaf(request):
+	if (not auth(request.user)):
+		return redirect('/replace')
+	if request.method == "POST" :
+		return render(request, "company/jaf_form.html")
+	else :
+		return render(request, "company/jaf_form.html")
