@@ -2,7 +2,7 @@
 {% block content %}
 	{% include 'company/nav.html' %}
 	<div class="row new_jaf_form col xl8 offset-xl2 l8 offset-l2 m8 offset-m2 s10">
-		<h4>Job Application Form</h4>
+		<h4 class="center">Job Application Form</h4>
 		<form class="col s12" method="post" action="{% url 'company:new_jaf' %}">{% csrf_token %}
 			<ul class="stepper horizontal">
 				<li class="step active">
@@ -57,21 +57,21 @@
 						</div>
 						<div class="step-actions">
 							<button class="waves-effect waves-light btn grey darken-4 next-step">CONTINUE</button>
-						</div>				
+						</div>
 					</div>
 				</li>
 				<li class="step">
-					<div class="step-title waves-effect">Deadlines</div>
+					<div class="step-title waves-effect">Timeline</div>
 					<div class="step-content">
 						<div class="row">
-							<div class="col s6">
-								<i class="material-icons prefix small">event</i>
-								<label>Signing Deadline</label>
-								<input class="datepicker validate">
+							<div class=" input-field col s6">
+								<i class="material-icons prefix small">timelapse</i>
+								<input type="number" min="2017" max="2050" step="1" class="validate">
+								<label>Internship Year</label>
 							</div>
 							<div class="input-field col s6">
 								<i class="material-icons prefix tiny">date_range</i>
-								<input type="text" class="validate">
+								<input type="number" min="4" step="1" max="12" class="validate">
 								<label>Internship Duration (in weeks)</label>
 							</div>
 						</div>
@@ -136,18 +136,71 @@
 							</div>
 						</div>
 						<div class="step-actions">
+							<button class="waves-effect waves-light btn grey darken-4">CONTINUE</button>
+							<button class="waves-effect waves-light grey darken-4 btn previous-step">BACK</button>
+						</div>
+					</div>
+				</li>
+				<li class="step">
+					<div class="step-title waves-effect">Tests</div>
+					<div class="step-content">
+						<div id="test1-1" class="row">
+							<div class="input-field col s6">
+								<i class="material-icons prefix small">event_seat</i>
+								<select>
+									<option value="" disabled selected>Choose Test Type</option>
+									<option value="1">Technical Test</option>
+									<option value="2">Aptitude Test</option>
+									<option value="3">Group Discussion</option>
+									<option value="4">Technical Interview</option>
+									<option value="5">HR Round</option>
+								</select>
+								<label>Test Type</label>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix tiny">date_range</i>
+								<input type="number" min="0" step="10" class="validate">
+								<label>Test Duration (in min)</label>
+							</div>
+						</div>
+						<div id="test1-2" class="row">
+							<div class="input-field col s8">
+								<i class="material-icons prefix tiny">mode_edit</i>
+								<textarea id="icon_description3" class="materialize-textarea validate" data-length="200"></textarea>
+								<label for="icon_description3">Test Description</label>
+							</div>
+								<a id="addbtn" class="btn-floating btn-small waves-effect waves-light btn grey darken-4" onclick="addTest();">
+									<i class="material-icons">add</i>
+								</a>
+						</div>
+						<hr>
+						<hr>
+						<div class="row">
+							<div class="col s6">
+								<i class="material-icons prefix small">event</i>
+								<label>Signing Deadline</label>
+								<input class="datepicker validate">
+								<input class="timepicker validate">
+							</div>
+						</div>
+						<div class="step-actions">
 							<button type="submit" class="waves-effect waves-light btn grey darken-4">SUBMIT</button>
 							<button class="waves-effect waves-light grey darken-4 btn previous-step">BACK</button>
 						</div>
 					</div>
 				</li>
+				
 			</ul>
 		</form>
 	</div>
 	{% include 'replace/footer.html' %}
 	<script type="text/javascript">
+		var counter = 2;
+		var limit = 6;
+
 		$(document).ready(function() {
 			$('select').material_select();
+			$('.modal').modal();
 			$('.datepicker').pickadate({
 				min: Date.now(),
 				selectMonths: true, // Creates a dropdown to control month
@@ -155,11 +208,61 @@
 				today: 'Today',
 				clear: 'Clear',
 				close: 'Ok',
-				closeOnSelect: false // Close upon selecting a date,
+				closeOnSelect: true // Close upon selecting a date,
+			});
+			$('.timepicker').pickatime({
+			    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+			    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+			    twelvehour: false, // Use AM/PM or 24-hour format
+			    donetext: 'OK', // text for done-button
+			    cleartext: 'Clear', // text for clear-button
+			    canceltext: 'Cancel', // Text for cancel-button
+			    autoclose: true, // automatic close timepicker
+			    ampmclickable: true, // make AM PM clickable
+			    aftershow: function(){} //Function for after opening timepicker
 			});
 			$(function(){
 				$('.stepper').activateStepper();
 			});
 		});
+
+		function addTest(){
+			var row1 = document.createElement('div');
+		      	row1.setAttribute('class','row');
+		      	row1.setAttribute('id',"test" + counter.toString() + "-1");
+		      	row1.innerHTML = '<div class="input-field col s6">'+
+									'<i class="material-icons prefix small">event_seat</i>'+
+									'<select>'+
+									'<option value="" disabled selected>Choose Test Type</option>'+
+									'<option value="1">Technical Test</option>'+
+									'<option value="2">Aptitude Test</option>'+
+									'<option value="3">Group Discussion</option>'+
+									'<option value="4">Technical Interview</option>'+
+									'<option value="5">HR Round</option>'+
+									'</select>'+
+									'<label>Test Type</label>'+
+								'</div>'+
+								'<div class="input-field col s6">'+
+									'<i class="material-icons prefix tiny">date_range</i>'+
+									'<input type="number" min="0" step="10" class="validate">'+
+									'<label>Test Duration (in min)</label>'+
+								'</div>';
+
+		    var row2 = document.createElement('div');
+		      	row2.setAttribute('class','row');
+		      	row2.setAttribute('id',"test" + counter.toString() + "-2");
+		      	row2.innerHTML = '<div class="input-field col s8">'+
+									'<i class="material-icons prefix tiny">mode_edit</i>'+
+									'<textarea id="icon_description3" class="materialize-textarea validate" data-length="200"></textarea>'+
+									'<label for="icon_description3">Test Description</label>'+
+								'</div>';
+
+		 	$('#test'+(counter-1).toString() + "-1").before(row2);
+		 	$('#test'+(counter).toString() + "-2").before(row1);
+		    counter++;
+		    $('select').material_select();
+		    if(counter==limit)
+		      	$('#addbtn').attr('class','disabled btn-floating waves-effect waves-light grey darken-2 btn');
+		}
 	</script>
 {% endblock %}

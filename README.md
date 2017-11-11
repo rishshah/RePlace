@@ -24,7 +24,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/replace) to get to the home page of 
 - Parallax in home page
 - Home page scroll animation
 - Jaf form almost complete
- 
+
 ### In Progress
 - Filters for students in progress 		MEET
 - Data creation population				MEET
@@ -65,6 +65,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/replace) to get to the home page of 
 
 ### Bugs To Fix
 - Combine all login pages
+- Not all combinations taken care of in the jaf creation form
 
 ### Filers 
 
