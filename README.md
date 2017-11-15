@@ -12,15 +12,16 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/replace) to get to the home page of 
  
 ### Status 
 - Models created (may be few changes in future) MEET (signing deadline not part of jaf_test)
-- Login pages for company, student and coordinator (needs to be combined) GROUP
+- Login pages for company, student and coordinator combined
 - Logout created
+- All static files in one place
 - Show basic jaf information 
 - Parallax in home page (search for new images) LATER
 - Home page scroll animation
 - Company registration form created
 
 #### Company
-- Jaf creation form almost complete (Not all combinations taken care of in the jaf creation form) GROUP
+- Jaf creation form almost complete (Not all combinations taken care of in the jaf creation form) MEET
 - Post company jaf form (not yet started) DEPAL
 
 ####IC
@@ -31,7 +32,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/replace) to get to the home page of 
 
 ####Student
 - Student Home page done
-- Filters for students (not much done... in progress) MEET css (not started) RISH
+- Filters for students (not much done... in progress) MEET
 - Make sign jaf view (not yet started) DEPAL
 
 ### Plans 
