@@ -1,8 +1,7 @@
 {% extends 'ic/root.html' %}
 {% block content %}
-	{% include 'ic/nav.html' %}
-	<div class="jaf row">
-		<div class="card grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
+	<div class="row">
+		<div class="jaf card grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
 			<div class="card-content black-text">
 				<div class="row">
 					<span class="card-title center">
@@ -54,7 +53,7 @@
 						<thead>
 							<tr>
 								<th>Test</th>
-								<th>Start Time</th>								
+								<th>Start Time</th>
 								<th>Duration</th>
 								<th>Venue</th>
 								<th>Other Details</th>
@@ -80,5 +79,4 @@
 			</div>
 		</div>
 	</div>
-	{% include 'replace/footer.html' %}
 {% endblock %}

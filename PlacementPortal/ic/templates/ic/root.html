@@ -1,15 +1,17 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-	<body  background="{% static 'replace/images/placements.jpg' %}";   style="background-size: 120%;  background-repeat: no-repeat;" >
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		
-		<link rel="stylesheet" href="{% static 'replace/css/main.css' %}">
-		<link rel="stylesheet" href="{% static 'ic/css/ic.css' %}">
-		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-		{% block content %}
-		{% endblock %}
-	</body>
-</html>
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'css/ic.css' %}">
+{% endblock %}
+
+{% block navlinks %}
+	<li><a class="waves-effect hoverable" href="{% url 'ic:home'%}">Home</a></li>
+	<li><a class="waves-effect hoverable" href="{% url 'ic:logout'%}">Logout</a></li>
+{% endblock %}
+
+{% block navlinks_dropdown %}
+	<li><a class="waves-effect" href="{% url 'ic:home'%}">Home</a></li>
+	<li><a class="waves-effect" href="{% url 'ic:logout'%}">Logout</a></li>
+{% endblock %}	

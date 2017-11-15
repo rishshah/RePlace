@@ -1,0 +1,53 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+		{% block css %}
+		{% endblock %}
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+		<script src="{% static 'js/materialize-stepper.min.js' %}"></script>
+		
+		<script type="text/javascript">
+			$( document ).ready(function() {
+				$(".dropdown-button").dropdown({ hover: true, constrainWidth: false });
+			});
+		</script>
+		
+		{% block script %}
+		{% endblock %}
+	</head>
+	<body  background="{% static 'images/placements.jpg' %}";   style="background-size: 120%; background-repeat: no-repeat;" >
+		<nav>
+			<div class="nav-wrapper black">
+				<a href="{% url 'replace:index' %}" class="brand-logo">
+					<img src="{% static 'images/iitb_logo.png' %}">
+				Placement Portal</a>
+				<ul id="nav-mobile" class="links right hide-on-med-and-down">
+					{% block navlinks %}
+					{% endblock %}
+				</ul>
+				<ul id="dropdown1" class="links-dropdown dropdown-content">
+					{% block navlinks_dropdown %}
+					{% endblock %}
+				</ul>
+				<ul id="nav-mobile" class="right">
+					<li>
+						<a class="dropdown-button button-collapse" href="#!" data-activates="dropdown1">
+							<i class="material-icons right">menu</i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		
+		{% block content %}
+		{% endblock %}
+		
+		{% include 'footer.html' %}
+	</body>
+</html>

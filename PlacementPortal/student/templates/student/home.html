@@ -1,6 +1,6 @@
 {% extends 'student/root.html' %}
+
 {% block content %}
-	{% include 'student/nav.html' %}
 	<div class="row">
 		<div class="col jaf_container xl6 offset-xl3 l6 offset-l3 m6 offset-m3 s12 login_background">
 			<div class="row">
@@ -42,10 +42,76 @@
 			</div>
 		</div>
 	</div>
-	{% include 'replace/footer.html' %}
+
+	<div id="modal2" class="modal col l6">
+	    <form action="{% url 'student:upload_resume' %}" method="post">{% csrf_token %}
+	        <div class="modal-content">
+	            <h5 class="center">Upload Resumes</h5>
+	            <div class="row">
+	                <div class="col m6">
+	                    <div class="file-field input-field">
+	                        <div class="waves-effect waves-light btn grey darken-4 ">
+	                            <span>One Page</span>
+	                            <input type="file">
+	                        </div>
+	                        <div class="file-path-wrapper">
+	                            <input class="file-path validate" type="text">
+	                        </div>
+	                    </div>    
+	                </div>
+	                <div class="col m6">
+	                    <div class="file-field input-field">
+	                        <div class="waves-effect waves-light btn grey darken-4 ">
+	                            <span>Two Page Tech</span>
+	                            <input type="file">
+	                        </div>
+	                        <div class="file-path-wrapper">
+	                            <input class="file-path validate" type="text">
+	                        </div>
+	                    </div>    
+	                </div>
+	            </div>
+
+	            <div class="row">
+	                <div class="col m6">
+	                    <div class="file-field input-field">
+	                        <div class="waves-effect waves-light btn grey darken-4 ">
+	                            <span>Two Page Non Tech</span>
+	                            <input type="file">
+	                        </div>
+	                        <div class="file-path-wrapper">
+	                            <input class="file-path validate" type="text">
+	                        </div>
+	                    </div>    
+	                </div>
+	                <div class="col m6">
+	                    <div class="file-field input-field">
+	                        <div class="waves-effect waves-light btn grey darken-4 ">
+	                            <span>CV</span>
+	                            <input type="file">
+	                        </div>
+	                        <div class="file-path-wrapper">
+	                            <input class="file-path validate" type="text">
+	                        </div>
+	                    </div>    
+	                </div>
+	            </div>
+	           <div class="modal-footer">
+	                    <input type="submit" class="modal-action modal-close waves-effect waves-light btn-flat" value="DONE" />
+	            </div>
+	                
+	        </div>
+	  	</form>
+	</div>
+{% endblock %}
+
+{% block script %}
+	{{block.super}}
 	<script type="text/javascript">
     	$( document ).ready(function() {
     		$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal2">Resume</a></li>' );
+    		$('.links-dropdown li:eq(1)').after( '<li><a class="waves-effect modal-trigger" href="#modal2">Resume</a></li>' );
+    		$('.modal').modal();
     	});
 	</script>
 {% endblock %}

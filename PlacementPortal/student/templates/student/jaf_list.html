@@ -1,6 +1,5 @@
 {% extends 'student/root.html' %}
 {% block content %}
-	{% include 'student/nav.html' %}
 	<div class="row">
 		<div class="jaf_container grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
 			<div class="row">
@@ -32,13 +31,75 @@
 			</div>
 		</div>
 	</div>
+	<div id="modal1" class="modal col l6">
+		<form action="{% url 'student:see_jafs' %}" method="post">{% csrf_token %}
+			<div class="modal-content">
+				<h5 class="center">Filters</h5>
+				<div class="row">
+					<div class="col m6">
+						<input type="checkbox" id="inp1" name="cansign" />
+						<label for="inp1" class="black-text">Only JAFs I can sign/unsign</label>
+					</div>
+					<div class="col m6">
+						<input type="checkbox" id="inp2" name="signed" />
+						<label for="inp2" class="black-text">Only JAFs I have signed</label>
+					</div>
+				</div>
+				<div class="row">
+					From
+					<div class="input-field inline">
+						<input id="min_stipend" type="number" min="0" name="minstipend">
+						<label for="min_stipend" data-error="wrong" data-success="right">Min stipend</label>
+					</div> to
+					<div class="input-field inline">
+						<input id="max_stipend" type="number" min="0" name="maxstipend">
+						<label for="max_stipend" data-error="wrong" data-success="right">Max stipend</label>
+					</div>
+					<br> From
+					<div class="input-field inline">
+						<input id="min_cpi" type="number" min="0" name="mincpi">
+						<label for="min_stipend" data-error="wrong" data-success="right">Min CPI cutoff</label>
+					</div> to
+					<div class="input-field inline">
+						<input id="max_cpi" type="number" min="0" name="maxcpi">
+						<label for="max_stipend" data-error="wrong" data-success="right">Max CPI cutoff</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col l3">
+						<input type="checkbox" id="i1" name="I1" />
+						<label for="i1" class="black-text">I1</label>
+					</div>
+					<div class="col l3">
+						<input type="checkbox" id="i2" name="I2" />
+						<label for="i2" class="black-text">I2</label>
+					</div>
+					<div class="col l3">
+						<input type="checkbox" id="i3" name="I3" />
+						<label for="i3" class="black-text">I3</label>
+					</div>
+					<div class="col l3">
+						<input type="checkbox" id="i4" name="I4" />
+						<label for="i4" class="black-text">I4</label>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<input type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" value="DONE" />
+			</div>
+		</form>
+	</div>
+{% endblock %}
+{% block script %}
+	{{block.super}}
 	<script type="text/javascript">
 		$( document ).ready(function() {
-			 $(".clickable-row").click(function() {
-		        window.location = $(this).data("href");	
-		    });
-			$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal1">Filter</a></li>' ); 
+			$(".clickable-row").click(function() {
+			    window.location = $(this).data("href");
+		   	});
+			$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal1">Filter</a></li>' );
+			$('.links-dropdown li:eq(1)').after( '<li><a class="waves-effect modal-trigger" href="#modal1">Filter</a></li>' );
+			$('.modal').modal();
 		});
 	</script>
-	{% include 'replace/footer.html' %}
 {% endblock %}

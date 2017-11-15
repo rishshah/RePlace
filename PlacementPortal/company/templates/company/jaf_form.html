@@ -1,6 +1,7 @@
 {% extends 'company/root.html' %}
+
 {% block content %}
-	{% include 'company/nav.html' %}
+	{{ block.super }}
 	<div class="row new_jaf_form col xl8 offset-xl2 l8 offset-l2 m8 offset-m2 s10">
 		<h4 class="center">Job Application Form</h4>
 		<form class="col s12" method="post" action="{% url 'company:new_jaf' %}">{% csrf_token %}
@@ -193,7 +194,10 @@
 			</ul>
 		</form>
 	</div>
-	{% include 'replace/footer.html' %}
+{% endblock %}
+
+{% block script %}
+	{{ block.super }}	
 	<script type="text/javascript">
 		var counter = 2;
 		var limit = 6;
