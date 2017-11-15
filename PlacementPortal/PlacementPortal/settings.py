@@ -129,5 +129,6 @@ STATICFILES_DIRS = [
 
 STATIC_URL = '/static/'
 
-LOGIN_URL = '/replace'
+LOGIN_URL = '/login/'
+
 django.setup()

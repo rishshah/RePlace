@@ -11,56 +11,40 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from company.models import JAF, Category
 
-
-
+HOME_URL = '/'
 
 def auth(user):
     return Student.objects.filter(user=user).exists()
 def get_student(user):
     return Student.objects.get(user = user)
-# Create your views here.
-def login(request):
-    if request.POST :
-        user = authenticate(username=request.POST['username'], password=request.POST['password'])
-        if user is not None and auth(user):  # A backend authenticated the credentials
-            if user.is_active:
-                auth_login(request, user)
-                return HttpResponseRedirect('/student/home/')
-        return render(request, "student/login.html",context={'error':'invalid credentials'})
-    else:
-        print(request.user.is_authenticated() and auth(request.user))
-        if(request.user.is_authenticated() and auth(request.user)):
-            return HttpResponseRedirect('/student/home/')
-        else:
-            return render(request, "student/login.html",context={'error':''})
 
 @login_required()
 def logout(request):
-    if (not auth(request.user)):
-        return redirect('/replace')
-    auth_logout(request)
-    return redirect('/replace')
+    if auth(request.user):
+        auth_logout(request)
+    return redirect(HOME_URL)
 
-@login_required(login_url='/student/login/')
+@login_required()
 def home(request):
     if (not auth(request.user)):
-        return redirect('/replace')
+        return redirect(HOME_URL)
     student = get_student(request.user)
     data = {'student': student}    
     return render(request, "student/home.html", context=data)
 
-@login_required(login_url='/student/login/')
+@login_required()
 def upload_resume(request):
     if (not auth(request.user)):
-        return redirect('/replace')
+        return redirect(HOME_URL)
     if request.method=="POST":
-        return redirect('/student/home')
+        return redirect('/student/')
     else:
         pass
+
 @login_required()
 def see_jafs(request):
     if (not auth(request.user)):
-        return redirect('/replace')
+        return redirect(HOME_URL)
     if request.method=="POST":
         print(request.POST)
         all_categorys = [category.type for category in Category.objects.all()]

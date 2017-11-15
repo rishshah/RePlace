@@ -19,8 +19,6 @@ from . import views
 
 urlpatterns = [
     url(r'new_jaf/$', views.new_jaf, name = 'new_jaf'),
-    url(r'register/$', views.register, name = 'register'),
-    url(r'login/$', views.login, name = 'login'),
     url(r'logout/$', views.logout, name = 'logout'),
     url(r'$', views.home, name = 'home'),
 ]

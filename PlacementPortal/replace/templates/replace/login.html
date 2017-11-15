@@ -1,0 +1,13 @@
+{% extends 'replace/root.html' %}
+{% block content %}
+	<div class="row">
+		<div class="card_container col xl4 offset-xl4 l4 offset-l4 m4 offset-m4 s12">
+			<h4>User Login</h4>
+			<form action="{% url 'replace:login' %}" method="post" id="form">{% csrf_token %}
+				<input type="text" name="username" placeholder="Username"  class="validate">
+				<input type="password" name="password" placeholder="Password">
+				<input type="submit" class="waves-effect waves-light btn grey darken-1" value="Login">
+			</form>
+		</div>
+	</div>
+{% endblock %}

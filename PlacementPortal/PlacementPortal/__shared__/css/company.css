@@ -1,26 +1,3 @@
-.jaf_container {
-	margin: 15% auto;
-	width:60%;
-	text-align: center;
-	background-color: rgba(220, 220, 220, 0.9);
-	padding: 10px;
-}
-.login_container {
-	margin: 2.5% auto; 
-}
-.login_background{
-	background-color: rgba(254, 254, 254, 0.9);
-	text-align: center;
-	padding: 60px;
-}
-
-.new_jaf_form {
-	margin: 5% 10% 10% 10%;
-	background-color: rgba(255, 255, 255, 0.95);
-	padding: 10px;
-	border-radius: 20px;
-}
-
 ul.stepper.horizontal .step-actions{
 	background-color: rgba(255, 255, 255, 0);
 }
@@ -32,7 +9,7 @@ ul.stepper.horizontal .step-content{
     opacity: 1 !important;
 }
 
-.tabs .tab a:hover, .tabs .tab a.active{
+/*.tabs .tab a:hover, .tabs .tab a.active{
 	color: black;
 }
 .tabs .tab a{
@@ -44,7 +21,7 @@ ul.stepper.horizontal .step-content{
 }
 .tabs .indicator {
     background-color: black;
-}
+}*/
 
 
 input[type=text]:not(.browser-default):focus:not([readonly])+label,
@@ -72,15 +49,6 @@ ul.stepper.horizontal .step-actions{
     margin-left: 3rem;
     width: 92%;
     width: calc(100% - 3rem); 
-}
-.material-icons.active {
- 	color: green;
-}
-.dropdown-content {
-    max-height:250px;
-}
-.dropdown-content li > span {
-	color: black;
 }
 
 .picker__date-display, .picker__weekday-display{
