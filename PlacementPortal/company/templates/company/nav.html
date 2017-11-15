@@ -6,15 +6,15 @@
 				<img src="{% static 'replace/images/iitb_logo.png' %}">
 			Placement Portal</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li><a href="{% url 'company:home'%}">Home</a></li>
-				<li><a href="{% url 'company:new_jaf'%}">New JAF</a></li>
-				<li><a href="{% url 'company:logout'%}">Logout</a></li>
+				<li><a class="waves-effect hoverable" href="{% url 'company:home'%}">Home</a></li>
+				<li><a class="waves-effect hoverable" href="{% url 'company:new_jaf'%}">New JAF</a></li>
+				<li><a class="waves-effect hoverable" href="{% url 'company:logout'%}">Logout</a></li>
 
 			</ul>
 			<ul id="dropdown1" class="dropdown-content">
-				<li><a href="{% url 'company:home'%}">Home</a></li>
-				<li><a href="{% url 'company:new_jaf'%}">New JAF</a></li>
-				<li><a href="{% url 'company:logout'%}">Logout</a></li>
+				<li><a class="waves-effect" href="{% url 'company:home'%}">Home</a></li>
+				<li><a class="waves-effect" href="{% url 'company:new_jaf'%}">New JAF</a></li>
+				<li><a class="waves-effect" href="{% url 'company:logout'%}">Logout</a></li>
 			</ul>
 			<ul id="nav-mobile" class="right">
 				<li>
@@ -29,12 +29,5 @@
 <script>
 	$( document ).ready(function() {
 		$(".dropdown-button").dropdown({ hover: true, constrainWidth: false });
-		
-		$(document).on('click', 'a[href^="#"]', function (event) {
-		event.preventDefault();
-		$('html, body').animate({
-		scrollTop: $($.attr(this, 'href')).offset().top
-		}, 500);
-		});
 	});
 </script>

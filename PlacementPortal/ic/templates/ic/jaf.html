@@ -1,56 +1,84 @@
 {% extends 'ic/root.html' %}
 {% block content %}
-{% include 'ic/nav.html' %}
- <div class="jaf row">
-    <div class="col col xl6 offset-xl3 l6 offset-l3 m12 s12">
-        <div class="card grey lighten-4">
-        	<div class="card-content black-text">
-              <div class="row">
-              	<span class="card-title center"> JAF of {{jaf.company.name}} ({{jaf.id}}) </span> 
-              </div>
-              <div class="row">
-	              <p>Description<hr>{{jaf.description}}</p>
-              </div>
-              <div class="row">
-              	<p>Other Details<hr>{{jaf.other_details}}</p>
-              </div>
-              <div class="row">
-              	<p>Requirements<hr>{{jaf.requirements}}</p>
-              </div>
-              
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
- </div>
-<div class="row">
-	<div class="jaf_container col xl6 offset-xl3 l6 offset-l3 m12 s12">
-		<table class="highlight bordered responsive-table">
-			<thead>
-				<tr>
-		  			<th>Student ID</th> 	
-		  			<th>Name</th>  
-		  			<th>Department</th>
-		  			<th>Email</th>	
-		  			<th>Program</th>		
-				</tr>
-			</thead>
-			 <tbody>
-			{% for application in application_list %}
-			  	<tr>
-			  		<td><a href="{% url 'ic:view_jaf' jaf.id %}">{{ application.student.id }}</a></td> 	
-			  		<td>{{ application.student.name }}</td>  
-			  		<td>{{ applicant.student.department }}</td>
-			  		<td>{{ applicant.student.email }}</td>
-			  		<td>{{ applicant.student.program }}</td>
-				</tr>
-			{% endfor %}
-			</tbody>
-		</table>
+	{% include 'ic/nav.html' %}
+	<div class="jaf row">
+		<div class="card grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
+			<div class="card-content black-text">
+				<div class="row">
+					<span class="card-title center">
+						<h5>JAF of <span> {{jaf.company.name}} </span>({{jaf.id}} - {{jaf.profile}}) </h5>
+					</span>
+				</div>
+				<hr>
+				<div class="row">
+					<p><h6>Description</h6>{{jaf.description}}</p>
+				</div>
+				<div class="row">
+					<p><h6>Requirements</h6>{{jaf.requirements}}</p>
+				</div>
+				<div class="row">
+					<div class="col m6">
+						<p><h6>Accomodation</h6>{{jaf.accomodation}}</p>
+					</div>
+					<div class="col m6">
+						<p><h6>Posting</h6>{{jaf.posting}}</p>
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<p><h6>Salary Details</h6></p>
+					<table class="striped bordered centered responsive-table">
+						<thead>
+							<tr>
+								<th>Department</th>
+								<th>Program</th>
+								<th>CPI CutOff</th>
+								<th>Stipend</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for eligibility in eligibility_list %}
+								<tr>
+									<td>{{ eligibility.department }}</td>
+									<td>{{ eligibility.program }}</td>
+									<td>{{ eligibility.cpi_cutoff }}</td>
+									<td>{{ eligibility.stipend }} &nbsp {{ eligibility.currency }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<div class="row">
+					<p><h6>Selection Procedure</h6></p>
+					<table class="striped bordered centered responsive-table">
+						<thead>
+							<tr>
+								<th>Test</th>
+								<th>Start Time</th>								
+								<th>Duration</th>
+								<th>Venue</th>
+								<th>Other Details</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for test in test_list %}
+								<tr>
+									<td>{{ test.test_type.type }}</td>
+									<td>{{ test.start_time }}</td>
+									<td>{{ test.duration }}</td>
+									<td>{{ test.location }}</td>
+									<td>{{ test.description }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<hr>
+				<div class="row">
+					<p><h6>Additional Info</h6>{{jaf.other_details}}</p>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
-<!-- {% include 'replace/footer.html' %} -->
+	{% include 'replace/footer.html' %}
 {% endblock %}

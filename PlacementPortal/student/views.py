@@ -16,7 +16,8 @@ from company.models import JAF, Category
 
 def auth(user):
     return Student.objects.filter(user=user).exists()
-
+def get_student(user):
+    return Student.objects.get(user = user)
 # Create your views here.
 def login(request):
     if request.POST :
@@ -44,6 +45,22 @@ def logout(request):
 def home(request):
     if (not auth(request.user)):
         return redirect('/replace')
+    student = get_student(request.user)
+    data = {'student': student}    
+    return render(request, "student/home.html", context=data)
+
+@login_required(login_url='/student/login/')
+def upload_resume(request):
+    if (not auth(request.user)):
+        return redirect('/replace')
+    if request.method=="POST":
+        return redirect('/student/home')
+    else:
+        pass
+@login_required()
+def see_jafs(request):
+    if (not auth(request.user)):
+        return redirect('/replace')
     if request.method=="POST":
         print(request.POST)
         all_categorys = [category.type for category in Category.objects.all()]
@@ -53,4 +70,4 @@ def home(request):
     else:
         jaf_list = JAF.objects.all()
     data = {'jaf_list': jaf_list}
-    return render(request, "student/home.html",  context=data)
+    return render(request, "student/jaf_list.html", context=data)

@@ -32,6 +32,21 @@ ul.stepper.horizontal .step-content{
     opacity: 1 !important;
 }
 
+.tabs .tab a:hover, .tabs .tab a.active{
+	color: black;
+}
+.tabs .tab a{
+	color: grey;
+	font-size: 1.5em;
+}
+.tabs {
+	background-color:transparent; 
+}
+.tabs .indicator {
+    background-color: black;
+}
+
+
 input[type=text]:not(.browser-default):focus:not([readonly])+label,
 input[type=number]:not(.browser-default):focus:not([readonly])+label, 
 textarea.materialize-textarea:focus:not([readonly])+label {

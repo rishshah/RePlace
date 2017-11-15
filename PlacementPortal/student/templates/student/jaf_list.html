@@ -1,13 +1,13 @@
-{% extends 'company/root.html' %}
+{% extends 'student/root.html' %}
 {% block content %}
-	{% include 'company/nav.html' %}
+	{% include 'student/nav.html' %}
 	<div class="row">
 		<div class="jaf_container grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
 			<div class="row">
 				<h4> List Of JAFs </h4>
 			</div>
 			<div class="row">
-				<table class="highlight bordered centered responsive-table">
+				<table class="highlight bordered centered">
 					<thead>
 						<tr>
 							<th data-field="id">Jaff ID</th>
@@ -35,8 +35,9 @@
 	<script type="text/javascript">
 		$( document ).ready(function() {
 			 $(".clickable-row").click(function() {
-		        window.location = $(this).data("href");
+		        window.location = $(this).data("href");	
 		    });
+			$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal1">Filter</a></li>' ); 
 		});
 	</script>
 	{% include 'replace/footer.html' %}

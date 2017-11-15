@@ -1,32 +1,51 @@
 {% extends 'student/root.html' %}
 {% block content %}
 	{% include 'student/nav.html' %}
-	<div class="row" style="min-height: 400px">
-		<div class="jaf_container col xl6 offset-xl3 l6 offset-l3 m12 s12">
-			<table class="highlight bordered responsive-table">
-				<thead>
-					<tr>
-						<th>Jaff ID</th>
-						<th>Company</th>
-						<th>Job Profile</th>
-						<th>Resume Number</th>
-						<th>Students Applied</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for jaf in jaf_list %}
+	<div class="row">
+		<div class="col jaf_container xl6 offset-xl3 l6 offset-l3 m6 offset-m3 s12 login_background">
+			<div class="row">
+				<h4>{{student.name}}</h4>
+			</div>
+			<div class="row">
+				<table class="striped bordered responsive-table">
+					<tbody>
 						<tr>
-							<td><a href="{% url 'ic:view_jaf' jaf.id %}">{{ jaf.id }}</a></td>
-							<td>{{ jaf.company }}</td>
-							<td>{{ jaf.profile }}</td>
-							<td>{{ jaf.resume_number }}</td>
-							<td>{{ jaf.student_count }}</td>
+							<th>Roll Number</th>
+							<td>{{student.id}}</td>
 						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+						<tr>
+							<th>Department</th>
+							<td>{{student.department}}</td>
+						</tr>
+						<tr>
+							<th>Program</th>
+							<td>{{student.program}}</td>
+						</tr>
+						<tr>
+							<th>CPI</th>
+							<td>{{student.cpi}}</td>
+						</tr>
+						<tr>
+							<th>Email</th>
+							<td>{{student.email}}</td>
+						</tr>
+						<tr>
+							<th>Phone Number</th>
+							<td>{{student.phone_number}}</td>
+						</tr>
+						<tr>
+							<th>Resume Status</th>
+							<td>{{student.resume_verified}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-    </div>
 	{% include 'replace/footer.html' %}
+	<script type="text/javascript">
+    	$( document ).ready(function() {
+    		$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal2">Resume</a></li>' );
+    	});
+	</script>
 {% endblock %}

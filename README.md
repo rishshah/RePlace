@@ -9,63 +9,59 @@ python src/manage.py runserver
 ```
 Open [127.0.0.1:8000](http://127.0.0.1:8000/replace) to get to the home page of **RePlace**.
 
-
-### Status
-- Models created
-- Login pages for company, student and coordinator 
-- Logout working
-- Company registration form created
-- Home Page for IC made and jafs are visible
-- Company registration testing 
-- IC home page table css 
-- Home Page Content
-- Join selection django	
+ 
+### Status 
+- Models created (may be few changes in future) MEET (signing deadline not part of jaf_test)
+- Login pages for company, student and coordinator (needs to be combined) GROUP
+- Logout created
 - Show basic jaf information 
-- Parallax in home page
+- Parallax in home page (search for new images) LATER
 - Home page scroll animation
-- Jaf form almost complete
+- Company registration form created
 
-### In Progress
-- Filters for students in progress 		MEET
-- Data creation population				MEET
-- Create home page students				RISHABH
-- IC tabs for resume selection status 	MEET SOURABH
-- CSS change in login pages 			RISHABH
-- Student check home page for resume status and other fields RISHABH 
-- resume related view backend 			DEPAL
-- send number of students applied to all views DEPAL
+#### Company
+- Jaf creation form almost complete (Not all combinations taken care of in the jaf creation form) GROUP
+- Post company jaf form (not yet started) DEPAL
+
+####IC
+- IC tab view creation (not yet started) SOURABH
+- IC tabs for resume selection status (not yet started) SOURABH
+- Make resume upload, view (not yet started) DEPAL
+- Update​ database​ ​ regarding​ ​ test​ ​ location,​ ​ timing​ ​ and​ ​ other​ ​ updates (not started) RISH
+
+####Student
+- Student Home page done
+- Filters for students (not much done... in progress) MEET css (not started) RISH
+- Make sign jaf view (not yet started) DEPAL
 
 ### Plans 
-- Login​ ​ and​ ​ Logout​ ​ for​ ​ all​ ​ users
+- Login​ ​ and​ ​ Logout​ ​ for​ ​ all​ ​ users (PARTIAL)
 
 #### Admin
-- Initially​ ​ populate​ ​ the​ ​ database
+- Initially​ ​ populate​ ​ the​ ​ database (PARTIAL)
 - Update​ ​ database​ ​ at​ ​ end​ ​ of​ ​ the​ ​ semester/year​ ​ regarding​ ​ new​ ​ admissions,​ ​ CPI change​ ​ etc,.​ ​ (if​ ​ time​ ​ permits)
 - This​ ​ part​ ​ represents​ ​ the​ ​ connections​ ​ of​ ​ our​ ​ project​ ​ with​ ​ rest​ ​ of​ ​ database​ ​ tables​ ​ in the​ ​ university
 
 #### Student
-- View​ ​ and​ ​ Sign​ ​ eligible​ ​ JAFs
-- Provide​ ​ reviews​ ​ for​ ​ completed​ ​ internships
-- Search​ ​ current​ ​ JAFs​ ​ according​ ​ to​ ​ various​ ​ filters
-- View​ ​ all​ ​ data​ ​ regarding​ ​ past​ ​ interns​ ​ including​ ​ reviews,​ ​ selections​ ​ and​ ​ procedures
-- Upload​ ​ resume​ ​ and​ ​ see​ ​ status​ ​ of​ ​ verification​ ( ​ if​ ​ time​ ​ permits)
-- Confirm​ ​ final​ ​ selection​ ​ for​ ​ students​ ​ finally​ ​ shortlisted​ ​ by​ ​ companies
+- View​ ​ and​ ​ Sign​ ​ eligible​ ​ JAFs (PARTIAL)
+- Provide​ ​ reviews​ ​ for​ ​ completed​ ​ internships (NOPE)
+- Search​ ​ current​ ​ JAFs​ ​ according​ ​ to​ ​ various​ ​ filters (PARTIAL)
+- View​ ​ all​ ​ data​ ​ regarding​ ​ past​ ​ interns​ ​ including​ ​ reviews,​ ​ selections​ ​ and​ ​ procedures (NOPE)
+- Upload​ ​ resume​ ​ and​ ​ see​ ​ status​ ​ of​ ​ verification​ (if​ ​ time​ ​ permits) (PARTIAL)
+- Confirm​ ​ final​ ​ selection​ ​ for​ ​ students​ ​ finally​ ​ shortlisted​ ​ by​ ​ companies (NOPE)
 
 
 #### IC
-- Verify​ ​ resumes
-- Update​ database​ ​ regarding​ ​ test​ ​ location,​ ​ timing​ ​ and​ ​ other​ ​ updates
+- Verify​ ​ resumes (PARTIAL)
+- Update​ database​ ​ regarding​ ​ test​ ​ location,​ ​ timing​ ​ and​ ​ other​ ​ updates (NOPE)
 
 #### Company
-- Create​ ​ JAFs​ ​ and​ ​ see​ ​ specific​ ​ resume​ ​ number​ ​ of​ ​ applicants
-- Set​ ​ eligibility​ ​ conditions
-- Shortlist​ ​ based​ ​ on​ ​ the​ ​ resumes​ ​ of​ ​ applicants
-- See​ ​ progress​ ​ level​ ​ of​ ​ shortlisted​ ​ students​ ​ according​ ​ to​ ​ various​ ​ sequential​ ​ tests​ ( ​if time​ ​ permits)
-- Give​ ​ final​ ​ selections​ ​ and​ ​ see​ ​ the​ ​ confirmation​ ​ status​ ​ by​ ​ selected​ ​ students.
+- Create​ ​ JAFs​ ​ and​ ​ see​ ​ specific​ ​ resume​ ​ number​ ​ of​ ​ applicants (PARTIAL)
+- Set​ ​ eligibility​ ​ conditions (PARTIAL)
+- Shortlist​ ​ based​ ​ on​ ​ the​ ​ resumes​ ​ of​ ​ applicants (NOPE)
+- See​ ​ progress​ ​ level​ ​ of​ ​ shortlisted​ ​ students​ ​ according​ ​ to​ ​ various​ ​ sequential​ ​ tests​ ( ​if time​ ​ permits) (NOPE)
+- Give​ ​ final​ ​ selections​ ​ and​ ​ see​ ​ the​ ​ confirmation​ ​ status​ ​ by​ ​ selected​ ​ students. (NOPE)
 
-### Bugs To Fix
-- Combine all login pages
-- Not all combinations taken care of in the jaf creation form
 
 ### Filers 
 

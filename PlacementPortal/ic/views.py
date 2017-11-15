@@ -12,6 +12,8 @@ from company.models import JAF
 from student.models import Student, Application
 
 from .models import *
+from company.models import *
+
 
 def auth(user):
 	return IC.objects.filter(user=user).exists()
@@ -59,6 +61,8 @@ def view_jaf(request,pk):
 	if (jaf is None):
 		return redirect('/replace')
 	application_list = Application.objects.filter(jaf = jaf)
+	eligibility_list = Eligibility.objects.filter(jaf = jaf)
+	test_list = JAFTest.objects.filter(jaf = jaf)
 	jaf.student_count = application_list.count()
-	data = {'jaf':jaf, 'application_list':application_list}
+	data = {'jaf':jaf, 'application_list':application_list, 'eligibility_list':eligibility_list, 'test_list': test_list}
 	return render(request, "ic/jaf.html", context = data)

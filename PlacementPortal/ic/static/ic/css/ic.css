@@ -1,17 +1,73 @@
-.jaf_container {
-	margin: 15% auto;
+.row .col.jaf_container {
+	margin-top: 5%;
+	margin-bottom: 15%;
 	text-align: center;
-	background-color: rgba(220, 220, 220, 0.9);
+	padding-left:30px;
+	padding-right:30px;
+	border-radius: 20px;
 }
 .login_container {
 	margin: 15% auto; 
 }
 .login_background{
-	background-color: rgba(254, 254, 254, 0.9);
+	background-color: rgba(254, 254, 254, 0.95);
 	text-align: center;
 	padding: 60px;
 }
 
+.row{
+	margin-left: 2%;
+	margin-right: 2%;
+}
+	
 .jaf{
-	margin: 5% auto;
+	margin: 5%;
+	font-size: 0.85em;
+}
+
+.jaf h6 {
+	font-size: 1.6em;
+	font-weight: normal;
+	font-variant: small-caps;
+	font-style: italic;
+}
+
+.jaf span span{
+	font-weight: bolder;
+	font-variant: small-caps;
+	font-style: italic;	
+}
+.jaf td {
+	padding: 2px;
+}
+.jaf th {
+	padding: 5px;
+}
+
+.jaf_container th {
+	font-variant: small-caps;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4em;
+}
+
+.jaf_container .clickable-row{
+	cursor: pointer;
+}
+.jaf_container table{
+	border: 1px solid #b1b1b1;
+	border-collapse: collapse;	
+}
+
+.jaf table{
+	margin-top: 10px;
+	border: 1px solid #b1b1b1;
+	border-collapse: collapse;	
+}
+.jaf .row .col.m6{
+	padding: 0px;
+}
+.card {
+	padding: 10px;
+	border-radius: 20px;
 }

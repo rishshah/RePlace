@@ -1,79 +1,153 @@
 {% load static %}
 <div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper black">
-      <a href="{% url 'replace:index' %}" class="brand-logo">
-        <img src="{% static 'replace/images/iitb_logo.png' %}">
-      Placement Portal</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a class="modal-trigger" href="#modal1">Filter</a></li>
-        <li><a href="{% url 'student:logout'%}">Logout</a></li>
-      </ul>
-      <ul id="dropdown1" class="dropdown-content">
-        <li><a class="modal-trigger" href="#modal1">Filter</a></li>
-        <li><a href="{% url 'student:logout'%}">Logout</a></li>
-      </ul>
-      <ul id="nav-mobile" class="right">
-        <li>
-          <a class="dropdown-button button-collapse" href="#!" data-activates="dropdown1">
-            <i class="material-icons right">menu</i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <nav>
+        <div class="nav-wrapper black">
+            <a href="{% url 'replace:index' %}" class="brand-logo">
+                <img src="{% static 'replace/images/iitb_logo.png' %}">
+            Placement Portal</a>
+            <ul id="nav-mobile" class="links right hide-on-med-and-down">
+                <li><a class="waves-effect hoverable" href="{% url 'student:home'%}" >Home</a></li>
+                <li><a class="waves-effect hoverable" href="{% url 'student:see_jafs'%}">JAFs</a></li>
+                <li><a class="waves-effect hoverable" href="{% url 'student:logout'%}">Logout</a></li>
+            </ul>
+            <ul id="dropdown1" class="links dropdown-content">
+                <li><a class="waves-effect hoverable" href="{% url 'student:home'%}">Home</a></li>
+                <li><a class="waves-effect hoverable" href="{% url 'student:see_jafs'%}">JAFs</a></li>
+                <li><a class="waves-effect hoverable" href="{% url 'student:logout'%}">Logout</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right">
+                <li>
+                    <a class="dropdown-button button-collapse" href="#!" data-activates="dropdown1">
+                        <i class="material-icons right">menu</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>
 <div id="modal1" class="modal col l6">
-    <form action="/student/home/" method="post">
-    <div class="modal-content">
-      <h5 class="center">Filters</h5>
-
-              <a href="#!"><input type="checkbox" id="inp1" name="cansign" />
-              <label for="inp1" class="black-text">Only JAFs I can sign/unsign</label></a>
-                <br>
-        <br>
-              <a href="#!"><input type="checkbox" id="inp2" name="signed" />
-              <label for="inp2" class="black-text">Only JAFs I have signed</label></a>
-                <br> From
-                <div class="input-field inline">
-                    <input id="min_stipend" type="number" min="0" name="minstipend">
-                    <label for="min_stipend" data-error="wrong" data-success="right">Min stipend</label>
-                </div> to <div class="input-field inline">
-                    <input id="max_stipend" type="number" min="0" name="maxstipend">
-                    <label for="max_stipend" data-error="wrong" data-success="right">Max stipend</label>
+    <form action="{% url 'student:see_jafs' %}" method="post">{% csrf_token %}
+        <div class="modal-content">
+            <h5 class="center">Filters</h5>
+            <a href="#!">
+                <input type="checkbox" id="inp1" name="cansign" />
+                <label for="inp1" class="black-text">Only JAFs I can sign/unsign</label>
+            </a>
+            <br><br>
+            <a href="#!"><input type="checkbox" id="inp2" name="signed" />
+                <label for="inp2" class="black-text">Only JAFs I have signed</label>
+            </a>
+            <br> From
+            <div class="input-field inline">
+                <input id="min_stipend" type="number" min="0" name="minstipend">
+                <label for="min_stipend" data-error="wrong" data-success="right">Min stipend</label>
+            </div> to
+            <div class="input-field inline">
+                <input id="max_stipend" type="number" min="0" name="maxstipend">
+                <label for="max_stipend" data-error="wrong" data-success="right">Max stipend</label>
+            </div>
+            <br> From
+            <div class="input-field inline">
+                <input id="min_cpi" type="number" min="0" name="mincpi">
+                <label for="min_stipend" data-error="wrong" data-success="right">Min CPI cutoff</label>
+            </div> to
+            <div class="input-field inline">
+                <input id="max_cpi" type="number" min="0" name="maxcpi">
+                <label for="max_stipend" data-error="wrong" data-success="right">Max CPI cutoff</label>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col l3">
+                    <a href="#!">
+                        <input type="checkbox" id="i1" name="I1" />
+                        <label for="i1" class="black-text">I1</label>
+                    </a>
                 </div>
-                <br> From
-                <div class="input-field inline">
-                    <input id="min_cpi" type="number" min="0" name="mincpi">
-                    <label for="min_stipend" data-error="wrong" data-success="right">Min CPI cutoff</label>
-                </div> to <div class="input-field inline">
-                    <input id="max_cpi" type="number" min="0" name="maxcpi">
-                    <label for="max_stipend" data-error="wrong" data-success="right">Max CPI cutoff</label>
+                <div class="col l3">
+                    <a href="#!">
+                        <input type="checkbox" id="i2" name="I2" />
+                        <label for="i2" class="black-text">I2</label>
+                    </a>
                 </div>
-        <br>
-        <div class="row">
-            <div class="col l3">
-        <a href="#!"><input type="checkbox" id="i1" name="I1" />
-              <label for="i1" class="black-text">I1</label></a></div>
-
-            <div class="col l3">
-        <a href="#!"><input type="checkbox" id="i2" name="I2" />
-              <label for="i2" class="black-text">I2</label></a></div>
-
-            <div class="col l3">
-        <a href="#!"><input type="checkbox" id="i3" name="I3" />
-              <label for="i3" class="black-text">I3</label></a></div>
-
-            <div class="col l3">
-        <a href="#!"><input type="checkbox" id="i4" name="I4" />
-              <label for="i4" class="black-text">I4</label></a></div>
+                <div class="col l3">
+                    <a href="#!">
+                        <input type="checkbox" id="i3" name="I3" />
+                        <label for="i3" class="black-text">I3</label>
+                    </a>
+                </div>
+                <div class="col l3">
+                    <a href="#!">
+                        <input type="checkbox" id="i4" name="I4" />
+                        <label for="i4" class="black-text">I4</label>
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="modal-footer">
-      <input type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" value="DONE" />
-    </div>
-         {% csrf_token %}
+        <div class="modal-footer">
+            <input type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" value="DONE" />
+        </div>
     </form>
+</div>
+
+<div id="modal2" class="modal col l6">
+    <form action="{% url 'student:upload_resume' %}" method="post">{% csrf_token %}
+        <div class="modal-content">
+            <h5 class="center">Upload Resumes</h5>
+            <div class="row">
+                <div class="col m6">
+                    <div class="file-field input-field">
+                        <div class="waves-effect waves-light btn grey darken-4 ">
+                            <span>One Page</span>
+                            <input type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>    
+                </div>
+                <div class="col m6">
+                    <div class="file-field input-field">
+                        <div class="waves-effect waves-light btn grey darken-4 ">
+                            <span>Two Page Tech</span>
+                            <input type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col m6">
+                    <div class="file-field input-field">
+                        <div class="waves-effect waves-light btn grey darken-4 ">
+                            <span>Two Page Non Tech</span>
+                            <input type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>    
+                </div>
+                <div class="col m6">
+                    <div class="file-field input-field">
+                        <div class="waves-effect waves-light btn grey darken-4 ">
+                            <span>CV</span>
+                            <input type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>    
+                </div>
+            </div>
+           <div class="modal-footer">
+                    <input type="submit" class="modal-action modal-close waves-effect waves-light btn-flat" value="DONE" />
+            </div>
+                
+        </div>
+  </form>
 </div>
 <script>
 $( document ).ready(function() {
