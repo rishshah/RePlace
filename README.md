@@ -18,7 +18,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Show basic jaf information 
 - Parallax in home page (search for new images) LATER
 - Home page scroll animation (background fixing) RISH
-- Company registration form created (css fixing) RISH
+- Company registration form created 
 
 #### Company
 - Jaf creation form almost complete (Not all combinations taken care of in the jaf creation form) MEET
