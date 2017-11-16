@@ -16,7 +16,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Logout created
 - All static files in one place
 - Show basic jaf information 
-- Parallax in home page (search for new images) LATER
+- Parallax in home page
 - Home page scroll animation
 - Company registration form created 
 
