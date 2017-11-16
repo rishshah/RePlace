@@ -8,7 +8,13 @@ ul.stepper.horizontal .step-content{
     color:    #888888;
     opacity: 1 !important;
 }
-
+ul.stepper.horizontal{
+    min-height: 600px;
+}
+hr.dark{
+    height: 2px;
+    background-color: black;
+}
 /*.tabs .tab a:hover, .tabs .tab a.active{
 	color: black;
 }

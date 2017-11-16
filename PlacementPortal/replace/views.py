@@ -39,7 +39,7 @@ def login(request):
                 elif auth_company(user):
                 	return HttpResponseRedirect('/company/')
             
-       	return render(request, "replace/login.html",context={'error':'invalid credentials'})
+       	return render(request, "replace/login.html",context={'error':'Invalid Credentials'})
     else:
         if request.user.is_authenticated():
             if auth_student(request.user):
@@ -49,38 +49,40 @@ def login(request):
             elif auth_company(request.user):
             	return HttpResponseRedirect('/company/')
             else:
-            	return render(request, "replace/login.html",context={'error':'forbidden'})
+            	return render(request, "replace/login.html",context={'error':'Forbidden'})
         else:
         	return render(request, "replace/login.html",context={'error':''})
 
 def register(request):
 	category_list = Category.objects.all()
 	if (request.method == "GET"):
-		data = {'tab':'register','category_list':category_list,'error':''}
+		data = {'category_list':category_list,'error':''}
 		return render(request, "replace/register.html", context = data)
 	else:
 		company_name = request.POST['company-name']
 		company_username = request.POST['company-username']
 		password = request.POST['password']
+		confirm_password = request.POST['confirm-password']
 		phone_number = request.POST['phone-number']
-		category_name = request.POST['company-category']
-		category = Category.objects.get(type = category_name)
+		category = Category.objects.get(type = request.POST['company-category'])
+		
 		if (Company.objects.filter(name = company_name).exists()):
-			print ("duplicate company name")
-			data = {'tab':'register','category_list':category_list,'error':'company name already exists'}
+			data = {'category_list':category_list,'error':'Company name already exists'}
 			return render(request, "replace/register.html", context = data)
 		if (User.objects.filter(username = company_username).exists()):
-			print ("duplicate username")
-			data = {'tab':'register','category_list':category_list,'error':'username already exists'}
+			data = {'category_list':category_list,'error':'Username already exists'}
 			return render(request, "replace/register.html", context = data)
 		if (category is None):
-			print ("invalid category")
-			data = {'tab':'register','category_list':category_list,'error':'invalid category'}
+			data = {'category_list':category_list,'error':'Invalid category'}
 			return render(request, "replace/register.html", context = data)
+		if (password != confirm_password):
+			data = {'category_list':category_list,'error':'Passwords don\'t match'}
+			return render(request, "replace/register.html", context = data)
+
 		user = User.objects.create_user(username = company_username, password = password)
 		user.save()
 		company = Company(name = company_name, user = user, phone_number = phone_number, category = category)
 		company.save()
-		print(company_name, company_username, password, phone_number, category)
-		data = {'tab':'login','category_list':category_list,'error':''}
+
+		data = {'error':''}
 		return render(request, "replace/login.html", context = data)

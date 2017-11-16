@@ -22,14 +22,10 @@
 					<div class="row">
 						<div class="input-field col m12">
 							<i class="material-icons prefix tiny">call_to_action</i>
-							<select name="company-category">
-								<option value="" disabled selected>Choose Company Category</option>
+							<select name="company-category" class="validate">
 								{%for category in category_list %}
 								<option value={{ category }}>{{ category }}</option>
 								{% endfor %}
-								<option value="saab">Saab</option>
-								<option value="mercedes">Mercedes</option>
-								<option value="audi">Audi</option>
 							</select>
 							<label>Company Category</label>
 						</div>
@@ -37,14 +33,14 @@
 					<div class="row">
 						<div class="input-field col m12">
 							<i class="material-icons prefix tiny">enhanced_encryption</i>
-							<input type="password" name="password">
+							<input type="password" name="password" class="validate">
 							<label>Password</label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="input-field col m12">
 							<i class="material-icons prefix tiny">verified_user</i>
-							<input type="password" name="confirm-password">
+							<input type="password" name="confirm-password" class="validate">
 							<label>Confirm Password</label>
 						</div>
 					</div>
@@ -54,6 +50,9 @@
 							<input type="number" name="phone-number" class="validate">
 							<label>Phone Number</label>
 						</div>
+					</div>
+					<div class="row error">
+						{{error}}
 					</div>
 					<input type="submit" class="waves-effect waves-light btn grey darken-4" value="Register">
 				</div>

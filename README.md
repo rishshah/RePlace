@@ -19,6 +19,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Parallax in home page
 - Home page scroll animation
 - Company registration form created 
+- Error display mechanism on login pages
 
 #### Company
 - Jaf creation form almost complete (Not all combinations taken care of in the jaf creation form) MEET

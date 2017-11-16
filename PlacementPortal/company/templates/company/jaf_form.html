@@ -175,8 +175,7 @@
 										<i class="material-icons">add</i>
 									</a>
 							</div>
-							<hr>
-							<hr>
+							<hr class="dark">
 							<div class="row">
 								<div class="col s6">
 									<i class="material-icons prefix small">event</i>
@@ -191,7 +190,6 @@
 							</div>
 						</div>
 					</li>
-					
 				</ul>
 			</form>
 		</div>
@@ -264,6 +262,7 @@
 								'</div>';
 
 		 	$('#test'+(counter-1).toString() + "-1").before(row2);
+		 	$('#test'+(counter).toString() + "-2").after("<hr>");
 		 	$('#test'+(counter).toString() + "-2").before(row1);
 		    counter++;
 		    $('select').material_select();
