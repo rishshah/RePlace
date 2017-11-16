@@ -17,7 +17,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - All static files in one place
 - Show basic jaf information 
 - Parallax in home page (search for new images) LATER
-- Home page scroll animation (background fixing) RISH
+- Home page scroll animation
 - Company registration form created 
 
 #### Company
@@ -28,7 +28,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - IC tab view creation (not yet started) SOURABH
 - IC tabs for resume selection status (not yet started) SOURABH
 - Make resume upload, view (not yet started) DEPAL
-- Update​ database​ ​ regarding​ ​ test​ ​ location,​ ​ timing​ ​ and​ ​ other​ ​ updates (not started) RISH
+- Update​ database​ ​ regarding​ ​test​​ location,​​ timing​ ​and​​ other​ updates (not started) RISH
 
 #### Student
 - Student Home page done
