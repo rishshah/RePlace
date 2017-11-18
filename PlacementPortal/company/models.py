@@ -34,7 +34,7 @@ class JAF(models.Model):
         (1, "Summer"),
     ), null=False, blank=False)
     posting = models.CharField("Place of posting", max_length=50, null=False, blank=False)
-    profile = models.ManyToManyField("company.JobProfile", verbose_name="Job profile", blank=False)
+    profile = models.ForeignKey("company.JobProfile", verbose_name="Job profile", blank=False, default="Analyst")
     accomodation = models.TextField("Accomodation details", null=False, blank=False)
     duration = models.IntegerField("Internship duration (weeks)", validators=[MinValueValidator(1)], null=False, blank=False)
     resume_number = models.IntegerField("Resume no. wanted", validators=[MinValueValidator(0), MaxValueValidator(3)], null=True, blank=True)
