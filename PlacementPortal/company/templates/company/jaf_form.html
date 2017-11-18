@@ -44,10 +44,9 @@
 									<i class="material-icons prefix tiny">filter_list</i>
 									<select>
 										<option value="" disabled selected>Choose Resume Type</option>
-										<option value="1">One-Page Tech</option>
-										<option value="2">Two-Page Tech</option>
-										<option value="3">One-Page Non-Tech</option>
-										<option value="4">Two-Page Non-Tech</option>
+										{% for resume_type in resume_type_list %}
+											<option value="{{resume_type.0}}">{{resume_type.1}}</option>
+										{% endfor %}
 									</select>
 									<label>Resume Type</label>
 								</div>
@@ -98,9 +97,9 @@
 									<i class="material-icons prefix tiny">school</i>
 									<select multiple>
 										<option value="" disabled selected>Choose Programs</option>
-										<option value="1">UG 1st Year</option>
-										<option value="2">UG 2nd Year</option>
-										<option value="3">UG 3rd Year</option>
+										{% for program in program_list%}
+											<option value="{{program.name}}">{{program.name}}</option>
+										{% endfor %}
 									</select>
 									<label>Programs</label>
 								</div>
@@ -108,9 +107,9 @@
 									<i class="material-icons prefix tiny">school</i>
 									<select multiple>
 										<option value="" disabled selected>Choose Departments</option>
-										<option value="1">Meta</option>
-										<option value="2">Chemical</option>
-										<option value="3">CS</option>
+										{% for dept in department_list%}
+										<option value="{{dept.name}}">{{dept.name}}</option>
+										{% endfor %}
 									</select>
 									<label>Departments</label>
 								</div>
@@ -146,11 +145,14 @@
 									<i class="material-icons prefix small">event_seat</i>
 									<select>
 										<option value="" disabled selected>Choose Test Type</option>
-										<option value="1">Technical Test</option>
+										{% for test_type in test_type_list %}
+											<option value="{{test_type.type}}">{{test_type.type}}</option>
+										{% endfor %}
+<!-- 										<option value="1">Technical Test</option>
 										<option value="2">Aptitude Test</option>
 										<option value="3">Group Discussion</option>
 										<option value="4">Technical Interview</option>
-										<option value="5">HR Round</option>
+										<option value="5">HR Round</option> -->
 									</select>
 									<label>Test Type</label>
 								</div>
