@@ -42,15 +42,21 @@ def logout(request):
 
 @login_required(login_url='/student/login/')
 def home(request):
-    if (not auth(request.user)):
+    student = auth(request.user)
+    if (not student):
         return redirect('/replace')
+    jaf_list = JAF.objects.all()
     if request.method=="POST":
         print(request.POST)
         all_categorys = [category.type for category in Category.objects.all()]
         categorys = [key for key in request.POST.keys() if key in all_categorys]
-        jaf_list = JAF.objects.all()
         jaf_list = jaf_list.filter(company__category__type__in=categorys)
-    else:
-        jaf_list = JAF.objects.all()
+
+        if 'cansign' in request.POST.keys():
+            jaf_list = jaf_list.filter(eligibility__department=student.department, eligibility__program=student.program, eligibility__cpi_cutoff__lt=student.cpi)
+
+        if 'signed' in request.POST.keys():
+            jaf_list = jaf_list.filter(application__student=student)
+
     data = {'jaf_list': jaf_list}
     return render(request, "student/home.html",  context=data)

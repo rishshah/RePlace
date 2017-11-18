@@ -5,7 +5,7 @@
       <a href="{% url 'replace:index' %}" class="brand-logo">
         <img src="{% static 'replace/images/iitb_logo.png' %}">
       Placement Portal</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <ul id="nav-mobile1" class="right hide-on-med-and-down">
         <li><a href="{% url 'student:logout'%}">Logout</a></li>
         <li><a class="modal-trigger" href="#modal1">Filter</a></li>
       </ul>
@@ -13,7 +13,7 @@
         <li><a href="{% url 'student:logout'%}">Logout</a></li>
         <li><a class="modal-trigger" href="#modal1">Filter</a></li>
       </ul>
-      <ul id="nav-mobile" class="right">
+      <ul id="nav-mobile2" class="right">
         <li>
           <a class="dropdown-button button-collapse" href="#!" data-activates="dropdown1">
             <i class="material-icons right">menu</i>
@@ -70,7 +70,7 @@
         </div>
     </div>
     <div class="modal-footer">
-      <input type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" value="DONE" />
+      <input type="submit" class="waves-effect waves-green btn-flat" value="DONE" />
     </div>
          {% csrf_token %}
     </form>
