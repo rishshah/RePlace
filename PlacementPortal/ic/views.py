@@ -9,10 +9,12 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from company.models import JAF
-from student.models import Student, Application
+from student.models import Student
+from replace.models import Application
 
 from .models import *
 from company.models import *
+from replace.models import *
 
 HOME_URL = '/'
 

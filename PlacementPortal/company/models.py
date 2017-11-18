@@ -42,7 +42,7 @@ class JAF(models.Model):
     stipend = models.DecimalField("Stipend", decimal_places=2, max_digits=10, null=False, blank=False)
     deadline = models.DateTimeField("Last date to sign JAF", null=False, blank=False)
     currency = models.CharField("Unit",validators=[MinLengthValidator(3), MaxLengthValidator(3)], max_length=3, null=False, blank=False, default="INR")
-    
+
     def __str__(self):
         return "JAF no. %d (%s)" % (self.id, self.company)
 
