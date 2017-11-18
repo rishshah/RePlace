@@ -15,14 +15,9 @@
 									<i class="material-icons prefix">dashboard</i>
 									<select multiple>
 										<option value="" disabled selected>Choose job profiles</option>
-										<option value="1">Web Development</option>
-										<option value="2">App Development</option>
-										<option value="3">Algorithm Creation</option>
-										<option value="4">Research</option>
-										<option value="5">Finance</option>
-										<option value="6">Machine Learning</option>
-										<option value="8">Management</option>
-										<option value="9">Marketting</option>
+										{% for job_profile in job_profile_list %}
+										<option value="{{job_profile.name}}">{{job_profile.name}}</option>
+										{% endfor %}
 									</select>
 									<label>Job Profile</label>
 								</div>

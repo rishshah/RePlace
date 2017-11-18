@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import *
 from student.models import *
-
+from replace.models import Application
 
 HOME_URL = '/'
 
@@ -45,4 +45,5 @@ def new_jaf(request):
 	if request.method == "POST" :
 		return render(request, "company/jaf_form.html")
 	else :
-		return render(request, "company/jaf_form.html")
+		data = {'job_profile_list':JobProfile.objects.all()}
+		return render(request, "company/jaf_form.html", context=data )
