@@ -36,13 +36,17 @@
 			<div class="modal-content">
 				<h5 class="center">Filters</h5>
 				<div class="row">
-					<div class="col m6">
+					<div class="col m4 s12">
 						<input type="checkbox" id="inp1" name="cansign" />
 						<label for="inp1" class="black-text">JAFs I can sign</label>
 					</div>
-					<div class="col m6">
+					<div class="col m4 s12">
 						<input type="checkbox" id="inp2" name="signed" />
 						<label for="inp2" class="black-text">JAFs I have signed</label>
+					</div>
+					<div class="col m4 s12">
+						<input type="checkbox" id="inp3" name="pre_deadline" />
+              			<label for="inp3" class="black-text">Prior to Deadline</label>
 					</div>
 				</div>
 
@@ -69,7 +73,7 @@
 
 				<div class="row">
 					<div class="input-field col l6">
-			            <select name="company-category" class="validate">
+			            <select name="job_profile" class="validate">
 			                {%for job_profile in job_profile_list %}
 			                <option value="{{ job_profile.name }}">{{ job_profile.name }}</option>
 			                {% endfor %}
@@ -86,12 +90,6 @@
 			            <label>Company Category</label>
 			        </div>
 				</div>
-				<div class="row">
-					<div class="input-field col l6">
-						<input type="checkbox" id="pre_deadline" name="pre_deadline" />
-              			<label for="pre_deadline" class="black-text">Prior to Deadline</label>
-					</div>
-				</div>
 			</div>
 			<div class="modal-footer">
 				<input type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" value="DONE" />
@@ -106,6 +104,7 @@
 			$(".clickable-row").click(function() {
 			window.location = $(this).data("href");
 			});
+			$('select').material_select();
 			$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal1">Filter</a></li>' );
 			$('.links-dropdown li:eq(1)').after( '<li><a class="waves-effect modal-trigger" href="#modal1">Filter</a></li>' );
 			$('.modal').modal();
