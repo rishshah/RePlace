@@ -11,7 +11,7 @@
 					{% for application in selection_list %}
 					<li>
 						<div class="collapsible-header"><i class="material-icons">assistant</i>
-							<span class="flow-text">{{ application.jaf.company }} - {{ application.jaf.profile }} </span> 
+							<span class="flow-text">{{ application.jaf.company }} - {{ application.jaf.profile.name }} </span> 
 						</div>
 						<div class="collapsible-body" id="{{application.jaf.id}}"><span>
 						{% if application.review %}
