@@ -67,7 +67,6 @@ class JAFTest(models.Model):
     class Meta:
         unique_together = (("test_number", "jaf"),)
 
-
 class TestType(models.Model):
     type = models.CharField("Test type", max_length=50, primary_key=True)
 

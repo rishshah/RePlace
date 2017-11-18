@@ -75,8 +75,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - CPI (later) (range)
 - Stipend (range)
 - Can sign
+- Job Profile
 
 #### ToDo
-- Job Profile
 - Post deadline
-- Pending Jafs
