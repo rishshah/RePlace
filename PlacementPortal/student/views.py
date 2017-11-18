@@ -55,11 +55,15 @@ def my_jobs(request):
     if (not auth(request.user)):
         return redirect(HOME_URL)
     if request.method=="GET":
-        jaf_list = JAF.objects.all()
-        data = {'jaf_list': jaf_list}
+        selection_list = Application.objects.filter(is_selected=True, student=get_student(request.user))
+        data = {'selection_list': selection_list}
         return render(request, "student/my_jobs.html", context=data)
     else:
-        pass
+        jaf = JAF.objects.get(id=request.POST["id"])
+        application = Application.objects.get(jaf=jaf, is_selected=True, student=get_student(request.user))
+        application.review = request.POST['review']
+        application.save();
+        return redirect("/student/my_jobs/")
 
 @login_required()
 def see_jafs(request):

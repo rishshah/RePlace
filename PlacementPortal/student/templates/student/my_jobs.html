@@ -3,103 +3,57 @@
 	<div class="row">
 		<div class="card_container grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
 			<div class="row">
-				<h4> List Of JAFs </h4>
+				<h4>My Selections and Reviews</h4>
 			</div>
 			<div class="row">
-				<table class="highlight bordered centered">
-					<thead>
-						<tr>
-							<th data-field="id">Jaff ID</th>
-							<th data-field="name">Company</th>
-							<th data-field="name">Job Profile</th>
-							<th data-field="number">Resume Number</th>
-							<th data-field="number">Students Applied</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for jaf in jaf_list %}
-							<tr class='clickable-row' data-href="{% url 'ic:view_jaf' jaf.id %}">
-								<td>{{ jaf.id }}</td>
-								<td>{{ jaf.company }}</td>
-								<td>{{ jaf.profile }}</td>
-								<td>{{ jaf.resume_number }}</td>
-								<td>{{ jaf.student_count }}</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
+				{% if selection_list %}
+    				<ul class="collapsible popout" data-collapsible="accordion">
+					{% for application in selection_list %}
+					<li>
+						<div class="collapsible-header"><i class="material-icons">assistant</i>
+							<span class="flow-text">{{ application.jaf.company }} - {{ application.jaf.profile }} </span> 
+						</div>
+						<div class="collapsible-body" id="{{application.jaf.id}}"><span>
+						{% if application.review %}
+					 		<p>{{ application.review }}</p>
+						{% else %}
+							<p class="flow-text">Add a review</p>
+							<a class="btn-floating btn-small btn waves-effect waves-light grey darken-4" onclick="addReview('{{application.jaf.id}}');">
+								<i class="material-icons small">edit</i>
+							</a>
+						{% endif%}
+						</span></div>
+					</li>
+					{% endfor %}
+				</ul>
+    			{% else %}
+			    	<p class="flow-text center">No selections till now</p>
+			  	{% endif %}
 			</div>
 		</div>
-	</div>
-	<div id="modal1" class="modal col l6">
-		<form action="{% url 'student:see_jafs' %}" method="post">{% csrf_token %}
-			<div class="modal-content">
-				<h5 class="center">Filters</h5>
-				<div class="row">
-					<div class="col m6">
-						<input type="checkbox" id="inp1" name="cansign" />
-						<label for="inp1" class="black-text">Only JAFs I can sign/unsign</label>
-					</div>
-					<div class="col m6">
-						<input type="checkbox" id="inp2" name="signed" />
-						<label for="inp2" class="black-text">Only JAFs I have signed</label>
-					</div>
-				</div>
-				<div class="row">
-					From
-					<div class="input-field inline">
-						<input id="min_stipend" type="number" min="0" name="minstipend">
-						<label for="min_stipend" data-error="wrong" data-success="right">Min stipend</label>
-					</div> to
-					<div class="input-field inline">
-						<input id="max_stipend" type="number" min="0" name="maxstipend">
-						<label for="max_stipend" data-error="wrong" data-success="right">Max stipend</label>
-					</div>
-					<br> From
-					<div class="input-field inline">
-						<input id="min_cpi" type="number" min="0" name="mincpi">
-						<label for="min_stipend" data-error="wrong" data-success="right">Min CPI cutoff</label>
-					</div> to
-					<div class="input-field inline">
-						<input id="max_cpi" type="number" min="0" name="maxcpi">
-						<label for="max_stipend" data-error="wrong" data-success="right">Max CPI cutoff</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col l3">
-						<input type="checkbox" id="i1" name="I1" />
-						<label for="i1" class="black-text">I1</label>
-					</div>
-					<div class="col l3">
-						<input type="checkbox" id="i2" name="I2" />
-						<label for="i2" class="black-text">I2</label>
-					</div>
-					<div class="col l3">
-						<input type="checkbox" id="i3" name="I3" />
-						<label for="i3" class="black-text">I3</label>
-					</div>
-					<div class="col l3">
-						<input type="checkbox" id="i4" name="I4" />
-						<label for="i4" class="black-text">I4</label>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<input type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" value="DONE" />
-			</div>
-		</form>
 	</div>
 {% endblock %}
 {% block script %}
 	{{block.super}}
 	<script type="text/javascript">
 		$( document ).ready(function() {
-			$(".clickable-row").click(function() {
-			    window.location = $(this).data("href");
-		   	});
-			$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal1">Filter</a></li>' );
-			$('.links-dropdown li:eq(1)').after( '<li><a class="waves-effect modal-trigger" href="#modal1">Filter</a></li>' );
-			$('.modal').modal();
+			$('.collapsible').collapsible();
 		});
+		function addReview(id) {
+			$('#'+id).html('<div class="row">'+
+				"<form class=\"col s12\" method=\"post\" action=\"{% url 'student:my_jobs' %}\">{% csrf_token %}"+
+					'<input type="hidden" name="id" value="'+ id + '">'+
+					'<div class="row">'+
+						'<div class="input-field col s12">'+
+							'<i class="material-icons prefix tiny">mode_edit</i>'+
+							'<textarea name="review" id="icon_description" class="materialize-textarea validate" data-length="200"></textarea>'+
+							'<label for="icon_description">Write a review</label>'+
+						'</div>'+
+					'</div>'+
+					'<button type="submit" class="waves-effect waves-light btn grey darken-4">POST</button>'+
+				'</form>'+
+				'</div>'
+				);
+		}
 	</script>
 {% endblock %}
