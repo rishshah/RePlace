@@ -72,6 +72,15 @@
     <div class="modal-footer">
       <input type="submit" class="waves-effect waves-green btn-flat" value="DONE" />
     </div>
+        <div class="input-field col m12">
+            <i class="material-icons prefix tiny">call_to_action</i>
+            <select name="company-category" class="validate">
+                {%for category in category_list %}
+                <option value={{ category }}>{{ category }}</option>
+                {% endfor %}
+            </select>
+            <label>Company Category</label>
+        </div>
          {% csrf_token %}
     </form>
 </div>
