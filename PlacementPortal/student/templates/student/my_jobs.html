@@ -11,11 +11,11 @@
 					{% for application in selection_list %}
 					<li>
 						<div class="collapsible-header"><i class="material-icons">assistant</i>
-							{{ application.jaf.company }} - {{ application.jaf.profile }} 
+							<span class="flow-text">{{ application.jaf.company }} - {{ application.jaf.profile }} </span> 
 						</div>
 						<div class="collapsible-body" id="{{application.jaf.id}}"><span>
 						{% if application.review %}
-					 		<p class="flow-text">{{ application.review }}</p>
+					 		<p>{{ application.review }}</p>
 						{% else %}
 							<p class="flow-text">Add a review</p>
 							<a class="btn-floating btn-small btn waves-effect waves-light grey darken-4" onclick="addReview('{{application.jaf.id}}');">
