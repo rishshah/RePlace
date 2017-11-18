@@ -5,7 +5,11 @@
 			<div class="card-content black-text">
 				<div class="row">
 					<span class="card-title center">
-						<h5>JAF of <span> {{jaf.company.name}} </span>({{jaf.id}} - {{jaf.profile}}) </h5>
+						<h5>JAF of <span> {{jaf.company.name}} </span>({{jaf.id}} - {{jaf.profile}})
+						<a class="btn-floating btn-small btn waves-effect right waves-light grey darken-4" onclick="editJaf();">
+							<i class="material-icons small">edit</i>
+						</a>
+						</h5>
 					</span>
 				</div>
 				<hr>
@@ -49,7 +53,7 @@
 				</div>
 				<div class="row">
 					<p><h6>Selection Procedure</h6></p>
-					<table class="striped bordered centered responsive-table">
+					<table class="striped bordered centered">
 						<thead>
 							<tr>
 								<th>Test</th>
@@ -79,4 +83,57 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="modal3" class="modal">
+		<form action="{% url 'student:upload_resume' %}" method="post">{% csrf_token %}
+			<div class="modal-content">
+				<span class="center"><h5>JAF of <span> {{jaf.company.name}} </span>({{jaf.id}} - {{jaf.profile}})</h5></span>
+				<div class="row">
+					<p><h6 class="center">Update Venue and Timings</h6></p>
+					<table class="striped bordered centered">
+						<col width="100px" />
+						<col width="150px" />
+						<col width="100px" />
+						<col width="100px" />
+						<col width="100px" />
+						<thead>
+							<tr>
+								<th>Test</th>
+								<th>Start Time</th>
+								<th>Duration</th>
+								<th>Venue</th>
+								<th>Other Details</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for test in test_list %}
+								<tr>
+									<td>{{ test.test_type.type }}</td>
+									<td><input type="text" value="{{ test.start_time }}" /></td>
+									<td><input type="number" min="0" step="10" class="validate" value="{{ test.duration }}"/></td>
+									<td><input type="text" value="{{ test.location }}" /></td>
+									<td><input type="text" maxlength="200" value="{{ test.description }}" /></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="right modal-action modal-close waves-effect grey darken-4 waves-light btn" value="DONE" />
+				</div>
+			</div>
+		</form>
+	</div>
+{% endblock %}
+
+{% block script %}
+	{{ block.super }}
+	<script type="text/javascript">
+		$(document).ready(function(){
+		$('#modal3').modal();
+		});
+		function editJaf(){
+			$('#modal3').modal('open');
+		}
+	</script>
 {% endblock %}

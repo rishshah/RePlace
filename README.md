@@ -29,7 +29,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - IC tab view creation (not yet started) SOURABH
 - IC tabs for resume selection status (not yet started) SOURABH
 - Make resume upload, view (not yet started) DEPAL
-- Update​ database​ ​ regarding​ ​test​​ location,​​ timing​ ​and​​ other​ updates (not started) RISH
+- Update​ database​ regarding​ ​test​​ location,​​ timing​ ​and​​ other​ updates (css done backend remaining) DEPAL
 
 #### Student
 - Student Home page done

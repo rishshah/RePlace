@@ -10,6 +10,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import *
+from student.models import *
+
 
 HOME_URL = '/'
 
@@ -29,8 +31,10 @@ def logout(request):
 def home(request):
 	if (not auth(request.user)):
 		return redirect(HOME_URL)
-	company = get_company(request.user)
+	company = get_company(request.user)	
 	jaf_list = JAF.objects.filter(company = company)
+	for jaf in jaf_list:
+		jaf.student_count  = Application.objects.filter(jaf = jaf).count()
 	data = {"jaf_list":jaf_list}
 	return render(request, "company/home.html", context = data)
 

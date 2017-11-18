@@ -47,7 +47,7 @@
     height: 100%;
 }
 
-#main_content h3 {
+#main_content h2 {
     text-align: center;
     margin-top: 0px;
     padding-top: 20px;
@@ -93,7 +93,7 @@
 
 /*Nav Bar*/
 nav ul a {
-    font-size: 1.1rem;
+    font-size: 1.1em;
 }
 
 nav ul a.waves-effect.hoverable:active {

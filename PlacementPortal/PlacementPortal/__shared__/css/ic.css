@@ -30,3 +30,33 @@
 .jaf .row .col.m6{
 	padding: 0px;
 }
+
+.card .card-content .card-title i{
+	line-height: 40px;
+}
+
+.modal h6{
+	font-size: 1.5em;
+	font-weight: normal;
+	font-variant: small-caps;
+	font-style: italic;
+}
+
+.modal span span{
+	font-weight: bolder;
+	font-variant: small-caps;
+	font-style: italic;	
+}
+
+.modal table{
+    table-layout: fixed;
+	border: 1px solid #b1b1b1;
+}
+.modal table td {
+	padding-right: 30px;
+	padding-left: 30px;
+}
+.modal table td input {
+	text-align: center;
+}
+.modal { width: 75% !important ; height: 85% !important ; }
