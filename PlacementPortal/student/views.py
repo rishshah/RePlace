@@ -1,11 +1,5 @@
-#for basic rendering of html pages
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
-
-#for authentication login and logout
-from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
-from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
 from .models import *
@@ -15,6 +9,7 @@ HOME_URL = '/'
 
 def auth(user):
     return Student.objects.filter(user=user).exists()
+
 def get_student(user):
     return Student.objects.get(user = user)
 
@@ -54,15 +49,22 @@ def my_jobs(request):
 
 @login_required()
 def see_jafs(request):
-    if (not auth(request.user)):
+    student = auth(request.user)
+    if not student:
         return redirect(HOME_URL)
+    jaf_list = JAF.objects.all()
+   
     if request.method=="POST":
         print(request.POST)
         all_categorys = [category.type for category in Category.objects.all()]
         categorys = [key for key in request.POST.keys() if key in all_categorys]
-        jaf_list = JAF.objects.all()
         jaf_list = jaf_list.filter(company__category__type__in=categorys)
-    else:
-        jaf_list = JAF.objects.all()
+
+        if 'cansign' in request.POST.keys():
+            jaf_list = jaf_list.filter(eligibility__department=student.department, eligibility__program=student.program, eligibility__cpi_cutoff__lt=student.cpi)
+
+        if 'signed' in request.POST.keys():
+            jaf_list = jaf_list.filter(application__student=student)
+
     data = {'jaf_list': jaf_list}
     return render(request, "student/jaf_list.html", context=data)
