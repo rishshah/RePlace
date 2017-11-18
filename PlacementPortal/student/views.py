@@ -55,6 +55,10 @@ def see_jafs(request):
     student = get_student(request.user)
     jaf_list = JAF.objects.all()
 
+    print("1")
+    for jaf in jaf_list:
+        print(jaf)
+
     if request.method=="POST":
         print(request.POST)
         all_categorys = [category.type for category in Category.objects.all()]
@@ -62,10 +66,24 @@ def see_jafs(request):
         jaf_list = jaf_list.filter(company__category__type__in=categorys)
 
         if 'cansign' in request.POST.keys():
-            jaf_list = jaf_list.filter(eligibility__department=student.department, eligibility__program=student.program, eligibility__cpi_cutoff__lt=student.cpi)
+            jaf_list = jaf_list.filter(eligibility__department=student.department, eligibility__program=student.program, cpi_cutoff__lt=student.cpi)
 
         if 'signed' in request.POST.keys():
             jaf_list = jaf_list.filter(application__student=student)
+
+        try:
+            min_stipend = float(request.POST['minstipend'])
+            max_stipend = float(request.POST['maxstipend'])
+            jaf_list = jaf_list.filter(stipend__gt=min_stipend, stipend__lt=max_stipend)
+        except:
+            pass
+
+        try:
+            min_cpi = float(request.POST['mincpi'])
+            max_cpi = float(request.POST['maxcpi'])
+            jaf_list = jaf_list.filter(cpi_cutoff__gt=min_cpi, cpi_cutoff__lt=max_cpi)
+        except:
+            pass
 
     data = {'jaf_list': jaf_list}
     return render(request, "student/jaf_list.html", context=data)

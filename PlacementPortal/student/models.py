@@ -18,13 +18,14 @@ class Program(models.Model):
 
 
 class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student")
     id = models.AutoField("Student ID", primary_key=True)
     name = models.CharField("Full name", max_length=50, null=False, blank=False)
+    roll_number = models.CharField("Roll number", max_length=4, validators=[MinLengthValidator(4)], unique=True, null=False, blank=False)
     email = models.EmailField("Email ID", null=False, blank=False)
     phone_number = models.CharField("Phone number", validators=[phone_regex], max_length=15, blank=True)
-    reg_year = models.IntegerField("Registration year", validators=[MinValueValidator(1958), MaxValueValidator(2018)], null=False, blank = False)
+    reg_year = models.IntegerField("Registration year", validators=[MinValueValidator(1958), MaxValueValidator(2050)], null=False, blank = False)
     cpi = models.FloatField("CPI", validators=[MinValueValidator(0.0),MaxValueValidator(10.0)], null=False, blank=False)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student")
     resume_verified = models.BooleanField("Resume verified?", default=False, null=False, blank=False)
     department = models.ForeignKey("student.Department", verbose_name="Department", null=False, blank=False, on_delete=models.CASCADE)
     program = models.ForeignKey("student.Program", verbose_name="Program", null=False, blank=False, on_delete=models.CASCADE)
