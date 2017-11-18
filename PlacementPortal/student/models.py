@@ -24,8 +24,6 @@ class Student(models.Model):
     phone_number = models.CharField("Phone number", validators=[phone_regex], max_length=15, blank=True)
     reg_year = models.IntegerField("Registration year", validators=[MinValueValidator(1958), MaxValueValidator(2018)], null=False, blank = False)
     cpi = models.FloatField("CPI", validators=[MinValueValidator(0.0),MaxValueValidator(10.0)], null=False, blank=False)
-    # ldap_id = models.CharField("LDAP ID", validators=[MinLengthValidator(9), MaxValueValidator(9)], null=False, blank=False, unique=True)
-    # ldap_password = models.CharField("LDAP password", max_length=100, validators=[MinLengthValidator(8)], null=False, blank=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student")
     resume_verified = models.BooleanField("Resume verified?", default=False, null=False, blank=False)
     department = models.ForeignKey("student.Department", verbose_name="Department", null=False, blank=False, on_delete=models.CASCADE)

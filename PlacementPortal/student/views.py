@@ -60,11 +60,12 @@ def my_jobs(request):
 
 @login_required()
 def see_jafs(request):
-    student = auth(request.user)
-    if not student:
+    if not auth(request.user):
         return redirect(HOME_URL)
+
+    student = get_student(request.user)
     jaf_list = JAF.objects.all()
-   
+
     if request.method=="POST":
         print(request.POST)
         all_categorys = [category.type for category in Category.objects.all()]
