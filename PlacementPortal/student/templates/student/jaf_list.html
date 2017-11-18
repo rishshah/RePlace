@@ -38,13 +38,14 @@
 				<div class="row">
 					<div class="col m6">
 						<input type="checkbox" id="inp1" name="cansign" />
-						<label for="inp1" class="black-text">Only JAFs I can sign/unsign</label>
+						<label for="inp1" class="black-text">JAFs I can sign</label>
 					</div>
 					<div class="col m6">
 						<input type="checkbox" id="inp2" name="signed" />
-						<label for="inp2" class="black-text">Only JAFs I have signed</label>
+						<label for="inp2" class="black-text">JAFs I have signed</label>
 					</div>
 				</div>
+
 				<div class="row">
 					From
 					<div class="input-field inline">
@@ -65,22 +66,30 @@
 						<label for="max_stipend" data-error="wrong" data-success="right">Max CPI cutoff</label>
 					</div>
 				</div>
+
 				<div class="row">
-					<div class="col l3">
-						<input type="checkbox" id="i1" name="I1" />
-						<label for="i1" class="black-text">I1</label>
-					</div>
-					<div class="col l3">
-						<input type="checkbox" id="i2" name="I2" />
-						<label for="i2" class="black-text">I2</label>
-					</div>
-					<div class="col l3">
-						<input type="checkbox" id="i3" name="I3" />
-						<label for="i3" class="black-text">I3</label>
-					</div>
-					<div class="col l3">
-						<input type="checkbox" id="i4" name="I4" />
-						<label for="i4" class="black-text">I4</label>
+					<div class="input-field col l6">
+			            <select name="company-category" class="validate">
+			                {%for job_profile in job_profile_list %}
+			                <option value="{{ job_profile.name }}">{{ job_profile.name }}</option>
+			                {% endfor %}
+			            </select>
+			            <label>Job Profile</label>
+			        </div>
+
+			        <div class="input-field col l6">
+			            <select name="company-category" class="validate">
+			                {%for company_category in company_category_list %}
+			                <option value="{{ company_category.type }}">{{ company_category.type }}</option>
+			                {% endfor %}
+			            </select>
+			            <label>Company Category</label>
+			        </div>
+				</div>
+				<div class="row">
+					<div class="input-field col l6">
+						<input type="checkbox" id="pre_deadline" name="pre_deadline" />
+              			<label for="pre_deadline" class="black-text">Prior to Deadline</label>
 					</div>
 				</div>
 			</div>
@@ -95,8 +104,8 @@
 	<script type="text/javascript">
 		$( document ).ready(function() {
 			$(".clickable-row").click(function() {
-			    window.location = $(this).data("href");
-		   	});
+			window.location = $(this).data("href");
+			});
 			$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal1">Filter</a></li>' );
 			$('.links-dropdown li:eq(1)').after( '<li><a class="waves-effect modal-trigger" href="#modal1">Filter</a></li>' );
 			$('.modal').modal();
