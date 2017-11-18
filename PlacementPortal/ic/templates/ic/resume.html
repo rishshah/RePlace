@@ -1,0 +1,62 @@
+{% extends 'ic/root.html' %}
+{% load static from staticfiles %}
+{% block content %}
+	<div class="row">
+		<div class="card_container grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
+			<div class="row">
+				<h4> Resume Verification</h4>
+			</div>
+			<div class="row">
+				<table class="highlight bordered centered">
+					<thead>
+						<tr>
+							<th data-field="id">Name</th>
+							<th data-field="name">Email</th>
+							<th data-field="name">Contact</th>
+							<th data-field="number">Program</th>
+							<th data-field="number">Verification Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for student in unverified_students %}
+							<tr class='clickable-row' >
+								<td>
+									<a href="{% static 'resume/150050009.pdf' %}">{{ student.name }}</a>
+								</td>
+								<td>
+									<a href="mailto:student.email?subject=ResumeVerification&cc=cc@example.com">{{ student.email }}</a>
+								</td>
+								<td>{{ student.phone_number }}</td>
+								<td>{{ student.program }}</td>
+								<td>
+									<p>
+      									<input type="checkbox" id="student_{{student.id}}" />
+      									<label for="student_{{student.id}}">Verified</label>
+   									 </p>
+								</td>
+							</tr>
+						{% endfor %}
+						{% for student in verified_students %}
+							<tr class='clickable-row' >
+								<td>
+									<a href="{% static 'resume/150050009.pdf' %}">{{ student.name }}</a>
+								</td>
+								<td>
+									<a href="mailto:student.email?subject=ResumeVerification&cc=cc@example.com">{{ student.email }}</a>
+								</td>
+								<td>{{ student.phone_number }}</td>
+								<td>{{ student.program }}</td>
+								<td>
+									<p>
+      									<input type="checkbox" id="student_{{student.id}}" class="indeterminate-checkbox" />
+      									<label for="student_{{student.id}}"></label>
+   									 </p>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
