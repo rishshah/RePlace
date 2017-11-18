@@ -12,37 +12,24 @@ from company.models import JAF
 from student.models import Student, Application
 
 from .models import *
+from company.models import *
+
+HOME_URL = '/'
 
 def auth(user):
 	return IC.objects.filter(user=user).exists()
 
-
 # Create your views here.
-def login(request):
-	if request.POST :
-		user = authenticate(username=request.POST['username'], password=request.POST['password'])
-		if user is not None and auth(user):  # A backend authenticated the credentials
-			if user.is_active:
-				auth_login(request, user)
-				return HttpResponseRedirect('/ic/home/')
-		return render(request, "ic/login.html",context={'error':'invalid credentials'})
-	else:
-		if(request.user.is_authenticated() and auth(request.user)):
-			return HttpResponseRedirect('/ic/home/')
-		else:
-			return render(request, "ic/login.html",context={'error':''})
-
 @login_required()
 def logout(request):
-	if (not auth(request.user)):
-		return redirect('/replace')
-	auth_logout(request)
-	return redirect('/replace')
-
-@login_required(login_url='/ic/login/')
+	if auth(request.user):
+		auth_logout(request)
+	return redirect(HOME_URL)
+	
+@login_required()
 def home(request):
 	if (not auth(request.user)):
-		return redirect('/replace')
+		return redirect(HOME_URL)
 	jaf_list = list(JAF.objects.all())
 	for jaf in jaf_list:
 		jaf.student_count  = Application.objects.filter(jaf = jaf).count()
@@ -51,14 +38,16 @@ def home(request):
 	data = {'jaf_list':jaf_list, 'verified_students':verified_students, 'unverified_students':unverified_students}
 	return render(request, "ic/home.html", context = data)
 
-@login_required(login_url='/ic/login/')
+@login_required()
 def view_jaf(request,pk):
 	if (not auth(request.user)):
-		return redirect('/replace')
+		return redirect(HOME_URL)
 	jaf = JAF.objects.get(pk = pk)
 	if (jaf is None):
-		return redirect('/replace')
+		return redirect(HOME_URL)
 	application_list = Application.objects.filter(jaf = jaf)
+	eligibility_list = Eligibility.objects.filter(jaf = jaf)
+	test_list = JAFTest.objects.filter(jaf = jaf)
 	jaf.student_count = application_list.count()
-	data = {'jaf':jaf, 'application_list':application_list}
+	data = {'jaf':jaf, 'application_list':application_list, 'eligibility_list':eligibility_list, 'test_list': test_list}
 	return render(request, "ic/jaf.html", context = data)

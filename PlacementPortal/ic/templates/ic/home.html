@@ -1,31 +1,45 @@
 {% extends 'ic/root.html' %}
 {% block content %}
-	{% include 'ic/nav.html' %}
 	<div class="row">
-		<div class="jaf_container col xl6 offset-xl3 l6 offset-l3 m12 s12">
-			<table class="highlight bordered responsive-table">
-				<thead>
-					<tr>
-						<th>Jaff ID</th>
-						<th>Company</th>
-						<th>Job Profile</th>
-						<th>Resume Number</th>
-						<th>Students Applied</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for jaf in jaf_list %}
+		<div class="card_container grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
+			<div class="row">
+				<h4> List Of JAFs </h4>
+			</div>
+			<div class="row">
+				<table class="highlight bordered centered">
+					<thead>
 						<tr>
-							<td><a href="{% url 'ic:view_jaf' jaf.id %}">{{ jaf.id }}</a></td>
-							<td>{{ jaf.company }}</td>
-							<td>{{ jaf.profile }}</td>
-							<td>{{ jaf.resume_number }}</td>
-							<td>{{ jaf.student_count }}</td>
+							<th data-field="id">Jaff ID</th>
+							<th data-field="name">Company</th>
+							<th data-field="name">Job Profile</th>
+							<th data-field="number">Resume Number</th>
+							<th data-field="number">Students Applied</th>
 						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{% for jaf in jaf_list %}
+							<tr class='clickable-row' data-href="{% url 'ic:view_jaf' jaf.id %}">
+								<td>{{ jaf.id }}</td>
+								<td>{{ jaf.company }}</td>
+								<td>{{ jaf.profile }}</td>
+								<td>{{ jaf.resume_number }}</td>
+								<td>{{ jaf.student_count }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-	{% include 'replace/footer.html' %}
+{% endblock %}
+
+{% block script%}
+	{{ block.super }}
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			 $(".clickable-row").click(function() {
+		        window.location = $(this).data("href");
+		    });
+		});
+	</script>
 {% endblock %}
