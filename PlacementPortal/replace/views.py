@@ -30,16 +30,17 @@ def login(request):
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
         if user is not None:  # A backend authenticated the credentials
             if user.is_active:
-                auth_login(request, user)
-
                 if auth_student(user):
+                    auth_login(request, user)
                     return HttpResponseRedirect('/student/')
                 elif auth_ic(user):
+                    auth_login(request, user)
                     return HttpResponseRedirect('/ic/')
                 elif auth_company(user):
+                    auth_login(request, user)
                     return HttpResponseRedirect('/company/')
             
-            return render(request, "replace/login.html",context={'error':'Invalid Credentials'})
+        return render(request, "replace/login.html",context={'error':'Invalid Credentials'})
     else:
         if request.user.is_authenticated():
             if auth_student(request.user):
