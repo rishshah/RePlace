@@ -12,6 +12,8 @@ from company.models import JAF
 from student.models import Student
 from replace.models import Application
 
+from django.utils.dateparse import parse_datetime
+
 from .models import *
 from company.models import *
 from replace.models import *
@@ -51,8 +53,20 @@ def view_jaf(request,pk):
 	eligibility_list = Eligibility.objects.filter(jaf = jaf)
 	test_list = JAFTest.objects.filter(jaf = jaf)
 	jaf.student_count = application_list.count()
+	if (request.method == "POST"):
+		test_fields = ["start_time","location","duration","description"]
+		for test in test_list:
+			for field in test_fields:
+				field_name = str(test.test_number) + "-" + field
+				field_value = request.POST.get(field_name)
+				if (field == "start_time"):
+					field_value = parse_datetime(field_value)
+				setattr(test, field, field_value)
+			test.save()
+
 	data = {'jaf':jaf, 'application_list':application_list, 'eligibility_list':eligibility_list, 'test_list': test_list}
 	return render(request, "ic/jaf.html", context = data)
+
 
 @login_required()
 def resume(request):

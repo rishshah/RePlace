@@ -105,3 +105,16 @@ def see_jafs(request):
 
     data = {'jaf_list': jaf_list}
     return render(request, "student/jaf_list.html", context=data)
+
+@login_required()
+def sign_jafs(request):
+    if not auth(request.user):
+        return redirect(HOME_URL)
+
+    if (request.method == "POST"):
+        student = get_student(request.user)
+        jaf_id = request.POST.get("jaf_id")
+        jaf = JAF.objects.get(id = jaf_id)
+        application = Application(student = student, jaf = jaf)
+        application.save()
+        return redirect('/student/')
