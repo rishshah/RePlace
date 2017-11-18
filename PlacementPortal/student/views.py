@@ -32,6 +32,17 @@ def upload_resume(request):
     if (not auth(request.user)):
         return redirect(HOME_URL)
     if request.method=="POST":
+        student = get_student()
+        resume_dict = {"one-page":0, "two-page-tech":1, "two-page-non-tech":2, "cv":3}
+        for resume_type in resume_dict:
+            print(resume_type, resume_dict[resume_type])
+        #   resume_file = request.FILES.get(resume_type)
+        # if (resume_file):
+        #     resume = Resume.objects.get(student = student, resume_number = 0)
+        #     if (resume is None):
+        #         resume = Resume(student = student, resume_number = 0) 
+        #     resume.file = resume_file
+        #     resume.save()
         return redirect('/student/')
     else:
         pass
