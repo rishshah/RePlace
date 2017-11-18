@@ -51,3 +51,12 @@ def view_jaf(request,pk):
 	jaf.student_count = application_list.count()
 	data = {'jaf':jaf, 'application_list':application_list, 'eligibility_list':eligibility_list, 'test_list': test_list}
 	return render(request, "ic/jaf.html", context = data)
+
+@login_required()
+def resume(request):
+	if (not auth(request.user)):
+		return redirect(HOME_URL)
+	verified_students = Student.objects.filter(resume_verified = True)
+	unverified_students = Student.objects.filter(resume_verified = False)
+	data = {'verified_students':verified_students, 'unverified_students':unverified_students}
+	return render(request, "ic/resume.html", context = data)
