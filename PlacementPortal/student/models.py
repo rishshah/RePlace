@@ -58,6 +58,7 @@ class Resume(models.Model):
         (2, "One page Nontech"),
         (3, "CV"),
     ), null=False, blank=False)
+    file = models.FileField("Resume pdf", null=False, blank=False)
 
     def __str__(self):
         return "%s's resume no. %d" % (self.student, self.resume_number)
