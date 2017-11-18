@@ -1,0 +1,3 @@
+#!/bin/sh
+rm db.sqlite3
+cat datadump | sqlite3 db.sqlite3
