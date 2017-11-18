@@ -42,6 +42,17 @@ def upload_resume(request):
         pass
 
 @login_required()
+def my_jobs(request):
+    if (not auth(request.user)):
+        return redirect(HOME_URL)
+    if request.method=="GET":
+        jaf_list = JAF.objects.all()
+        data = {'jaf_list': jaf_list}
+        return render(request, "student/my_jobs.html", context=data)
+    else:
+        pass
+
+@login_required()
 def see_jafs(request):
     if (not auth(request.user)):
         return redirect(HOME_URL)

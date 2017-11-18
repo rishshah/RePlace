@@ -20,7 +20,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Home page scroll animation
 - Company registration form created 
 - Error display mechanism on login pages
-
+- Parallax r
 #### Company
 - Jaf creation form almost complete (Not all combinations taken care of in the jaf creation form) MEET
 - Post company jaf form (not yet started) DEPAL
@@ -35,6 +35,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Student Home page done
 - Filters for students (not much done... in progress) MEET
 - Make sign jaf view (not yet started) DEPAL
+- Provide​ ​ reviews​ ​ for​ ​ completed​ ​ internships RISH
 
 ### Plans 
 - Login​ ​ and​ ​ Logout​ ​ for​ ​ all​ ​ users (DONE)
