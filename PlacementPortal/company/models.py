@@ -37,7 +37,12 @@ class JAF(models.Model):
     profile = models.ForeignKey("company.JobProfile", verbose_name="Job profile", blank=False, default="Analyst")
     accomodation = models.TextField("Accomodation details", null=False, blank=False)
     duration = models.IntegerField("Internship duration (weeks)", validators=[MinValueValidator(1)], null=False, blank=False)
-    resume_number = models.IntegerField("Resume no. wanted", validators=[MinValueValidator(0), MaxValueValidator(3)], null=True, blank=True)
+    resume_number = models.IntegerField("Resume number", choices=(
+        (0,"One page"),
+        (1, "Two page Tech"),
+        (2, "One page Nontech"),
+        (3, "CV"),
+    ), null=False, blank=False)
     cpi_cutoff = models.FloatField("CPI", validators=[MinValueValidator(0.0),MaxValueValidator(10.0)], null=False, blank=False)
     stipend = models.DecimalField("Stipend", decimal_places=2, max_digits=10, null=False, blank=False)
     deadline = models.DateTimeField("Last date to sign JAF", null=False, blank=False)

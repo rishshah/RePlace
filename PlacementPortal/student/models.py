@@ -36,6 +36,8 @@ class Student(models.Model):
     # class Meta:
     #     permissions = ("be_student",)
 
+
+
 class Resume(models.Model):
     student = models.ForeignKey("student.Student", verbose_name="Resume of", null=False, blank=False, on_delete=models.CASCADE)
     resume_number = models.IntegerField("Resume number", choices=(
@@ -45,6 +47,7 @@ class Resume(models.Model):
         (3, "CV"),
     ), null=False, blank=False)
     file = models.FileField("Resume pdf", null=False, blank=False)
+
 
     def __str__(self):
         return "%s's resume no. %d" % (self.student, self.resume_number)

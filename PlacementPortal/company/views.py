@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import *
 from student.models import *
-from replace.models import Application
+from replace.models import *
 
 HOME_URL = '/'
 
@@ -43,7 +43,13 @@ def new_jaf(request):
 	if (not auth(request.user)):
 		return redirect(HOME_URL)
 	if request.method == "POST" :
-		return render(request, "company/jaf_form.html")
+		company = get_company(request.user)
+		profile_name = request.POST.get("profile")
+		description = request.POST.get("description")
+		posting = request.POST.get("posting")
+		resume_type = request.POST.get("resume_type")
+		year = request.POST.get("year")
+		return redirect("/company/")
 	else :
 		data = {'job_profile_list':JobProfile.objects.all()}
 		return render(request, "company/jaf_form.html", context=data )
