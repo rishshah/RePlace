@@ -78,14 +78,14 @@
 				<hr>
 				<br>
 				<div class="row">
-				{% if already_signed == True %}
+				{% if status == "Signed" %}
 					<div class="col m12">
 						<form class="center" method="post" action="{% url 'student:unsign_jaf' %}">{% csrf_token %}
 							<input type="hidden" name="jaf_id" value="{{jaf.id}}">
 							<button type="submit" class="waves-effect waves-light btn grey darken-4">UnSign</button>
 						</form>
 					</div>
-				{% else %}
+				{% elif status == "Can Sign" %}
 					<div class="col m12">
 						<form class="center" method="post" action="{% url 'student:sign_jaf' %}">{% csrf_token %}
 							<input type="hidden" name="jaf_id" value="{{jaf.id}}">

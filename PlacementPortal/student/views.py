@@ -178,12 +178,12 @@ def view_jaf(request,pk):
     
     test_list = JAFTest.objects.filter(jaf = jaf)
     jaf.student_count = Application.objects.filter(jaf = jaf).count()
-    already_signed = (is_eligible(get_student(request.user),jaf)[0] == 'Signed');
+    signing_status = is_eligible(get_student(request.user),jaf)[0]
     data = {'jaf':jaf, 
             'eligibility_list':eligibility_list, 
             'program_list': program_list,
             'department_list': department_list,
             'test_list': test_list,
-            'already_signed': already_signed
+            'status': signing_status
             }
     return render(request, "student/student_view_jaf.html", context = data)
