@@ -33,11 +33,6 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
-    # class Meta:
-    #     permissions = ("be_student",)
-
-
-
 class Resume(models.Model):
     student = models.ForeignKey("student.Student", verbose_name="Resume of", null=False, blank=False, on_delete=models.CASCADE)
     resume_number = models.IntegerField("Resume number", choices=(

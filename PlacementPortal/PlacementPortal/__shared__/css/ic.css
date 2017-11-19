@@ -60,3 +60,11 @@
 	text-align: center;
 }
 .modal { width: 75% !important ; height: 85% !important ; }
+
+i.icon-red {
+    color: red;
+}
+
+i.icon-green {
+    color: green;
+}

@@ -76,6 +76,6 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Stipend (range)
 - Can sign
 - Job Profile
+- Pre deadline
 
 #### ToDo
-- Post deadline

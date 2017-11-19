@@ -17,6 +17,8 @@ from django.utils.dateparse import parse_datetime
 from .models import *
 from company.models import *
 from replace.models import *
+from student.models import *
+
 
 HOME_URL = '/'
 
@@ -51,6 +53,8 @@ def view_jaf(request,pk):
 		return redirect(HOME_URL)
 	application_list = Application.objects.filter(jaf = jaf)
 	eligibility_list = Eligibility.objects.filter(jaf = jaf)
+	print(Eligibility.objects.all())
+	
 	test_list = JAFTest.objects.filter(jaf = jaf)
 	jaf.student_count = application_list.count()
 	if (request.method == "POST"):
@@ -64,7 +68,14 @@ def view_jaf(request,pk):
 				setattr(test, field, field_value)
 			test.save()
 
-	data = {'jaf':jaf, 'application_list':application_list, 'eligibility_list':eligibility_list, 'test_list': test_list}
+	data = {'jaf':jaf, 
+			'application_list':application_list, 
+			'eligibility_list':eligibility_list, 
+			'program_list':Program.objects.all(),
+			'department_list':Department.objects.all(),
+			'test_list': test_list
+			}
+	print(eligibility_list)
 	return render(request, "ic/jaf.html", context = data)
 
 
