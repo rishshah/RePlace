@@ -82,7 +82,7 @@ def view_jaf(request,pk):
 			'test_list': test_list
 			}
 	print(eligibility_list)
-	return render(request, "ic/jaf.html", context = data)
+	return render(request, "ic/ic_view_jaf.html", context = data)
 
 
 @login_required()

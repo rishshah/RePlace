@@ -1,0 +1,150 @@
+{% extends 'student/root.html' %}
+{% block content %}
+	<div class="row">
+		<div class="jaf card grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
+			<div class="card-content black-text">
+				<div class="row">
+					<span class="card-title center">
+						<h5>JAF of <span> {{jaf.company.name}} </span>({{jaf.id}} - {{jaf.profile.name}})</h5>
+						<span class="right"> {{jaf.student_count}}</span>
+					</span>
+				</div>
+				<hr>
+				<div class="row"><p><h6>Description</h6>{{jaf.description}}</p></div>
+				<div class="row"><p><h6>Requirements</h6>{{jaf.requirements}}</p></div>
+				<div class="row">
+					<div class="col m6"><p><h6>Accomodation</h6>{{jaf.accomodation}}</p></div>
+					<div class="col m6"><p><h6>Posting</h6>{{jaf.posting}}</p></div>
+				</div>
+				<hr>
+				<div class="row">
+					<p><h6>Eligibily Details</h6></p>
+					<table class="striped bordered centered">
+						<thead>
+							<tr>
+								<th>Departments</th>
+								{% for program in program_list %}
+									<th>{{program.name}}</th>
+								{% endfor %}
+							</tr>
+						</thead>
+						<tbody>
+							{% for department in department_list %}
+								<tr>
+									<th>{{department.name}}</th>
+									{% for program in program_list %}
+										<td id="{{forloop.parentloop.counter}}__{{forloop.counter}}"><i class="material-icons icon-red small">clear</i></td>
+									{% endfor %}
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<hr>
+				<div class="row"><p><h6>Stipend</h6>{{jaf.stipend}} &nbsp {{ jaf.currency }}</p></div>
+				<hr>
+				<div class="row">
+					<p><h6>Selection Procedure</h6></p>
+					<table class="striped bordered centered">
+						<col width="100px" />
+						<col width="150px" />
+						<col width="100px" />
+						<col width="100px" />
+						<col width="100px" />
+						<thead>
+							<tr>
+								<th>Test</th>
+								<th>Start Time</th>
+								<th>Duration</th>
+								<th>Venue</th>
+								<th>Other Details</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for test in test_list %}
+								<tr>
+									<td>{{ test.test_type.type }}</td>
+									<td>{{ test.start_time }}</td>
+									<td>{{ test.duration }}</td>
+									<td>{{ test.location }}</td>
+									<td>{{ test.description }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<hr>
+				<div class="row"><p><h6>Additional Info</h6>{{jaf.other_details}}</p></div>
+				<hr>
+				<br>
+				<div class="row">
+				{% if already_signed == True %}
+					<div class="col m12">
+						<form class="center" method="post" action="{% url 'student:unsign_jaf' %}">{% csrf_token %}
+							<input type="hidden" name="jaf_id" value="{{jaf.id}}">
+							<button type="submit" class="waves-effect waves-light btn grey darken-4">UnSign</button>
+						</form>
+					</div>
+				{% else %}
+					<div class="col m12">
+						<form class="center" method="post" action="{% url 'student:sign_jaf' %}">{% csrf_token %}
+							<input type="hidden" name="jaf_id" value="{{jaf.id}}">
+							<button type="submit" class="waves-effect waves-light btn grey darken-4">Sign</button>
+						</form>
+					</div>
+				{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- 	<div class="row">
+		<div class="card_container grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
+			<div class="row">
+				<h4>My Selections and Reviews</h4>
+			</div>
+			<div class="row">
+				{% if selection_list %}
+    				<ul class="collapsible popout" data-collapsible="accordion">
+					{% for application in selection_list %}
+					<li>
+						<div class="collapsible-header"><i class="material-icons">assistant</i>
+							<span class="flow-text">{{ application.jaf.company }} - {{ application.jaf.profile.name }} </span> 
+						</div>
+						<div class="collapsible-body" id="{{application.jaf.id}}"><span>
+						{% if application.review %}
+					 		<p>{{ application.review }}</p>
+						{% else %}
+							<p class="flow-text">Add a review</p>
+							<a class="btn-floating btn-small btn waves-effect waves-light grey darken-4" onclick="addReview('{{application.jaf.id}}');">
+								<i class="material-icons small">edit</i>
+							</a>
+						{% endif%}
+						</span></div>
+					</li>
+					{% endfor %}
+				</ul>
+    			{% else %}
+			    	<p class="flow-text center">No selections till now</p>
+			  	{% endif %}
+			</div>
+		</div>
+	</div> -->
+{% endblock %}
+
+{% block script %}
+	{{ block.super }}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			{% for e in eligibility_list %}
+				{% for d in department_list %}
+					{% for p in program_list %}
+						{% if e.department.name == d.name and  e.program.name == p.name %}
+							$("#{{forloop.parentloop.counter}}__{{forloop.counter}}").html('<i class="material-icons small icon-green">done</i>');
+						{% endif %}
+					{% endfor %}
+				{% endfor %}
+			{% endfor %}
+		});
+	</script>
+{% endblock %}

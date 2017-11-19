@@ -50,7 +50,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Student Home page done
 - Filters for students done (in progress) MEET
 - Provide​ ​reviews​ ​for​ completed​ internships
-- Sign JAF (not started) MEET
+- Signing/Unsigning JAF
 - View Past JAF Data (not started) RISH
 - Make sign jaf view (in progress) DEPAL
 
@@ -64,7 +64,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 
 #### Student
 - Provide​ ​ reviews​ ​ for​ ​ completed​ ​ internships (DONE)
-- View​ ​ and​ ​ Sign​ ​ eligible​ ​ JAFs (PARTIAL) RISH, DEPAL
+- View​ ​ and​ ​ Sign​/Unsign​ eligible​ ​ JAFs (DONE)
 - Search​ ​ current​ ​ JAFs​ ​ according​ ​ to​ ​ various​ ​ filters (DONE)
 - View​ ​ all​ ​ data​ ​ regarding​ ​ past​ ​ interns​ ​ including​ ​ reviews,​ ​ selections​ ​ and​ ​ procedures (PARTIAL) RISH
 - Upload​ ​ resume​ ​ and​ ​ see​ ​ status​ ​ of​ ​ verification​ (if​ ​ time​ ​ permits) (PARTIAL) SOURABH
