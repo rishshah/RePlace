@@ -98,7 +98,7 @@ def see_jafs(request):
             jaf_list = jaf_list.filter(application__student=student)
 
         if 'pre_deadline' in request.POST.keys():
-            jaf_list = jaf_list.filter(deadline__lt=datetime.date.today())
+            jaf_list = jaf_list.filter(deadline__gt=datetime.date.today())
 
         try:
             min_stipend = float(request.POST['minstipend'])
@@ -113,8 +113,6 @@ def see_jafs(request):
             jaf_list = jaf_list.filter(cpi_cutoff__gt=min_cpi, cpi_cutoff__lt=max_cpi)
         except:
             pass
-
-
 
     data = {'jaf_list': jaf_list,
             'job_profile_list': JobProfile.objects.all(),

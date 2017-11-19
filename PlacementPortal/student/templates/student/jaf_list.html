@@ -9,7 +9,7 @@
 				<table class="highlight bordered centered">
 					<thead>
 						<tr>
-							<th data-field="id">Jaff ID</th>
+							<th data-field="id">Jaf ID</th>
 							<th data-field="name">Company</th>
 							<th data-field="name">Job Profile</th>
 							<th data-field="number">Resume Number</th>
@@ -82,7 +82,7 @@
 			        </div>
 
 			        <div class="input-field col l6">
-			            <select name="company-category" class="validate">
+			            <select name="company_category" class="validate">
 			                {%for company_category in company_category_list %}
 			                <option value="{{ company_category.type }}">{{ company_category.type }}</option>
 			                {% endfor %}
