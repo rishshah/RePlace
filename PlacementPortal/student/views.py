@@ -6,7 +6,7 @@ from .models import *
 from company.models import JAF, Category, JobProfile
 from replace.models import Application
 
-import datetime
+import os,datetime
 
 HOME_URL = '/'
 
@@ -36,17 +36,26 @@ def upload_resume(request):
         return redirect(HOME_URL)
     if (request.method=="POST"):
         student = get_student(request.user)
-        resume_number = {"one-page":0, "two-page-tech":1, "two-page-non-tech":2, "cv":3}
+        resume_dict = {"one-page":0, "two-page-tech":1, "two-page-non-tech":2, "cv":3}
         print (student.name, request.FILES)
-        for resume_type in resume_number:
-            print (resume_type, resume_number[resume_type])
+        for resume_type in resume_dict:
+            print (resume_type, resume_dict[resume_type])
             resume_file = request.FILES.get(resume_type)
             print (resume_file)
             if (resume_file is not None):
-                resume = Resume.objects.get(student = student, resume_number = resume_number[resume_type])
+                try:
+                    resume = Resume.objects.get(student = student, resume_number = resume_dict[resume_type])
+                except:
+                    resume = None
                 if (resume is None):
-                    resume = Resume(student = student, resume_number = resume_number[resume_type]) 
+                    resume = Resume(student = student, resume_number = resume_dict[resume_type]) 
+                else:
+                    try:
+                        os.remove(resume.file.path)
+                    except:
+                        pass
                 resume.file = resume_file
+                resume.file.name = student.roll_number+"-"+str(resume_dict[resume_type])+".pdf"
                 resume.save()
                 print ("resume saved")
         return redirect('/student/')

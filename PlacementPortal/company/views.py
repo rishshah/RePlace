@@ -43,6 +43,12 @@ def new_jaf(request):
 	if (not auth(request.user)):
 		return redirect(HOME_URL)
 	if request.method == "POST" :
-		return render(request, "company/jaf_form.html")
+		company = get_company(request.user)
+		profile_name = request.POST.get("profile")
+		description = request.POST.get("description")
+		posting = request.POST.get("posting")
+		resume_type = request.POST.get("resume_type")
+		year = request.POST.get("year")
+		return redirect("/company/")
 	else :
 		return render(request, "company/jaf_form.html")
