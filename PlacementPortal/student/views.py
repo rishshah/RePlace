@@ -3,7 +3,10 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 
 from .models import *
-from company.models import JAF, Category
+from company.models import JAF, Category, JobProfile
+from replace.models import Application
+
+import datetime
 
 HOME_URL = '/'
 
@@ -73,10 +76,6 @@ def see_jafs(request):
     student = get_student(request.user)
     jaf_list = JAF.objects.all()
 
-    print("1")
-    for jaf in jaf_list:
-        print(jaf)
-
     if request.method=="POST":
         print(request.POST)
         all_categorys = [category.type for category in Category.objects.all()]
@@ -84,10 +83,13 @@ def see_jafs(request):
         jaf_list = jaf_list.filter(company__category__type__in=categorys)
 
         if 'cansign' in request.POST.keys():
-            jaf_list = jaf_list.filter(eligibility__department=student.department, eligibility__program=student.program, cpi_cutoff__lt=student.cpi)
+            jaf_list = jaf_list.filter(eligibility__department=student.department, eligibility__program=student.program, cpi_cutoff__lt=student.cpi, deadline__lt=datetime.date.today())
 
         if 'signed' in request.POST.keys():
             jaf_list = jaf_list.filter(application__student=student)
+
+        if 'pre_deadline' in request.POST.keys():
+            jaf_list = jaf_list.filter(deadline__lt=datetime.date.today())
 
         try:
             min_stipend = float(request.POST['minstipend'])
@@ -103,7 +105,12 @@ def see_jafs(request):
         except:
             pass
 
-    data = {'jaf_list': jaf_list}
+
+
+    data = {'jaf_list': jaf_list,
+            'job_profile_list': JobProfile.objects.all(),
+            'company_category_list':Category.objects.all()
+            }
     return render(request, "student/jaf_list.html", context=data)
 
 @login_required()
