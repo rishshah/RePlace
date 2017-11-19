@@ -53,7 +53,13 @@ def view_jaf(request,pk):
 		return redirect(HOME_URL)
 	application_list = Application.objects.filter(jaf = jaf)
 	eligibility_list = Eligibility.objects.filter(jaf = jaf)
-	print(Eligibility.objects.all())
+
+	program_list = set()
+	department_list = set()
+		
+	for e in eligibility_list:	
+		 program_list.add(e.program)
+		 department_list.add(e.department)
 	
 	test_list = JAFTest.objects.filter(jaf = jaf)
 	jaf.student_count = application_list.count()
@@ -71,8 +77,8 @@ def view_jaf(request,pk):
 	data = {'jaf':jaf, 
 			'application_list':application_list, 
 			'eligibility_list':eligibility_list, 
-			'program_list':Program.objects.all(),
-			'department_list':Department.objects.all(),
+			'program_list': program_list,
+			'department_list': department_list,
 			'test_list': test_list
 			}
 	print(eligibility_list)

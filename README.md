@@ -7,6 +7,20 @@ source env/bin/activate
 pip3 install -r requirements.txt
 python src/manage.py runserver
 ```
+
+Update database before trying to run the server
+```
+./updatedb
+```
+
+push database updates to repository
+```
+./dumpdb
+git add datadump
+git commit -m "message"
+git push origin master
+```
+
 Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePlace**.
 
  
@@ -18,58 +32,58 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Parallax in home page
 - Home page scroll animation
 - Error display mechanism on login pages
+- Models created
 
-- Models created (may be few changes in future) (signing deadline not part of jaf_test) MEET
 - Parallax improving LATER
 
 #### Company
 - Company registration form created 
-- Jaf creation form almost complete (Not all combinations taken care of in the jaf creation form) MEET
-- Post company jaf form (not yet started) DEPAL
+- Jaf creation form almost complete (in progress) MEET
+- Post company jaf form (in progress) DEPAL
 
 #### IC
-- IC tabs for resume selection status (resume verification post pending) SOURABH
-- Make resume upload, view (testing remaining) DEPAL
-- Update​ database​ regarding​ ​test​​ location,​​ timing​ ​and​​ other​ updates (css done backend remaining) DEPAL
+- Make resume upload, view
+- IC tabs for resume selection status (posting the form remaining) SOURABH, backend DEPAL
+- Update​ database​ regarding​ ​test​​ location,​​ timing​ ​and​​ other​ updates (date parsing error) DEPAL
 
 #### Student
 - Student Home page done
-- Provide​ ​ reviews​ ​ for​ ​ completed​ ​ internships
-- Filters for students (not much done... in progress) MEET
-- Make sign jaf view (not yet started) DEPAL
+- Filters for students done (in progress) MEET
+- Provide​ ​reviews​ ​for​ completed​ internships
+- Sign JAF (not started) MEET
+- View Past JAF Data (not started) RISH
+- Make sign jaf view (in progress) DEPAL
 
 ### Plans 
 - Login​ ​ and​ ​ Logout​ ​ for​ ​ all​ ​ users (DONE)
 
 #### Admin
-- Initially​ ​ populate​ ​ the​ ​ database (rish)
-- Update​ ​ database​ ​ at​ ​ end​ ​ of​ ​ the​ ​ semester/year​ ​ regarding​ ​ new​ ​ admissions,​ ​ CPI change​ ​ etc,.​ ​ (if​ ​ time​ ​ permits)
-- This​ ​ part​ ​ represents​ ​ the​ ​ connections​ ​ of​ ​ our​ ​ project​ ​ with​ ​ rest​ ​ of​ ​ database​ ​ tables​ ​ in the​ ​ university
+- Initially​ ​ populate​ ​ the​ ​ database (DONE)
+- Update​ ​ database​ ​ at​ ​ end​ ​ of​ ​ the​ ​ semester/year​ ​ regarding​ ​ new​ ​ admissions,​ ​ CPI change​ ​ etc,.​ ​ (if​ ​ time​ ​ permits) (CANCEL)
+- This​ ​ part​ ​ represents​ ​ the​ ​ connections​ ​ of​ ​ our​ ​ project​ ​ with​ ​ rest​ ​ of​ ​ database​ ​ tables​ ​ in the​ ​ university (CANCEL)
 
 #### Student
-- View​ ​ and​ ​ Sign​ ​ eligible​ ​ JAFs (PARTIAL)
 - Provide​ ​ reviews​ ​ for​ ​ completed​ ​ internships (DONE)
-- Search​ ​ current​ ​ JAFs​ ​ according​ ​ to​ ​ various​ ​ filters (PARTIAL)
-- View​ ​ all​ ​ data​ ​ regarding​ ​ past​ ​ interns​ ​ including​ ​ reviews,​ ​ selections​ ​ and​ ​ procedures (RISH)
-- Upload​ ​ resume​ ​ and​ ​ see​ ​ status​ ​ of​ ​ verification​ (if​ ​ time​ ​ permits) (PARTIAL)
-- Confirm​ ​ final​ ​ selection​ ​ for​ ​ students​ ​ finally​ ​ shortlisted​ ​ by​ ​ companies (CANCEL)
+- View​ ​ and​ ​ Sign​ ​ eligible​ ​ JAFs (PARTIAL) RISH, DEPAL
+- Search​ ​ current​ ​ JAFs​ ​ according​ ​ to​ ​ various​ ​ filters (DONE)
+- View​ ​ all​ ​ data​ ​ regarding​ ​ past​ ​ interns​ ​ including​ ​ reviews,​ ​ selections​ ​ and​ ​ procedures (PARTIAL) RISH
+- Upload​ ​ resume​ ​ and​ ​ see​ ​ status​ ​ of​ ​ verification​ (if​ ​ time​ ​ permits) (PARTIAL) SOURABH
+- Confirm​ ​ final​ ​ selection​ ​ for​ ​ students​ ​ finally​ ​ shortlisted​ ​ by​ ​ companies (CANCEL) 
 
 
 #### IC
-- Verify​ ​ resumes (PARTIAL)
-- Update​ database​ ​ regarding​ ​ test​ ​ location,​ ​ timing​ ​ and​ ​ other​ ​ updates (PARTIAL)
+- Verify​ ​ resumes (PARTIAL) SOURABH 
+- Update​ database​ ​ regarding​ ​ test​ ​ location,​ ​ timing​ ​ and​ ​ other​ ​ updates (PARTIAL) DEPAL
 
 #### Company
-- Create​ ​ JAFs​ ​ and​ ​ see​ ​ specific​ ​ resume​ ​ number​ ​ of​ ​ applicants (PARTIAL)
-- Set​ ​ eligibility​ ​ conditions (PARTIAL)
-- Shortlist​ ​ based​ ​ on​ ​ the​ ​ resumes​ ​ of​ ​ applicants (SOURABH)
-- See​ ​ progress​ ​ level​ ​ of​ ​ shortlisted​ ​ students​ ​ according​ ​ to​ ​ various​ ​ sequential​ ​ tests​ ( ​if time​ ​ permits) (NOPE)
-- Give​ ​ final​ ​ selections​ ​ and​ ​ see​ ​ the​ ​ confirmation​ ​ status​ ​ by​ ​ selected​ ​ students. (SOURABH)
+- Create​ ​ JAFs​ ​ and​ ​ see​ ​ specific​ ​ resume​ ​ number​ ​ of​ ​ applicants (PARTIAL) DEPAL, MEET
+- Set​ ​ eligibility​ ​ conditions (PARTIAL) MEET 
+- Shortlist​ ​ based​ ​ on​ ​ the​ ​ resumes​ ​ of​ ​ applicants (PARTIAL) SOURABH
+- See​ ​ progress​ ​ level​ ​ of​ ​ shortlisted​ ​ students​ ​ according​ ​ to​ ​ various​ ​ sequential​ ​ tests​ ( ​if time​ ​ permits) (NOPE) SOURABH
+- Give​ ​ final​ ​ selections​ ​ and​ ​ see​ ​ the​ ​ confirmation​ ​ status​ ​ by​ ​ selected​ ​ students. (PARTIAL) SOURABH
 
 
 ### Filers 
-
-#### Done
 - Company category
 - Signed, Unsigned
 - CPI (later) (range)
@@ -77,5 +91,3 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Can sign
 - Job Profile
 - Pre deadline
-
-#### ToDo
