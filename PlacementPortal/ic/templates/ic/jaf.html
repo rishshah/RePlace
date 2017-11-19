@@ -5,7 +5,7 @@
 			<div class="card-content black-text">
 				<div class="row">
 					<span class="card-title center">
-						<h5>JAF of <span> {{jaf.company.name}} </span>({{jaf.id}} - {{jaf.profile}})
+						<h5>JAF of <span> {{jaf.company.name}} </span>({{jaf.id}} - {{jaf.profile.name}})
 						<a class="btn-floating btn-small btn waves-effect right waves-light grey darken-4" onclick="editJaf();">
 							<i class="material-icons small">edit</i>
 						</a>
@@ -87,7 +87,7 @@
 	<div id="modal3" class="modal">
 		<form action="{% url 'ic:view_jaf' jaf.id %}" method="post">{% csrf_token %}
 			<div class="modal-content">
-				<span class="center"><h5>JAF of <span> {{jaf.company.name}} </span>({{jaf.id}} - {{jaf.profile}})</h5></span>
+				<span class="center"><h5>JAF of <span> {{jaf.company.name}} </span>({{jaf.id}} - {{jaf.profile.name}})</h5></span>
 				<div class="row">
 					<p><h6 class="center">Update Venue and Timings</h6></p>
 					<table class="striped bordered centered">
