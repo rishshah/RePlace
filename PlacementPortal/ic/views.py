@@ -78,6 +78,11 @@ def view_jaf(request,pk):
             if date_val!='' and time_val!='':
                 test.start_time = datetime.strptime( "%s, %s" %(time_val, date_val), "%H:%M, %d %B, %Y")
             test.save()
+        email_list = [ application.student.email for application in application_list]
+        message = jaf.company.name + " - " + str(jaf.id) +  " JAF has been updated"
+        print (email_list)
+        # send_mail("JAF Updated", message, "replace.notify@gmail.com", email_list)
+
 
     data = {'jaf':jaf, 
             'application_list':application_list, 
