@@ -129,4 +129,3 @@ def view_resume(request, id, resume_number):
         return response
     except:
         return redirect(HOME_URL)
->>>>>>> master
