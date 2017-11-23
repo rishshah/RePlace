@@ -187,10 +187,10 @@
 			aftershow: function(){} //Function for after opening timepicker
 		});
 
-		// {% for test in test_list %}
-  //           $('#{{ test.test_number }}-start_date').pickadate('picker').set('select',{{test.start_time|date}})
-  //           $('#{{ test.test_number }}-start_time').pickatime('picker').set('select',{{test.start_time|time}})
-		// {% endfor %}
+		{% for test in test_list %}
+            $('#{{ test.test_number }}-start_date').pickadate('picker').set('select','{{ test.start_time|date:'d F, Y' }}');
+            $('#{{ test.test_number }}-start_time').pickatime('picker').set('select','{{ test.start_time|time:'H:i' }}');
+		{% endfor %}
 		}
 
 	</script>

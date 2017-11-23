@@ -140,5 +140,8 @@ EMAIL_HOST_USER = 'replace.notify@gmail.com'
 EMAIL_HOST_PASSWORD = 'passypass'
 EMAIL_PORT = 587
 
+DATE_INPUT_FORMATS = [
+'%d %B, %Y',
+]
 
 django.setup()
