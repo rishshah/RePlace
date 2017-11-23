@@ -1,95 +1,108 @@
 {% extends 'student/root.html' %}
-
 {% block content %}
 	<div class="row center">
-		<div class="col jaf card_container xl6 offset-xl3 l6 offset-l3 m6 offset-m3 s12">
-			<div class="row"><h4>{{student.name}}</h4></div>
-			<hr class="dark">
-			<div class="row">
-				<div class="col m6"><p><h6>Roll Number</h6>{{student.id}}</p></div>
-				<div class="col m6"><p><h6>CPI</h6>{{student.cpi}}</p></div>
+		<div class="col card_container xl10 offset-xl1 l10 offset-l1 m10 offset-m1 s12">
+			<div class="card horizontal">
+				<div class="card-image">
+					<h4>{{student.name}}</h4>
+				</div>
+				<div class="card-stacked">
+					<div class="card-content">
+						<div class="row">
+							<div class="col m6">
+								<div class="row"><h6>Roll Number</h6></div>
+								<div class="row"><h6>Department</h6></div>
+								<div class="row"><h6>Program</h6></div>
+								<div class="row"><h6>Email</h6></div>
+								<div class="row"><h6>Phone Number</h6></div>
+								<div class="row"><h6>Resume Status</h6></div>
+							</div>
+							<div class="col m6">
+								<div class="row info"><span>: {{student.id}} </span></div>
+								<div class="row info"><span>: {{student.department}} </span></div>
+								<div class="row info"><span>: {{student.program}} </span></div>
+								<div class="row info"><span>: {{student.email}} </span></div>
+								<div class="row info"><span>: {{student.phone_number}} </span></div>
+								<div class="row info"><span>: {{student.resume_verified}} </span></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+
 			<div class="row">
-				<div class="col m6"><p><h6>Department</h6>{{student.department}}</p></div>
-				<div class="col m6"><p><h6>Program</h6>{{student.program}}</p></div>
+				<h4>Training Blog Updates</h4>
+				
 			</div>
-			<div class="row">
-				<div class="col m6"><p><h6>Email</h6>{{student.email}}</p></div>
-				<div class="col m6"><p><h6>Phone Number</h6>{{student.phone_number}}</p></div>
-			</div>
-			<div class="row"><p><h6>Resume Status</h6>{{student.resume_verified}}</p></div>
 		</div>
 	</div>
-
 	<div id="modal2" class="modal col l6">
-	    <form action="{% url 'student:upload_resume' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
-	        <div class="modal-content">
-	            <h5 class="center">Upload Resumes</h5>
-	            <div class="row">
-	                <div class="col m6">
-	                    <div class="file-field input-field">
-	                        <div class="waves-effect waves-light btn grey darken-4 ">
-	                            <span>One Page</span>
-	                            <input name="one-page" type="file">
-	                        </div>
-	                        <div class="file-path-wrapper">
-	                            <input class="file-path validate" type="text">
-	                        </div>
-	                    </div>    
-	                </div>
-	                <div class="col m6">
-	                    <div class="file-field input-field">
-	                        <div class="waves-effect waves-light btn grey darken-4 ">
-	                            <span>Two Page Tech</span>
-	                            <input name="two-page-tech" type="file">
-	                        </div>
-	                        <div class="file-path-wrapper">
-	                            <input class="file-path validate" type="text">
-	                        </div>
-	                    </div>    
-	                </div>
-	            </div>
-
-	            <div class="row">
-	                <div class="col m6">
-	                    <div class="file-field input-field">
-	                        <div class="waves-effect waves-light btn grey darken-4 ">
-	                            <span>Two Page Non Tech</span>
-	                            <input name="two-page-non-tech" type="file">
-	                        </div>
-	                        <div class="file-path-wrapper">
-	                            <input class="file-path validate" type="text">
-	                        </div>
-	                    </div>    
-	                </div>
-	                <div class="col m6">
-	                    <div class="file-field input-field">
-	                        <div class="waves-effect waves-light btn grey darken-4 ">
-	                            <span>CV</span>
-	                            <input name="cv" type="file">
-	                        </div>
-	                        <div class="file-path-wrapper">
-	                            <input class="file-path validate" type="text">
-	                        </div>
-	                    </div>    
-	                </div>
-	            </div>
-	           <div class="modal-footer">
-	                    <input type="submit" class="modal-action modal-close waves-effect waves-light btn-flat" value="DONE" />
-	            </div>
-	                
-	        </div>
-	  	</form>
+		<form action="{% url 'student:upload_resume' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+			<div class="modal-content">
+				<h5 class="center">Upload Resumes</h5>
+				<div class="row">
+					<div class="col m6">
+						<div class="file-field input-field">
+							<div class="waves-effect waves-light btn grey darken-4 ">
+								<span>One Page</span>
+								<input name="one-page" type="file">
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+						</div>
+					</div>
+					<div class="col m6">
+						<div class="file-field input-field">
+							<div class="waves-effect waves-light btn grey darken-4 ">
+								<span>Two Page Tech</span>
+								<input name="two-page-tech" type="file">
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col m6">
+						<div class="file-field input-field">
+							<div class="waves-effect waves-light btn grey darken-4 ">
+								<span>Two Page Non Tech</span>
+								<input name="two-page-non-tech" type="file">
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+						</div>
+					</div>
+					<div class="col m6">
+						<div class="file-field input-field">
+							<div class="waves-effect waves-light btn grey darken-4 ">
+								<span>CV</span>
+								<input name="cv" type="file">
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="modal-action modal-close waves-effect waves-light btn-flat" value="DONE" />
+				</div>
+				
+			</div>
+		</form>
 	</div>
 {% endblock %}
-
 {% block script %}
 	{{block.super}}
 	<script type="text/javascript">
-    	$( document ).ready(function() {
-    		$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal2">Resume</a></li>' );
-    		$('.links-dropdown li:eq(1)').after( '<li><a class="waves-effect modal-trigger" href="#modal2">Resume</a></li>' );
-    		$('.modal').modal();
-    	});
+	$( document ).ready(function() {
+		$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal2">Resume</a></li>' );
+		$('.links-dropdown li:eq(1)').after( '<li><a class="waves-effect modal-trigger" href="#modal2">Resume</a></li>' );
+		$('.modal').modal();
+	});
 	</script>
 {% endblock %}
