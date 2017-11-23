@@ -13,7 +13,7 @@
 							<div class="row">
 								<div class="input-field col s6">
 									<i class="material-icons prefix">dashboard</i>
-									<select multiple>
+									<select>
 										<option value="" disabled selected>Choose job profiles</option>
 										{% for job_profile in job_profile_list %}
 										<option value="{{job_profile.name}}">{{job_profile.name}}</option>
