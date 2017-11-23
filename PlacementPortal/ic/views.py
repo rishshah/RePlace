@@ -85,10 +85,23 @@ def view_jaf(request,pk):
 
 
 @login_required()
-def resume(request):
+def verify_resume(request):
     if (not auth(request.user)):
         return redirect(HOME_URL)
     verified_students = Student.objects.filter(resume_verified = True)
     unverified_students = Student.objects.filter(resume_verified = False)
     data = {'verified_students':verified_students, 'unverified_students':unverified_students}
     return render(request, "ic/resume.html", context = data)
+
+@login_required()
+def view_resume(request, id, resume_number):
+    if (not auth(request.user)):
+        return redirect(HOME_URL)
+    filepath = '/resume/'+id+"-"+resume_number+".pdf"
+    try:
+        with open(filepath, 'r') as pdf:
+            response = HttpResponse(pdf.read(), mimetype='application/pdf')
+        pdf.close()
+        return response
+    except:
+        return redirect(HOME_URL)

@@ -21,7 +21,7 @@
 						{% for student in unverified_students %}
 							<tr class='clickable-row' >
 								<td>
-									<a href="{% static 'resume/150050009.pdf' %}">{{ student.name }}</a>
+									<a href="{% url 'ic:view_resume' student.id 0 %}">{{ student.name }}</a>
 								</td>
 								<td>
 									<a href="mailto:student.email?subject=ResumeVerification&cc=cc@example.com">{{ student.email }}</a>
@@ -39,7 +39,7 @@
 						{% for student in verified_students %}
 							<tr class='clickable-row' >
 								<td>
-									<a href="{% static 'resume/150050009.pdf' %}">{{ student.name }}</a>
+									<a href="{% url 'ic:view_resume' student.id 0 %}">{{ student.name }}</a>
 								</td>
 								<td>
 									<a href="mailto:student.email?subject=ResumeVerification&cc=cc@example.com">{{ student.email }}</a>
