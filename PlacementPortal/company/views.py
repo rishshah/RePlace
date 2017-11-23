@@ -46,14 +46,21 @@ def view_students(request, pk):
     if (not auth(request.user)):
         return redirect(HOME_URL)
 
+    jaf = JAF.objects.get(id=pk)
+    student_applied_list = Student.objects.filter(application__jaf__pk=pk)
+    test_list = JAFTest.objects.filter(jaf=jaf)
+
     if request.method == "POST":
-        pass
-    else:
-        jaf = JAF.objects.get(id=pk)
-        student_applied_list = Student.objects.filter(application__jaf__pk=pk)
-        test_list = JAFTest.objects.filter(jaf=jaf)
-        data = {'student_list':student_applied_list, 'test_list': test_list}
-        return render(request, "company/students.html", context = data)
+        test_data_list = request.POST.getlist("test_data_list")
+        for test_data in test_data_list:
+            student_id, test_number = test_data.split("-")
+            student = Student.objects.get(id = student_id)
+            application = Application.objects.get(student=student, jaf=jaf);
+            application.progress = test_number
+            application.save()
+
+    data = {'student_list':student_applied_list, 'test_list': test_list}
+    return render(request, "company/students.html", context = data)
 
 
 @login_required()
