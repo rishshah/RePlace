@@ -97,18 +97,27 @@
 										<tr>
 											<th>Departments</th>
 											{% for program in program_list %}
-												<th>{{program.name}}</th>
+												<th>
+                                                    {{program.name}}
+                                                    <input id="prog_{{forloop.counter}}" type="checkbox" onchange="selectProg(this,{{forloop.counter}})"/>
+                                                    <label for="prog_{{forloop.counter}}">&nbsp;</label>
+
+                                                </th>
 											{% endfor %}
 										</tr>
 									</thead>
 									<tbody>
 										{% for department in department_list %}
 											<tr>
-												<th>{{department.name}}</th>
+												<th>
+                                                    {{department.name}}
+                                                    <input id="dept_{{forloop.counter}}" type="checkbox" onchange="selectDept(this,{{forloop.counter}})"/>
+                                                    <label for="dept_{{forloop.counter}}">&nbsp;</label>
+                                                </th>
 												{% for program in program_list %}
 													<td>
-														<input id="{{forloop.parentloop.counter}}_{{forloop.counter}}" type="checkbox"/>
-														<label for="{{forloop.parentloop.counter}}_{{forloop.counter}}">&nbsp;</label>
+														<input id="box_{{forloop.parentloop.counter}}_{{forloop.counter}}" type="checkbox"/>
+														<label for="box_{{forloop.parentloop.counter}}_{{forloop.counter}}">&nbsp;</label>
 													</td>
 												{% endfor %}
 											</tr>
@@ -221,6 +230,16 @@
 				$('.stepper').activateStepper();
 			});
 		});
+		function selectProg(progBox, j){
+            for(i=1; i<={{department_list|length}}; i++){
+                $('#box_'+i+'_'+j).prop('checked', progBox.checked);
+            }
+		}
+		function selectDept(deptBox, i){
+            for(j=1; j<={{program_list|length}}; j++){
+                $('#box_'+i+'_'+j).prop('checked', deptBox.checked);
+            }
+		}
 		function addTest(){
 			var row1 = document.createElement('div');
 			row1.setAttribute('class','row');
