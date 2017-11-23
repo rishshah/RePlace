@@ -1,6 +1,35 @@
+.tabs .tab a:hover, .tabs .tab a.active{
+    color: black;
+}
+.tabs .tab a{
+    color: grey;
+    font-size: 1.5em;
+}
+.tabs {
+    background-color:transparent; 
+}
+.tabs .indicator {
+    background-color: black;
+}
+
+
+.card_container .card {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#final_selections .card{
+    margin:0px;
+}
+#final_selections a.waves-effect.hoverable{
+    width: 100%;
+}
+#final_selections .card .card-content {
+    padding:10px;
+}
+
 .card_container .card .card-image{
     background-image: url("../images/student_logo.png");
-    background-color: white;
     background-size: 100% 100%;
     width: 300px;
     height: 300px;
@@ -26,6 +55,11 @@
     vertical-align: middle;
     margin-top:65px;
     margin-left: 8px;
+    text-align: center;
+    color: #ffab40;
+}
+
+.card_container .blog .card .card-title h5{
     text-align: center;
     color: #ffab40;
 }
