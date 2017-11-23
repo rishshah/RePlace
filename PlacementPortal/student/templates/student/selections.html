@@ -1,0 +1,40 @@
+{% extends 'student/root.html' %}
+{% block content %}
+	<div class="row center" id="final_selections">
+		<div class="col card_container xl8 offset-xl2 l8 offset-l2 m8 offset-m2 s12">
+			<div class="row blog">
+				<div class="col m12 card">
+					<div class="card-title">
+						<h4>Selections Till Now</h4>
+					</div>
+					<div class="card-content row">
+						{% for jaf in final_selection_jaf_list %}
+							<div class="row">
+								<div class="col s12">
+									<a class="waves-effect hoverable" href="{%url 'student:related_jaf_view' jaf.id %}">
+										<div class="card grey darken-4">
+											<div class="card-content white-text">
+												<span class="card-title"><h5>{{jaf.company}} -- {{jaf.profile.name}}</h5> </span>
+												<br>
+												<p class="left"> Date:- {{jaf.job_year}} - {{jaf.get_job_season_display}}</p>
+												<p class="right"> Stipend:- {{jaf.stipend}} {{jaf.currency}} </p>
+												<br>
+												<div class="row flow-text">
+													<ul>
+														{% for selected_student in jaf.selected_student_list%}
+															<li>{{selected_student}}</li>
+														{% endfor %}
+													</ul>
+												</div>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

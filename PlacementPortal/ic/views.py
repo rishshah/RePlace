@@ -19,6 +19,8 @@ from company.models import *
 from replace.models import *
 from student.models import *
 
+from datetime import datetime
+
 
 HOME_URL = '/'
 
@@ -71,6 +73,10 @@ def view_jaf(request,pk):
                 if (field == "start_time"):
                     field_value = parse_datetime(field_value)
                 setattr(test, field, field_value)
+            date_val = request.POST[str(test.test_number)+"-start_date"]
+            time_val = request.POST[str(test.test_number)+"-start_time"]
+            if date_val!='' and time_val!='':
+                test.start_time = datetime.strptime( "%s, %s" %(time_val, date_val), "%H:%M, %d %B, %Y")
             test.save()
 
     data = {'jaf':jaf, 
