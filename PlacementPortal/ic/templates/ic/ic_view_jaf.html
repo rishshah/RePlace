@@ -62,11 +62,11 @@
 				<div class="row">
 					<p><h6>Selection Procedure</h6></p>
 					<table class="striped bordered centered">
-						<col width="100px" />
-						<col width="150px" />
-						<col width="100px" />
-						<col width="100px" />
-						<col width="100px" />
+						<col width="21%" />
+						<col width="21%" />
+						<col width="16%" />
+						<col width="21%" />
+						<col width="21%" />
 						<thead>
 							<tr>
 								<th>Test</th>
@@ -152,7 +152,7 @@
 				{% for d in department_list %}
 					{% for p in program_list %}	
 						{% if e.department.name == d.name and  e.program.name == p.name %}	
-							$("{{forloop.parentloop.counter}}__{{forloop.counter}}").html('<i class="material-icons small icon-green">done</i>');
+							$("#{{forloop.parentloop.counter}}_{{forloop.counter}}").html('<i class="material-icons small icon-green">done</i>');
 						{% endif %}
 
 					{% endfor %}
