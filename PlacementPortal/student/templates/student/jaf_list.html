@@ -12,17 +12,19 @@
 							<th data-field="id">Jaf ID</th>
 							<th data-field="name">Company</th>
 							<th data-field="name">Job Profile</th>
-							<th data-field="number">Resume Number</th>
+							<th data-field="name">Signing Deadline</th>
+							<th data-field="name">Eligibility</th>
 							<th data-field="number">Students Applied</th>
 						</tr>
 					</thead>
 					<tbody>
 						{% for jaf in jaf_list %}
-							<tr class='clickable-row' data-href="{% url 'ic:view_jaf' jaf.id %}">
+							<tr class='clickable-row' data-href="{% url 'student:view_jaf' jaf.id %}">
 								<td>{{ jaf.id }}</td>
 								<td>{{ jaf.company }}</td>
 								<td>{{ jaf.profile.name }}</td>
-								<td>{{ jaf.get_resume_number_display }}</td>
+								<td>{{ jaf.deadline }}</td>
+								<td><span style="color:{{jaf.eligibility_color}};">{{ jaf.eligibility }}</span></td>
 								<td>{{ jaf.student_count }}</td>
 							</tr>
 						{% endfor %}
@@ -75,7 +77,7 @@
 
 				<div class="row">
 					<div class="input-field col l6">
-			            <select name="job_profile" class="validate">
+			            <select name="job_profile" class="validate" multiple>
 			                {%for job_profile in job_profile_list %}
 			                <option value="{{ job_profile.name }}">{{ job_profile.name }}</option>
 			                {% endfor %}

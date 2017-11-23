@@ -3,6 +3,10 @@
     margin-right: 2%;
     margin-bottom: 10px;
 }
+hr.dark{
+    height: 2px;
+    background-color: black;
+}
 
 i.btn{
     padding:0px;
@@ -41,6 +45,55 @@ i.btn input{
     border-collapse: collapse;
 }
 
+/* JAF view*/
+.jaf{
+    margin: 5%;
+    font-size: 0.85em;
+}
+
+.jaf h6 {
+    font-size: 1.6em;
+    font-weight: normal;
+    font-variant: small-caps;
+    font-style: italic;
+}
+
+.jaf span span{
+    font-weight: bolder;
+    font-variant: small-caps;
+    font-style: italic; 
+}
+
+.jaf td {
+    padding: 2px;
+}
+
+.jaf th {
+    padding: 5px;
+}
+
+.jaf table{
+    margin-top: 10px;
+    border: 1px solid #b1b1b1;
+    border-collapse: collapse;  
+}
+
+.jaf .row .col.m6{
+    padding: 0px;
+}
+
+.card .card-content .card-title i{
+    line-height: 40px;
+}
+
+i.icon-red {
+    color: red;
+}
+
+i.icon-green {
+    color: green;
+}
+
 /*Home Page Content*/
 .row .col.#main_content {
     background-color: rgba(255, 255, 255, 0.95);
@@ -77,7 +130,7 @@ i.btn input{
 
 /* Parallax */
 .parallax-container {
-    height: 350px;
+    height: 400px;
 }
 
 

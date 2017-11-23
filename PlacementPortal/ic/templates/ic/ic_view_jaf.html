@@ -17,6 +17,9 @@
 					<p><h6>Description</h6>{{jaf.description}}</p>
 				</div>
 				<div class="row">
+					<p><h6>Additional Info</h6>{{jaf.other_details}}</p>
+				</div>
+				<div class="row">
 					<p><h6>Requirements</h6>{{jaf.requirements}}</p>
 				</div>
 				<div class="row">
@@ -53,14 +56,17 @@
 				</div>
 				<hr>
 				<div class="row">
-					<div class="col">
-						<p><h6>Stipend</h6>{{jaf.stipend}} {{ jaf.currency }}</p>
-					</div>
+					<p><h6>Stipend</h6>{{jaf.stipend}} &nbsp {{ jaf.currency }}</p>
 				</div>
 				<hr>
 				<div class="row">
 					<p><h6>Selection Procedure</h6></p>
 					<table class="striped bordered centered">
+						<col width="100px" />
+						<col width="150px" />
+						<col width="100px" />
+						<col width="100px" />
+						<col width="100px" />
 						<thead>
 							<tr>
 								<th>Test</th>
@@ -85,7 +91,7 @@
 				</div>
 				<hr>
 				<div class="row">
-					<p><h6>Additional Info</h6>{{jaf.other_details}}</p>
+					<p><h6>Students Applied</h6>{{jaf.student_count}}</p>
 				</div>
 			</div>
 		</div>
@@ -100,9 +106,9 @@
 					<table class="striped bordered centered">
 						<col width="100px" />
 						<col width="150px" />
+						<col width="50px" />
 						<col width="100px" />
-						<col width="100px" />
-						<col width="100px" />
+						<col width="200px" />
 						<thead>
 							<tr>
 								<th>Test</th>
