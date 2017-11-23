@@ -12,7 +12,7 @@
 							<div class="row">
 								<div class="input-field col s6">
 									<i class="material-icons prefix">dashboard</i>
-									<select>
+									<select name="profile">
 										<option value="" disabled selected>Choose job profiles</option>
 										{% for job_profile in job_profile_list %}
 											<option value="{{job_profile.name}}">{{job_profile.name}}</option>
@@ -24,24 +24,24 @@
 							<div class="row">
 								<div class="input-field col s6">
 									<i class="material-icons prefix tiny">mode_edit</i>
-									<textarea id="icon_description" class="materialize-textarea validate" data-length="200"></textarea>
+									<textarea name="description" id="icon_description" class="materialize-textarea validate" data-length="200"></textarea>
 									<label for="icon_description">Job Description</label>
 								</div>
 								<div class="input-field col s6">
 									<i class="material-icons prefix tiny">mode_edit</i>
-									<textarea id="icon_description2" class="materialize-textarea validate" data-length="200"></textarea>
+									<textarea name="requirements" id="icon_description2" class="materialize-textarea validate" data-length="200"></textarea>
 									<label for="icon_description2">Job Requirements</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s6">
 									<i class="material-icons prefix tiny">place</i>
-									<input type="text" class="validate">
+									<input name="posting" type="text" class="validate">
 									<label>Place Of Posting</label>
 								</div>
 								<div class="input-field col s6">
 									<i class="material-icons prefix tiny">filter_list</i>
-									<select>
+									<select name="resume_type">
 										<option value="" disabled selected>Choose Resume Type</option>
 										{% for resume_type in resume_type_list %}
 											<option value="{{resume_type.0}}">{{resume_type.1}}</option>
@@ -61,24 +61,24 @@
 							<div class="row">
 								<div class=" input-field col s6">
 									<i class="material-icons prefix small">timelapse</i>
-									<input type="number" min="2017" max="2050" step="1" class="validate">
+									<input name="year" type="number" min="2017" max="2050" step="1" class="validate">
 									<label>Internship Year</label>
 								</div>
 								<div class="input-field col s6">
 									<i class="material-icons prefix tiny">date_range</i>
-									<input type="number" min="4" step="1" max="12" class="validate">
+									<input name="duration" type="number" min="4" step="1" max="12" class="validate">
 									<label>Internship Duration (in weeks)</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s6">
 									<i class="material-icons prefix tiny">mode_edit</i>
-									<textarea id="icon_details2" class="materialize-textarea validate" data-length="200"></textarea>
-									<label for="icon_details2">Accomodation Details</label>
+									<textarea name="accommodation" id="icon_details2" class="materialize-textarea validate" data-length="200"></textarea>
+									<label for="icon_details2">Accommodation Details</label>
 								</div>
 								<div class="input-field col s6">
 									<i class="material-icons prefix tiny">mode_edit</i>
-									<textarea id="icon_details" class="materialize-textarea validate" data-length="200"></textarea>
+									<textarea name="other_details" id="icon_details" class="materialize-textarea validate" data-length="200"></textarea>
 									<label for="icon_details">Other Details</label>
 								</div>
 							</div>
@@ -107,7 +107,7 @@
 												<th>{{department.name}}</th>
 												{% for program in program_list %}
 													<td>
-														<input id="{{forloop.parentloop.counter}}_{{forloop.counter}}" type="checkbox"/>
+														<input name="eligibility_list" id="{{forloop.parentloop.counter}}_{{forloop.counter}}" value="{{department.name}}-{{program.name}}" type="checkbox"/>
 														<label for="{{forloop.parentloop.counter}}_{{forloop.counter}}">&nbsp;</label>
 													</td>
 												{% endfor %}
@@ -119,17 +119,17 @@
 							<div class="row">
 								<div class="input-field col s3">
 									<i class="material-icons prefix small">grade</i>
-									<input type="number" step="0.1" min="4" max="10" class="validate">
+									<input name="cpi_cutoff" type="number" step="0.1" min="4" max="10" class="validate">
 									<label>CPI cutoff</label>
 								</div>
 								<div class="input-field col s6">
 									<i class="material-icons prefix tiny">attach_money</i>
-									<input type="number" class="validate">
+									<input name="stipend" type="number" class="validate">
 									<label>Stipend</label>
 								</div>
 								<div class="input-field col s3">
 									<i class="material-icons prefix tiny">attach_money</i>
-									<input type="text" class="validate">
+									<input name="currency" type="text" class="validate">
 									<label>Currency</label>
 								</div>
 							</div>
@@ -145,7 +145,7 @@
 							<div id="test1-1" class="row">
 								<div class="input-field col s6">
 									<i class="material-icons prefix small">event_seat</i>
-									<select>
+									<select name="test_type">
 										<option value="" disabled selected>Choose Test Type</option>
 										{% for test_type in test_type_list %}
 											<option value="{{test_type.type}}">{{test_type.type}}</option>
@@ -155,14 +155,14 @@
 								</div>
 								<div class="input-field col s6">
 									<i class="material-icons prefix tiny">date_range</i>
-									<input type="number" min="0" step="10" class="validate">
+									<input name="test_duration" type="number" min="0" step="10" class="validate">
 									<label>Test Duration (in min)</label>
 								</div>
 							</div>
 							<div id="test1-2" class="row">
 								<div class="input-field col s8">
 									<i class="material-icons prefix tiny">mode_edit</i>
-									<textarea id="icon_description3" class="materialize-textarea validate" data-length="200"></textarea>
+									<textarea name="test_description" id="icon_description3" class="materialize-textarea validate" data-length="200"></textarea>
 									<label for="icon_description3">Test Description</label>
 								</div>
 								<a id="addbtn" class="btn-floating btn-small waves-effect waves-light btn grey darken-4" onclick="addTest();">
@@ -174,8 +174,8 @@
 								<div class="col s6">
 									<i class="material-icons prefix small">event</i>
 									<label>Signing Deadline</label>
-									<input class="datepicker validate">
-									<input class="timepicker validate">
+									<input name="deadline_date" class="datepicker validate">
+									<input name="deadline_time" class="timepicker validate">
 								</div>
 							</div>
 							<div class="step-actions">
@@ -227,7 +227,7 @@
 			row1.setAttribute('id',"test" + counter.toString() + "-1");
 			row1.innerHTML = '<div class="input-field col s6">'+
 										'<i class="material-icons prefix small">event_seat</i>'+
-										'<select>'+
+										'<select name="test_type">'+
 											'<option value="" disabled selected>Choose Test Type</option>'+
 											'<option value="1">Technical Test</option>'+
 											'<option value="2">Aptitude Test</option>'+
@@ -239,7 +239,7 @@
 								'</div>'+
 								'<div class="input-field col s6">'+
 										'<i class="material-icons prefix tiny">date_range</i>'+
-										'<input type="number" min="0" step="10" class="validate">'+
+										'<input name="test_duration" type="number" min="0" step="10" class="validate">'+
 										'<label>Test Duration (in min)</label>'+
 								'</div>';
 		var row2 = document.createElement('div');
@@ -247,7 +247,7 @@
 			row2.setAttribute('id',"test" + counter.toString() + "-2");
 			row2.innerHTML = '<div class="input-field col s8">'+
 										'<i class="material-icons prefix tiny">mode_edit</i>'+
-										'<textarea id="icon_description3" class="materialize-textarea validate" data-length="200"></textarea>'+
+										'<textarea name="test_description" id="icon_description3" class="materialize-textarea validate" data-length="200"></textarea>'+
 										'<label for="icon_description3">Test Description</label>'+
 								'</div>';
 			$('#test'+(counter-1).toString() + "-1").before(row2);
