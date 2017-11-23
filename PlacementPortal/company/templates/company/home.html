@@ -9,7 +9,7 @@
 				<table class="highlight bordered centered">
 					<thead>
 						<tr>
-							<th data-field="id">Jaff ID</th>
+							<th data-field="id">Jaf ID</th>
 							<th data-field="name">Company</th>
 							<th data-field="name">Job Profile</th>
 							<th data-field="number">Resume Number</th>
@@ -18,7 +18,7 @@
 					</thead>
 					<tbody>
 						{% for jaf in jaf_list %}
-							<tr class='clickable-row' data-href="{% url 'ic:view_jaf' jaf.id %}">
+							<tr class='clickable-row' data-href="{% url 'company:view_students' jaf.id %}">
 								<td>{{ jaf.id }}</td>
 								<td>{{ jaf.company }}</td>
 								<td>{{ jaf.profile.name }}</td>
@@ -30,7 +30,7 @@
 				</table>
 			</div>
 		</div>
-	</div>	
+	</div>
 {% endblock %}
 
 {% block script %}

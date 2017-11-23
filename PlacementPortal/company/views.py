@@ -42,6 +42,16 @@ def home(request):
     return render(request, "company/home.html", context = data)
 
 @login_required()
+def view_students(request, pk):
+    if (not auth(request.user)):
+        return redirect(HOME_URL)
+    student_list = Student.objects.filter(application__jaf__pk=pk)
+
+    data = {'student_list':student_list,
+            }
+    return render(request, "company/students.html", context = data)
+
+@login_required()
 def new_jaf(request):
     if (not auth(request.user)):
         return redirect(HOME_URL)
