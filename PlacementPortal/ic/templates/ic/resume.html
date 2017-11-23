@@ -13,7 +13,7 @@
 							<th data-field="id">Name</th>
 							<th data-field="name">Email</th>
 							<th data-field="name">Contact</th>
-							<th data-field="number">Program</th>
+							<th data-field="number">Department</th>
 							<th data-field="number">Verification Status</th>
 						</tr>
 					</thead>
@@ -27,10 +27,10 @@
 									<a href="mailto:student.email?subject=ResumeVerification&cc=cc@example.com">{{ student.email }}</a>
 								</td>
 								<td>{{ student.phone_number }}</td>
-								<td>{{ student.program }}</td>
+								<td>{{ student.department.name }}</td>
 								<td>
 									<p>
-      									<input onclick="verify()"  type="checkbox" id="student_{{student.id}}" />
+      									<input onclick="location.href='{% url 'ic:view_jaf' jaf.id %}';"  type="checkbox" id="student_{{student.id}}" />
       									<label for="student_{{student.id}}"></label>
    									 </p>
 								</td>
@@ -45,7 +45,7 @@
 									<a href="mailto:student.email?subject=ResumeVerification&cc=cc@example.com">{{ student.email }}</a>
 								</td>
 								<td>{{ student.phone_number }}</td>
-								<td>{{ student.program }}</td>
+								<td>{{ student.department.name }}</td>
 								<td>
 									<p>
       									<input onclick="reject()" type="checkbox" id="student_{{student.id}}" checked="checked" />
