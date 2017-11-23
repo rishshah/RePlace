@@ -86,7 +86,7 @@
 			        </div>
 
 			        <div class="input-field col l6">
-			            <select name="company_category" class="validate">
+			            <select name="company_category" class="validate" multiple>
 			                {%for company_category in company_category_list %}
 			                <option value="{{ company_category.type }}">{{ company_category.type }}</option>
 			                {% endfor %}

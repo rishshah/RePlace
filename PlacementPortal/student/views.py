@@ -143,10 +143,12 @@ def sign_jaf(request):
     if not auth(request.user):
         return redirect(HOME_URL)
 
+    student = get_student(request.user);
     if (request.method == "POST"):
         jaf = JAF.objects.get(id = request.POST.get("jaf_id"))
-        application = Application(student = get_student(request.user), jaf = jaf)
-        application.save()
+        if is_eligible(student, jaf)[0] == 'Can Sign':
+            application = Application(student = student, jaf = jaf)
+            application.save()
         return redirect('/student/see_jafs/')
 
 @login_required()
@@ -154,10 +156,12 @@ def unsign_jaf(request):
     if not auth(request.user):
         return redirect(HOME_URL)
 
+    student = get_student(request.user);
     if (request.method == "POST"):
         jaf = JAF.objects.get(id = request.POST.get("jaf_id"))
-        application = Application.objects.get(student = get_student(request.user), jaf = jaf)
-        application.delete()
+        if is_eligible(student, jaf)[0] == 'Signed':
+            application = Application.objects.get(student = student, jaf = jaf)
+            application.delete()
         return redirect('/student/see_jafs/')
 
 @login_required()
