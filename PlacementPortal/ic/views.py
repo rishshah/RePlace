@@ -1,7 +1,7 @@
 #for basic rendering of html pages
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404, FileResponse
 
 #for authentication login and logout
 from django.contrib.auth import login as auth_login
@@ -125,11 +125,10 @@ def view_resume(request, id, resume_number):
     if (not auth(request.user)):
         return redirect(HOME_URL)
     try:
-        resume = Resume.objects.get(student__id = id, resume_number = resume_number)
-        filepath = resume.file.filepath
-        with open(filepath, 'r') as pdf:
-            response = HttpResponse(pdf.read(), mimetype='application/pdf')
-        pdf.close()
+        student =  Student.objects.get(id = id)
+        resume = Resume.objects.get(student = student, resume_number = resume_number)
+        filepath = resume.file.path
+        response = FileResponse(open(filepath, 'rb'), content_type ='application/pdf')
         return response
-    except:
+    except Exception as e:
         raise Http404("Resume Not Found")
