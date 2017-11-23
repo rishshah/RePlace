@@ -98,3 +98,17 @@ def resume(request):
     unverified_students = Student.objects.filter(resume_verified = False)
     data = {'verified_students':verified_students, 'unverified_students':unverified_students}
     return render(request, "ic/resume.html", context = data)
+
+@login_required()
+def student_verification(request,pk,status):
+    if (not auth(request.user)):
+        return redirect(HOME_URL)  
+    student = Student.objects.get(pk=pk)
+    if(student is None):
+         return redirect(HOME_URL)
+    if(status):
+        student.resume_verified = True
+    else:
+        student.resume_verified = False
+
+    return resume(request)
