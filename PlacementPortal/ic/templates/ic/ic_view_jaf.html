@@ -112,6 +112,7 @@
 						<thead>
 							<tr>
 								<th>Test</th>
+								<th>Date</th>
 								<th>Start Time</th>
 								<th>Duration</th>
 								<th>Venue</th>
@@ -122,7 +123,10 @@
 							{% for test in test_list %}
 								<tr>
 									<td>{{ test.test_type.type }}</td>
-									<td><input name="{{ test.test_number }}-start_time" type="text" value="{{ test.start_time }}" /></td>
+
+									<td><input name="{{ test.test_number }}-start_date" class="datepicker validate"></td>
+                                    <td><input name="{{ test.test_number }}-start_time" class="timepicker validate"></td>
+									<!--<td><input name="{{ test.test_number }}-start_time" type="text" value="{{ test.start_time }}" /></td>-->
 									<td><input name="{{ test.test_number }}-duration" type="number" min="0" step="10" class="validate" value="{{ test.duration }}"/></td>
 									<td><input name="{{ test.test_number }}-location" type="text" value="{{ test.location }}" /></td>
 									<td><input name="{{ test.test_number }}-description" type="text" maxlength="200" value="{{ test.description }}" /></td>
@@ -157,6 +161,33 @@
 		});
 		function editJaf(){
 			$('#modal3').modal('open');
+		    $('.datepicker').pickadate({
+				min: Date.now(),
+				selectMonths: true, // Creates a dropdown to control month
+				selectYears: 10, // Creates a dropdown of 10 years to control year,
+				today: 'Today',
+				clear: 'Clear',
+				close: 'Ok',
+				closeOnSelect: true // Close upon selecting a date,
+		});
+
+		$('.timepicker').pickatime({
+			default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+			fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+			twelvehour: false, // Use AM/PM or 24-hour format
+			donetext: 'OK', // text for done-button
+			cleartext: 'Clear', // text for clear-button
+			canceltext: 'Cancel', // Text for cancel-button
+			autoclose: true, // automatic close timepicker
+			ampmclickable: true, // make AM PM clickable
+			aftershow: function(){} //Function for after opening timepicker
+		});
+
+		{% for test in test_list %}
+            $('#{{ test.test_number }}-start_date').pickadate('picker').set('select',{{test.start_time|date}})
+            $('#{{ test.test_number }}-start_time').pickatime('picker').set('select',{{test.start_time|time}})
+		{% endfor %}
 		}
+
 	</script>
 {% endblock %}
