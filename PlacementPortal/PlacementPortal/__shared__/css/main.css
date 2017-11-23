@@ -3,6 +3,9 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+span.flow-text{
+    font-size: 1.6em;
+}
 
 .row {
     margin-left: 2%;

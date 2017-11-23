@@ -38,8 +38,8 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 
 #### Company
 - Company registration form created 
-- Jaf creation form almost complete (in progress) MEET
-- Post company jaf form (in progress) DEPAL
+- Jaf creation form almost complete
+- Post company jaf form (partial)
 
 #### IC
 - Make resume upload, view
@@ -48,11 +48,11 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 
 #### Student
 - Student Home page done
-- Filters for students done (in progress) MEET
+- Filters for students done
 - Provide​ ​reviews​ ​for​ completed​ internships
 - Signing/Unsigning JAF
-- View Past JAF Data (not started) RISH
-- Make sign jaf view (in progress) DEPAL
+- View Past JAF Data
+- Make sign jaf view
 
 ### Plans 
 - Login​ ​ and​ ​ Logout​ ​ for​ ​ all​ ​ users (DONE)
@@ -66,18 +66,18 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Provide​ ​ reviews​ ​ for​ ​ completed​ ​ internships (DONE)
 - View​ ​ and​ ​ Sign​/Unsign​ eligible​ ​ JAFs (DONE)
 - Search​ ​ current​ ​ JAFs​ ​ according​ ​ to​ ​ various​ ​ filters (DONE)
-- View​ ​ all​ ​ data​ ​ regarding​ ​ past​ ​ interns​ ​ including​ ​ reviews,​ ​ selections​ ​ and​ ​ procedures (PARTIAL) RISH
+- View​ ​ all​ ​ data​ ​ regarding​ ​ past​ ​ interns​ ​ including​ ​ reviews,​ ​ selections​ ​ and​ ​ procedures (DONE) RISH
 - Upload​ ​ resume​ ​ and​ ​ see​ ​ status​ ​ of​ ​ verification​ (if​ ​ time​ ​ permits) (PARTIAL) SOURABH
 - Confirm​ ​ final​ ​ selection​ ​ for​ ​ students​ ​ finally​ ​ shortlisted​ ​ by​ ​ companies (CANCEL) 
-
+- View training blog (PARTIAL) RISH
 
 #### IC
 - Verify​ ​ resumes (PARTIAL) SOURABH 
-- Update​ database​ ​ regarding​ ​ test​ ​ location,​ ​ timing​ ​ and​ ​ other​ ​ updates (PARTIAL) DEPAL
+- Update​ database​ ​ regarding​ ​ test​ ​ location,​ ​ timing​ ​ and​ ​ other​ ​ updates (PARTIAL) MEET
 
 #### Company
-- Create​ ​ JAFs​ ​ and​ ​ see​ ​ specific​ ​ resume​ ​ number​ ​ of​ ​ applicants (PARTIAL) DEPAL, MEET
-- Set​ ​ eligibility​ ​ conditions (PARTIAL) MEET 
+- Create​ ​ JAFs​ ​ and​ ​ see​ ​ specific​ ​ resume​ ​ number​ ​ of​ ​ applicants (PARTIAL) DEPAL, RISH
+- Set​ ​ eligibility​ ​ conditions (DONE) 
 - Shortlist​ ​ based​ ​ on​ ​ the​ ​ resumes​ ​ of​ ​ applicants (PARTIAL) SOURABH
 - See​ ​ progress​ ​ level​ ​ of​ ​ shortlisted​ ​ students​ ​ according​ ​ to​ ​ various​ ​ sequential​ ​ tests​ ( ​if time​ ​ permits) (NOPE) SOURABH
 - Give​ ​ final​ ​ selections​ ​ and​ ​ see​ ​ the​ ​ confirmation​ ​ status​ ​ by​ ​ selected​ ​ students. (PARTIAL) SOURABH

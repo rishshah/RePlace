@@ -1,0 +1,87 @@
+{% extends 'student/root.html' %}
+{% block content %}
+	<div class="row">
+		<div class="jaf card grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
+			<div class="card-content black-text">
+				<div class="row">
+					<span class="card-title center">
+						<h5>JAF of <span> {{jaf.company.name}} </span>({{jaf.id}} - {{jaf.profile.name}})</h5>
+					</span>
+					<span class="card-title right">
+						<h5>{{jaf.job_year}} - {{jaf.get_job_season_display}}</h5>
+					</span>
+				</div>
+				<hr>
+				<div class="row"><p><h6>Description</h6>{{jaf.description}}</p></div>
+				<div class="row"><p><h6>Additional Info</h6>{{jaf.other_details}}</p></div>
+				<div class="row"><p><h6>Requirements</h6>{{jaf.requirements}}</p></div>
+				<div class="row">
+					<div class="col m6"><p><h6>Accomodation</h6>{{jaf.accomodation}}</p></div>
+					<div class="col m6"><p><h6>Posting</h6>{{jaf.posting}}</p></div>
+				</div>
+				<hr>
+				<div class="row"><p><h6>Stipend</h6>{{jaf.stipend}} &nbsp {{ jaf.currency }}</p></div>
+				<hr>
+				<div class="row">
+					<p><h6>Selection Procedure</h6></p>
+					<table class="striped bordered centered">
+						<col width="100px" />
+						<col width="150px" />
+						<col width="100px" />
+						<col width="100px" />
+						<col width="100px" />
+						<thead>
+							<tr>
+								<th>Test</th>
+								<th>Start Time</th>
+								<th>Duration</th>
+								<th>Venue</th>
+								<th>Other Details</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for test in test_list %}
+								<tr>
+									<td>{{ test.test_type.type }}</td>
+									<td>{{ test.start_time }}</td>
+									<td>{{ test.duration }}</td>
+									<td>{{ test.location }}</td>
+									<td>{{ test.description }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col m6"><p><h6>Students Applied</h6>{{count_applied}}</p></div>
+					<div class="col m6"><p><h6>Students Selected</h6>{{count_selected}}</p></div>
+				</div>
+				<hr>
+				<br>
+				<div class="row">
+					<p><h6>Reviews</h6></p>
+					<div class="row">
+					{% if selection_list %}
+						<ul class="collapsible popout" data-collapsible="accordion">
+							{% for application in selection_list %}
+								{% if application.review %}
+								<li>
+									<div class="collapsible-header"><i class="material-icons">assistant</i>
+										<span class="flow-text">{{ application.student.name }} 
+										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ({{ application.student.department.name }}-{{ application.student.program.name }})</span>
+									</div>
+									<div class="collapsible-body"><p>{{ application.review }}</p></div>
+								</li>
+								{% endif%}
+							{% endfor %}
+						</ul>
+					{% else %}
+						<p class="flow-text center">No Reviews added</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -59,15 +59,26 @@
 						<div class="step-title waves-effect">Timeline</div>
 						<div class="step-content">
 							<div class="row">
-								<div class=" input-field col s6">
+								<div class="input-field col m6">
+									<i class="material-icons prefix tiny">date_range</i>
+									<input name="duration" type="number" min="4" step="1" max="12" class="validate">
+									<label>Internship Duration (in weeks)</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class=" input-field col m6">
 									<i class="material-icons prefix small">timelapse</i>
 									<input name="year" type="number" min="2017" max="2050" step="1" class="validate">
 									<label>Internship Year</label>
 								</div>
-								<div class="input-field col s6">
-									<i class="material-icons prefix tiny">date_range</i>
-									<input name="duration" type="number" min="4" step="1" max="12" class="validate">
-									<label>Internship Duration (in weeks)</label>
+								<div class="input-field col m6">
+									<i class="material-icons prefix tiny">cloud</i>
+									<select name="job_season">
+										<option value="" disabled selected>Choose Job Season</option>
+										<option value="0">Summer</option>
+										<option value="1">Winter</option>
+									</select>
+									<label>Job Season</label>
 								</div>
 							</div>
 							<div class="row">
@@ -99,7 +110,8 @@
 											{% for program in program_list %}
 												<th>
                                                     {{program.name}}
-                                                    <input id="prog_{{forloop.counter}}" type="checkbox" onchange="selectProg(this,{{forloop.counter}})"/>
+                                                    <br>
+                                                    <input id="prog_{{forloop.counter}}" class="filled-in checkbox-black" type="checkbox" onchange="selectProg(this,{{forloop.counter}})"/>
                                                     <label for="prog_{{forloop.counter}}">&nbsp;</label>
 
                                                 </th>
@@ -111,13 +123,14 @@
 											<tr>
 												<th>
                                                     {{department.name}}
-                                                    <input id="dept_{{forloop.counter}}" type="checkbox" onchange="selectDept(this,{{forloop.counter}})"/>
+                                                    <br>
+                                                    <input id="dept_{{forloop.counter}}" class="filled-in checkbox-black" type="checkbox" onchange="selectDept(this,{{forloop.counter}})"/>
                                                     <label for="dept_{{forloop.counter}}">&nbsp;</label>
                                                 </th>
 												{% for program in program_list %}
 													<td>
-														<input name="eligibility_list" id="{{forloop.parentloop.counter}}_{{forloop.counter}}" value="{{department.name}}-{{program.name}}" type="checkbox"/>
-														<label for="{{forloop.parentloop.counter}}_{{forloop.counter}}">&nbsp;</label>
+														<input name="eligibility_list" id="box_{{forloop.parentloop.counter}}_{{forloop.counter}}" value="{{department.name}}-{{program.name}}" type="checkbox"/>
+														<label for="box_{{forloop.parentloop.counter}}_{{forloop.counter}}">&nbsp;</label>
 													</td>
 												{% endfor %}
 											</tr>
@@ -247,12 +260,10 @@
 			row1.innerHTML = '<div class="input-field col s6">'+
 										'<i class="material-icons prefix small">event_seat</i>'+
 										'<select name="test_type">'+
-											'<option value="" disabled selected>Choose Test Type</option>'+
-											'<option value="1">Technical Test</option>'+
-											'<option value="2">Aptitude Test</option>'+
-											'<option value="3">Group Discussion</option>'+
-											'<option value="4">Technical Interview</option>'+
-											'<option value="5">HR Round</option>'+
+										'<option value="" disabled selected>Choose Test Type</option>'+
+										'{% for test_type in test_type_list %}'+
+											'<option value="{{test_type.type}}">{{test_type.type}}</option>'+
+										'{% endfor %}'+
 										'</select>'+
 										'<label>Test Type</label>'+
 								'</div>'+

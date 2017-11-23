@@ -1,25 +1,15 @@
 {% extends 'student/root.html' %}
 {% block content %}
-
-	<div class="fixed-action-btn">
-    <a class="btn-floating btn-large red">
-      <i class="large material-icons">mode_edit</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-    </ul>
-  </div>
-  
 	<div class="row">
 		<div class="jaf card grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
 			<div class="card-content black-text">
 				<div class="row">
 					<span class="card-title center">
 						<h5>JAF of <span> {{jaf.company.name}} </span>({{jaf.id}} - {{jaf.profile.name}})</h5>
-						<span class="right"> {{jaf.student_count}}</span>
+						<p class="right"> {{jaf.student_count}}</p>
+						<!-- <a class="btn-floating btn-smal0l right btn waves-effect waves-light grey darken-4" href="{% url 'student:related_jaf_view' jaf.id %}">
+							<i class="material-icons">exit_to_app</i>
+						</a> -->
 					</span>
 				</div>
 				<hr>
@@ -91,72 +81,76 @@
 				<hr>
 				<br>
 				<div class="row">
-				{% if status == "Signed" %}
-					<div class="col m12">
-						<form class="center" method="post" action="{% url 'student:unsign_jaf' %}">{% csrf_token %}
-							<input type="hidden" name="jaf_id" value="{{jaf.id}}">
-							<button type="submit" class="waves-effect waves-light btn grey darken-4">UnSign</button>
-						</form>
-					</div>
-				{% elif status == "Can Sign" %}
-					<div class="col m12">
-						<form class="center" method="post" action="{% url 'student:sign_jaf' %}">{% csrf_token %}
-							<input type="hidden" name="jaf_id" value="{{jaf.id}}">
-							<button type="submit" class="waves-effect waves-light btn grey darken-4">Sign</button>
-						</form>
-					</div>
-				{% endif %}
+					{% if status == "Signed" %}
+						<div class="col m12">
+							<form class="center" method="post" action="{% url 'student:unsign_jaf' %}">{% csrf_token %}
+								<input type="hidden" name="jaf_id" value="{{jaf.id}}">
+								<button type="submit" class="waves-effect waves-light btn grey darken-4">UnSign</button>
+							</form>
+						</div>
+						{% elif status == "Can Sign" %}
+						<div class="col m12">
+							<form class="center" method="post" action="{% url 'student:sign_jaf' %}">{% csrf_token %}
+								<input type="hidden" name="jaf_id" value="{{jaf.id}}">
+								<button type="submit" class="waves-effect waves-light btn grey darken-4">Sign</button>
+							</form>
+						</div>
+					{% endif %}
 				</div>
 			</div>
 		</div>
 	</div>
-
-<!-- 	<div class="row">
-		<div class="card_container grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
-			<div class="row">
-				<h4>My Selections and Reviews</h4>
+	
+	{% if related_jaf_list %}
+	<div class="row">
+		<div class="jaf card grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
+			<div class="card-content black-text">
+				<div class="row"><span class="card-title center"><h5>Related JAFs</h5></span></div>
 			</div>
-			<div class="row">
-				{% if selection_list %}
-    				<ul class="collapsible popout" data-collapsible="accordion">
-					{% for application in selection_list %}
-					<li>
-						<div class="collapsible-header"><i class="material-icons">assistant</i>
-							<span class="flow-text">{{ application.jaf.company }} - {{ application.jaf.profile.name }} </span> 
-						</div>
-						<div class="collapsible-body" id="{{application.jaf.id}}"><span>
-						{% if application.review %}
-					 		<p>{{ application.review }}</p>
-						{% else %}
-							<p class="flow-text">Add a review</p>
-							<a class="btn-floating btn-small btn waves-effect waves-light grey darken-4" onclick="addReview('{{application.jaf.id}}');">
-								<i class="material-icons small">edit</i>
-							</a>
-						{% endif%}
-						</span></div>
-					</li>
-					{% endfor %}
-				</ul>
-    			{% else %}
-			    	<p class="flow-text center">No selections till now</p>
-			  	{% endif %}
+			<hr>
+			<div class="horizontal">
+				<table class="table striped centered">
+					<tr class="row">
+						{% for related_jaf in related_jaf_list %}	
+							<td>
+								<div class="card grey darken-4 card-tab">
+									<div class="card-content white-text">
+										<span class="card-title">
+											<span class="left">
+												{{related_jaf.company.name}} - {{related_jaf.profile.name}}
+											</span>
+											<br>
+											<span class="right">
+												[{{related_jaf.job_year}} - {{related_jaf.get_job_season_display}}]
+											</span>
+										</span>
+										<p>{{related_jaf.description}}</p>
+									</div>
+									<div class="card-action">
+										<a href="{% url 'student:related_jaf_view' related_jaf.id %}">View More</a>
+									</div>
+								</div>
+							</td>
+						{% endfor %}
+					</tr>
+				</table>
 			</div>
 		</div>
-	</div> -->
+	</div>
+	{% endif %}
 {% endblock %}
-
 {% block script %}
 	{{ block.super }}
 	<script type="text/javascript">
 		$(document).ready(function(){
 			{% for e in eligibility_list %}
-				{% for d in department_list %}
-					{% for p in program_list %}
-						{% if e.department.name == d.name and  e.program.name == p.name %}
-							$("#{{forloop.parentloop.counter}}__{{forloop.counter}}").html('<i class="material-icons small icon-green">done</i>');
-						{% endif %}
+					{% for d in department_list %}
+							{% for p in program_list %}
+									{% if e.department.name == d.name and  e.program.name == p.name %}
+											$("#{{forloop.parentloop.counter}}__{{forloop.counter}}").html('<i class="material-icons small icon-green">done</i>');
+									{% endif %}
+							{% endfor %}
 					{% endfor %}
-				{% endfor %}
 			{% endfor %}
 		});
 	</script>
