@@ -69,7 +69,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - View​ ​ all​ ​ data​ ​ regarding​ ​ past​ ​ interns​ ​ including​ ​ reviews,​ ​ selections​ ​ and​ ​ procedures (DONE) RISH
 - Upload​ ​ resume​ ​ and​ ​ see​ ​ status​ ​ of​ ​ verification​ (if​ ​ time​ ​ permits) (PARTIAL) SOURABH
 - Confirm​ ​ final​ ​ selection​ ​ for​ ​ students​ ​ finally​ ​ shortlisted​ ​ by​ ​ companies (CANCEL) 
-- View training blog (PARTIAL) RISH
+- View final selections of all jafs (DONE) 
 
 #### IC
 - Verify​ ​ resumes (PARTIAL) SOURABH 

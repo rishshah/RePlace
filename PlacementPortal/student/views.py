@@ -10,7 +10,8 @@ from student.models import *
 
 import os,datetime
 from django.utils import timezone
-
+import datetime
+now = datetime.datetime.now()
 
 HOME_URL = '/'
 
@@ -23,9 +24,20 @@ def get_student(user):
 def is_eligible(student, jaf):
     cansign_eligibility = Eligibility.objects.filter(jaf=jaf, department=student.department, program=student.program)
     if len(cansign_eligibility) == 1 and cansign_eligibility[0].jaf.cpi_cutoff <= student.cpi:
-        if len(Application.objects.filter(jaf=jaf,student=student)) == 1:
-            return 'Signed','green'
+        application = Application.objects.filter(jaf=jaf,student=student)
+        if len(application) == 1:
+            if application[0].is_selected:
+                return 'Already selected', 'green'
+            else:
+                for app in  Application.objects.filter(student=student):
+                    if app.is_selected and app.jaf.job_year == datetime.datetime.now().year:
+                        return 'Already Employed','orange'
+                return 'Signed','green'
+
         elif cansign_eligibility[0].jaf.deadline >= timezone.now():
+            for app in  Application.objects.filter(student=student):
+                if app.is_selected and app.jaf.job_year == datetime.datetime.now().year:
+                    return 'Already Employed','orange'
             return 'Can Sign','blue'
         else:
             return 'Past Deadline','grey'
@@ -43,9 +55,28 @@ def home(request):
     if (not auth(request.user)):
         return redirect(HOME_URL)
     student = get_student(request.user)
-    data = {'student': student}    
+    data = {'student': student}        
     return render(request, "student/home.html", context=data)
 
+@login_required()
+def selections(request):
+    if (not auth(request.user)):
+        return redirect(HOME_URL)
+    
+    final_selection_jaf_list = []
+    for jaf in JAF.objects.all().order_by('deadline'):
+        selected_applications = Application.objects.filter(jaf = jaf, is_selected = True)
+        selected_students = []
+        for application in selected_applications:
+            selected_students.append(application.student.name)
+        jaf.selected_student_list = selected_students;
+        if len(selected_students) > 0 :
+            final_selection_jaf_list.append(jaf)  
+
+    data = {'final_selection_jaf_list': final_selection_jaf_list}        
+    return render(request, "student/selections.html", context=data)
+
+    
 @login_required()
 def upload_resume(request):
     if (not auth(request.user)):
