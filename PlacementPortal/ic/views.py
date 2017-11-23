@@ -104,6 +104,27 @@ def verify_resume(request):
     return render(request, "ic/resume.html", context = data)
 
 @login_required()
+def student_verification(request,pk,status):
+    if (not auth(request.user)):
+        return redirect(HOME_URL)  
+    student = Student.objects.get(pk=pk)
+    if(student is None):
+         return redirect(HOME_URL)
+    print(status)
+    if(status == 1):
+        student.resume_verified = True
+    else:
+        student.resume_verified = False
+        print("yes")
+
+
+    student.save()
+
+    print(status)
+
+    return verify_resume(request)
+
+@login_required()
 def view_resume(request, id, resume_number):
     if (not auth(request.user)):
         return redirect(HOME_URL)

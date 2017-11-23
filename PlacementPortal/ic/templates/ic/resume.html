@@ -30,7 +30,7 @@
 								<td>{{ student.department.name }}</td>
 								<td>
 									<p>
-      									<input onclick="location.href='{% url 'ic:view_jaf' jaf.id %}';"  type="checkbox" id="student_{{student.id}}" />
+      									<input onclick="location.href='{% url 'ic:student_verification' student.id 1 %}';"  type="checkbox" id="student_{{student.id}}" />
       									<label for="student_{{student.id}}"></label>
    									 </p>
 								</td>
@@ -48,7 +48,7 @@
 								<td>{{ student.department.name }}</td>
 								<td>
 									<p>
-      									<input onclick="reject()" type="checkbox" id="student_{{student.id}}" checked="checked" />
+      									<input onclick="location.href='{% url 'ic:student_verification' student.id 0 %}';" type="checkbox" id="student_{{student.id}}" checked="checked" />
       									<label for="student_{{student.id}}"></label>
    									 </p>
 								</td>
