@@ -1,18 +1,48 @@
-/*// This container element gives us the scrollbars we want.*/
-div.horizontal {
+.card_container .card .card-image{
+    background-image: url("../images/student_logo.png");
+    background-color: white;
+    background-size: 100% 100%;
+    width: 300px;
+    height: 300px;
+}
+
+.card_container h6 {
+    font-size: 1.1em;
+    font-weight: normal;
+    text-align: left;
+    font-variant: small-caps;
+    font-style: italic;
+}
+.card_container .row .info {
+    text-align: left;
+}
+.card_container .row span {
+    font-size: 1.1em;
+}
+
+.card_container .card .card-image h4{
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    margin-top:65px;
+    margin-left: 8px;
+    text-align: center;
+    color: #ffab40;
+}
+
+
+div.horizontal_scroll {
     width: 100%;
     height: 500px;
     overflow: auto;
 }
 
-/*// table-layout: fixed does a lot of the magic, here. It makes sure that the "table cells" retain the pixel dimensions you want.*/
 .table {
     display: table;
     table-layout: fixed;
     width: 100%;
 }
 
-/*// Arranging your content inside the "cells" is as simple as using the vertical-align and text-align properties. Floats work, too.*/
 table.centered.table tbody tr td{
     width: 410px; 
     height: 420px;
