@@ -84,35 +84,10 @@
 			</div>
 		</div>
 	</div>
-	<div id="modal1" class="modal col l6">
-		<form action="{% url 'student:see_jafs' %}" method="post">{% csrf_token %}
-			<div class="modal-content">
-				<h5 class="center">Filters</h5>
-				<div class="row">
-					<div class="col m6">
-						<input type="checkbox" id="inp1" name="verified" />
-						<label for="inp1" class="black-text">Only Verified Resume</label>
-					</div>
-					<div class="col m6">
-						<input type="checkbox" id="inp2" name="unverified" />
-						<label for="inp2" class="black-text">Only Unverified Resume</label>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<input type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" value="DONE" />
-			</div>
-		</form>
-	</div>
 {% endblock %}
 {% block script %}
 	{{block.super}}
 	<script type="text/javascript">
-		$( document ).ready(function() {
-			$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal1">Filter</a></li>' );
-			$('.links-dropdown li:eq(1)').after( '<li><a class="waves-effect modal-trigger" href="#modal1">Filter</a></li>' );
-			$('.modal').modal();
-		});
 		function verify() {
 		}
 		function reject() {
