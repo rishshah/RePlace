@@ -45,11 +45,16 @@ def home(request):
 def view_students(request, pk):
     if (not auth(request.user)):
         return redirect(HOME_URL)
-    student_list = Student.objects.filter(application__jaf__pk=pk)
 
-    data = {'student_list':student_list,
-            }
-    return render(request, "company/students.html", context = data)
+    if request.method == "POST":
+        pass
+    else:
+        jaf = JAF.objects.get(id=pk)
+        student_applied_list = Student.objects.filter(application__jaf__pk=pk)
+        test_list = JAFTest.objects.filter(jaf=jaf)
+        data = {'student_list':student_applied_list, 'test_list': test_list}
+        return render(request, "company/students.html", context = data)
+
 
 @login_required()
 def new_jaf(request):
