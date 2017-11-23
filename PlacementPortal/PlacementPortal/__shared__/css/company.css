@@ -63,3 +63,21 @@ ul.stepper.horizontal .step-actions{
 .picker__time-display{
     background-color: black;
 }
+
+.card_container th{
+    font-size: 1em;
+}
+
+.checkbox-black[type="checkbox"].filled-in:checked + label:after{
+    border: 2px solid #2196f3;
+    background-color: #2196f3;
+}
+
+[type="checkbox"]:checked+label:before{
+    border-right: 2px solid #2196f3;
+    border-bottom: 2px solid #2196f3;
+}
+
+.checkbox-black[type="checkbox"].filled-in:not(:checked)+label:after{
+    border: 2px solid #2196f3;
+}

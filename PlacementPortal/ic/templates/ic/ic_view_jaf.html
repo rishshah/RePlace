@@ -148,7 +148,7 @@
 				{% for d in department_list %}
 					{% for p in program_list %}	
 						{% if e.department.name == d.name and  e.program.name == p.name %}	
-							$("#{{forloop.parentloop.counter}}__{{forloop.counter}}").html('<i class="material-icons small icon-green">done</i>');
+							$("{{forloop.parentloop.counter}}__{{forloop.counter}}").html('<i class="material-icons small icon-green">done</i>');
 						{% endif %}
 
 					{% endfor %}
