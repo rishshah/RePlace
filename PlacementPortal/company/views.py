@@ -13,6 +13,9 @@ from .models import *
 from student.models import *
 from replace.models import *
 
+
+import datetime
+
 HOME_URL = '/'
 
 def auth(user):
@@ -49,6 +52,7 @@ def new_jaf(request):
 		requirements = request.POST.get("requirements")
 		posting = request.POST.get("posting")
 		resume_type = request.POST.get("resume_type")
+		job_season = request.POST.get("job_season")
 		year = request.POST.get("year")
 		duration = request.POST.get("duration")
 		accommodation = request.POST.get("accommodation")
@@ -64,16 +68,20 @@ def new_jaf(request):
 		test_description = request.POST.getlist("test_description")
 		test_length = len(test_type_name)
 		profile = JobProfile.objects.get(name = profile_name)
+		print (job_season)
 		jaf = JAF(company = company, description = description, profile = profile, other_details = other_details, accomodation = accommodation)
 		jaf.requirements = requirements
-		jaf.resume_type = resume_type
+		jaf.resume_number = resume_type
 		jaf.job_year = int(year)
+		jaf.job_season = int(job_season)
 		jaf.duration = float(duration)
 		jaf.cpi_cutoff = float(cpi_cutoff)
 		jaf.stipend = float(stipend)
 		jaf.currency = currency
 		jaf.posting = posting
+		jaf.deadline = datetime.datetime.now()
 		jaf.save()
+		print (eligibility_list)
 		for eligibility_data in eligibility_list:
 			department_name,program_name = eligibility_data.split("-")
 			department = Department.objects.get(name = department_name)
@@ -82,7 +90,7 @@ def new_jaf(request):
 			eligibility.save()
 		for i in range(0,test_length):
 			test_type = TestType.objects.get(type = test_type_name[i])
-			jaftest = JAFTest(jaf = jaf, test_type = test_type, duration = float(test_duration[i]), description = test_description[i])
+			jaftest = JAFTest(jaf = jaf, test_number = i+1, test_type = test_type, duration = float(test_duration[i]), description = test_description[i])
 			jaftest.save()
 		return redirect("/company/")
 	else :
