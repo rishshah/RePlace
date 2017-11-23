@@ -1,5 +1,4 @@
 {% extends 'company/root.html' %}
-
 {% block content %}
 	{{ block.super }}
 	<div class="row">
@@ -13,10 +12,10 @@
 							<div class="row">
 								<div class="input-field col s6">
 									<i class="material-icons prefix">dashboard</i>
-									<select multiple>
+									<select>
 										<option value="" disabled selected>Choose job profiles</option>
 										{% for job_profile in job_profile_list %}
-										<option value="{{job_profile.name}}">{{job_profile.name}}</option>
+											<option value="{{job_profile.name}}">{{job_profile.name}}</option>
 										{% endfor %}
 									</select>
 									<label>Job Profile</label>
@@ -93,34 +92,29 @@
 						<div class="step-title waves-effect">Eligibility</div>
 						<div class="step-content">
 							<div class="row">
-								<div class="input-field col m12">
-									<i class="material-icons prefix tiny">school</i>
-									
-										<table class="striped bordered centered">
-											<thead>
-												<tr>
-													<th>Departments</th>
-													{% for program in program_list %}
-													<th>{{program.name}}</th>
-													{% endfor %}
-												</tr>
-											</thead>
-											<tbody>
-												{% for department in department_list %}
-												<tr>
-													<th>{{department.name}}</th>
-													{% for program in program_list %}	
-														<td><p>
-															<input id="{{forloop.parentloop.counter}}_{{forloop.counter}}" type="checkbox"/>
-															<label for="{{forloop.parentloop.counter}}_{{forloop.counter}}">&nbsp;</label>
-														</p></td>
-													{% endfor %}
-												</tr>
+								<table class="striped bordered centered">
+									<thead>
+										<tr>
+											<th>Departments</th>
+											{% for program in program_list %}
+												<th>{{program.name}}</th>
+											{% endfor %}
+										</tr>
+									</thead>
+									<tbody>
+										{% for department in department_list %}
+											<tr>
+												<th>{{department.name}}</th>
+												{% for program in program_list %}
+													<td>
+														<input id="{{forloop.parentloop.counter}}_{{forloop.counter}}" type="checkbox"/>
+														<label for="{{forloop.parentloop.counter}}_{{forloop.counter}}">&nbsp;</label>
+													</td>
 												{% endfor %}
-											</tbody>
-										</table>
-									<label>Programs</label>
-								</div>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
 							</div>
 							<div class="row">
 								<div class="input-field col s3">
@@ -171,9 +165,9 @@
 									<textarea id="icon_description3" class="materialize-textarea validate" data-length="200"></textarea>
 									<label for="icon_description3">Test Description</label>
 								</div>
-									<a id="addbtn" class="btn-floating btn-small waves-effect waves-light btn grey darken-4" onclick="addTest();">
-										<i class="material-icons">add</i>
-									</a>
+								<a id="addbtn" class="btn-floating btn-small waves-effect waves-light btn grey darken-4" onclick="addTest();">
+									<i class="material-icons">add</i>
+								</a>
 							</div>
 							<hr class="dark">
 							<div class="row">
@@ -195,13 +189,11 @@
 		</div>
 	</div>
 {% endblock %}
-
 {% block script %}
-	{{ block.super }}	
+	{{ block.super }}
 	<script type="text/javascript">
 		var counter = 2;
 		var limit = 6;
-
 		$(document).ready(function() {
 			$('select').material_select();
 			$('.modal').modal();
@@ -215,59 +207,56 @@
 				closeOnSelect: true // Close upon selecting a date,
 			});
 			$('.timepicker').pickatime({
-			    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
-			    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
-			    twelvehour: false, // Use AM/PM or 24-hour format
-			    donetext: 'OK', // text for done-button
-			    cleartext: 'Clear', // text for clear-button
-			    canceltext: 'Cancel', // Text for cancel-button
-			    autoclose: true, // automatic close timepicker
-			    ampmclickable: true, // make AM PM clickable
-			    aftershow: function(){} //Function for after opening timepicker
+			default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+			fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+			twelvehour: false, // Use AM/PM or 24-hour format
+			donetext: 'OK', // text for done-button
+			cleartext: 'Clear', // text for clear-button
+			canceltext: 'Cancel', // Text for cancel-button
+			autoclose: true, // automatic close timepicker
+			ampmclickable: true, // make AM PM clickable
+			aftershow: function(){} //Function for after opening timepicker
 			});
 			$(function(){
 				$('.stepper').activateStepper();
 			});
 		});
-
 		function addTest(){
 			var row1 = document.createElement('div');
-		      	row1.setAttribute('class','row');
-		      	row1.setAttribute('id',"test" + counter.toString() + "-1");
-		      	row1.innerHTML = '<div class="input-field col s6">'+
-									'<i class="material-icons prefix small">event_seat</i>'+
-									'<select>'+
-									'<option value="" disabled selected>Choose Test Type</option>'+
-									'<option value="1">Technical Test</option>'+
-									'<option value="2">Aptitude Test</option>'+
-									'<option value="3">Group Discussion</option>'+
-									'<option value="4">Technical Interview</option>'+
-									'<option value="5">HR Round</option>'+
-									'</select>'+
-									'<label>Test Type</label>'+
+			row1.setAttribute('class','row');
+			row1.setAttribute('id',"test" + counter.toString() + "-1");
+			row1.innerHTML = '<div class="input-field col s6">'+
+										'<i class="material-icons prefix small">event_seat</i>'+
+										'<select>'+
+											'<option value="" disabled selected>Choose Test Type</option>'+
+											'<option value="1">Technical Test</option>'+
+											'<option value="2">Aptitude Test</option>'+
+											'<option value="3">Group Discussion</option>'+
+											'<option value="4">Technical Interview</option>'+
+											'<option value="5">HR Round</option>'+
+										'</select>'+
+										'<label>Test Type</label>'+
 								'</div>'+
 								'<div class="input-field col s6">'+
-									'<i class="material-icons prefix tiny">date_range</i>'+
-									'<input type="number" min="0" step="10" class="validate">'+
-									'<label>Test Duration (in min)</label>'+
+										'<i class="material-icons prefix tiny">date_range</i>'+
+										'<input type="number" min="0" step="10" class="validate">'+
+										'<label>Test Duration (in min)</label>'+
 								'</div>';
-
-		    var row2 = document.createElement('div');
-		      	row2.setAttribute('class','row');
-		      	row2.setAttribute('id',"test" + counter.toString() + "-2");
-		      	row2.innerHTML = '<div class="input-field col s8">'+
-									'<i class="material-icons prefix tiny">mode_edit</i>'+
-									'<textarea id="icon_description3" class="materialize-textarea validate" data-length="200"></textarea>'+
-									'<label for="icon_description3">Test Description</label>'+
+		var row2 = document.createElement('div');
+			row2.setAttribute('class','row');
+			row2.setAttribute('id',"test" + counter.toString() + "-2");
+			row2.innerHTML = '<div class="input-field col s8">'+
+										'<i class="material-icons prefix tiny">mode_edit</i>'+
+										'<textarea id="icon_description3" class="materialize-textarea validate" data-length="200"></textarea>'+
+										'<label for="icon_description3">Test Description</label>'+
 								'</div>';
-
-		 	$('#test'+(counter-1).toString() + "-1").before(row2);
-		 	$('#test'+(counter).toString() + "-2").after("<hr>");
-		 	$('#test'+(counter).toString() + "-2").before(row1);
-		    counter++;
-		    $('select').material_select();
-		    if(counter==limit)
-		      	$('#addbtn').attr('class','disabled btn-floating waves-effect waves-light grey darken-2 btn');
+			$('#test'+(counter-1).toString() + "-1").before(row2);
+			$('#test'+(counter).toString() + "-2").after("<hr>");
+			$('#test'+(counter).toString() + "-2").before(row1);
+		counter++;
+		$('select').material_select();
+		if(counter==limit)
+			$('#addbtn').attr('class','disabled btn-floating waves-effect waves-light grey darken-2 btn');
 		}
 	</script>
 {% endblock %}

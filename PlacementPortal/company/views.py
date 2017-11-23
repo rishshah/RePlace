@@ -49,6 +49,16 @@ def new_jaf(request):
 		posting = request.POST.get("posting")
 		resume_type = request.POST.get("resume_type")
 		year = request.POST.get("year")
+		duration = request.POST.get("duration")
+		accomodation = request.POST.get("accomodation")
+		other_details = request.POST.get("other_details")
+		cpi_cutoff = request.POST.get("cpi_cutoff")
+		stipend = request.POST.get("stipend")
+		currency = request.POST.get("currency")
+		department_list = request.POST.getlist("department")
+		program_list = request.POST.getlist("program")
+
+		
 		return redirect("/company/")
 	else :
 		resume_type_list = Resume._meta.get_field("resume_number").choices
