@@ -1,0 +1,48 @@
+/*// This container element gives us the scrollbars we want.*/
+div.horizontal {
+    width: 100%;
+    height: 500px;
+    overflow: auto;
+}
+
+/*// table-layout: fixed does a lot of the magic, here. It makes sure that the "table cells" retain the pixel dimensions you want.*/
+.table {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+/*// Arranging your content inside the "cells" is as simple as using the vertical-align and text-align properties. Floats work, too.*/
+table.centered.table tbody tr td{
+    width: 410px; 
+    height: 420px;
+}
+
+.card.card-tab{
+    height: 420px;
+    vertical-align: middle;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.card.card-tab  p{
+    overflow: auto;
+    height: 150px;  
+} 
+.card.card-tab  .card-title{
+    overflow: auto;
+    height: 150px;  
+    padding-left: 10px;
+    padding-right: 10px;
+} 
+
+.card.card-tab  .card-action{
+    padding-bottom: 0px;
+    margin-top: 10px;  
+} 
+
+// Some styling for contrast.
+article:nth-child(2n+2)
+{
+    background: #d1d1d1;
+}

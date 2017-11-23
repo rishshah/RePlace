@@ -183,11 +183,28 @@ def view_jaf(request,pk):
     test_list = JAFTest.objects.filter(jaf = jaf)
     jaf.student_count = Application.objects.filter(jaf = jaf).count()
     signing_status = is_eligible(get_student(request.user),jaf)[0]
+    # related_jaf_list = JAF.objects.filter(company=jaf.company, job_year__lt=jaf.job_year)
+    related_jaf_list = JAF.objects.all()#(company=jaf.company, profile=jaf.profile)
     data = {'jaf':jaf, 
             'eligibility_list':eligibility_list, 
             'program_list': program_list,
             'department_list': department_list,
             'test_list': test_list,
-            'status': signing_status
+            'status': signing_status,
+            'related_jaf_list':related_jaf_list
             }
     return render(request, "student/student_view_jaf.html", context = data)
+
+def related_jaf_view(request, jaf_id):
+    jaf = JAF.objects.filter(id= jaf_id)[0]
+    test_list = JAFTest.objects.filter(jaf = jaf)
+    selection_list = Application.objects.filter(jaf = jaf, is_selected=True)
+    count_selected = len(selection_list)
+    count_applied = Application.objects.filter(jaf = jaf).count()
+    data = {'jaf':jaf,
+            'selection_list': selection_list,
+            'count_applied': count_applied,
+            'count_selected': count_selected,
+            'test_list': test_list
+        }
+    return render(request, "student/related_view_jaf.html", context = data)
