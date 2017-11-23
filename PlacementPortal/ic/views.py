@@ -110,13 +110,20 @@ def student_verification(request,pk,status):
     student = Student.objects.get(pk=pk)
     if(student is None):
          return redirect(HOME_URL)
-    if(status):
+    print(status)
+    if(status == 1):
         student.resume_verified = True
     else:
         student.resume_verified = False
+        print("yes")
 
-    return resume(request)
-    
+
+    student.save()
+
+    print(status)
+
+    return verify_resume(request)
+
 @login_required()
 def view_resume(request, id, resume_number):
     if (not auth(request.user)):
