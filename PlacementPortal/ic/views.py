@@ -100,7 +100,8 @@ def verify_resume(request):
         return redirect(HOME_URL)
     verified_students = Student.objects.filter(resume_verified = True)
     unverified_students = Student.objects.filter(resume_verified = False)
-    data = {'verified_students':verified_students, 'unverified_students':unverified_students}
+    resume_type_list = Resume._meta.get_field("resume_number").choices
+    data = {'verified_students':verified_students, 'unverified_students':unverified_students, 'resume_type_list':resume_type_list}
     return render(request, "ic/resume.html", context = data)
 
 @login_required()
