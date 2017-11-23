@@ -3,10 +3,14 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 
 from .models import *
-from company.models import JAF, Category, JobProfile
-from replace.models import Application
+from company.models import *
+from replace.models import *
+from student.models import *
+
 
 import os,datetime
+from django.utils import timezone
+
 
 HOME_URL = '/'
 
@@ -15,6 +19,18 @@ def auth(user):
 
 def get_student(user):
     return Student.objects.get(user = user)
+
+def is_eligible(student, jaf):
+    cansign_eligibility = Eligibility.objects.filter(jaf=jaf, department=student.department, program=student.program)
+    if len(cansign_eligibility) == 1 and cansign_eligibility[0].jaf.cpi_cutoff <= student.cpi:
+        if len(Application.objects.filter(jaf=jaf,student=student)) == 1:
+            return 'Signed','green'
+        elif cansign_eligibility[0].jaf.deadline >= timezone.now():
+            return 'Can Sign','blue'
+        else:
+            return 'Past Deadline','grey'
+    else:
+        return 'Not Eligible','red' 
 
 @login_required()
 def logout(request):
@@ -84,9 +100,11 @@ def see_jafs(request):
 
     student = get_student(request.user)
     jaf_list = JAF.objects.all()
+    for jaf in jaf_list:
+        jaf.student_count  = Application.objects.filter(jaf = jaf).count()
+        jaf.eligibility,jaf.eligibility_color = is_eligible(student,jaf)
 
     if request.method=="POST":
-        print(request.POST)
         all_categorys = [category.type for category in Category.objects.all()]
         categorys = [key for key in request.POST.keys() if key in all_categorys]
         jaf_list = jaf_list.filter(company__category__type__in=categorys)
@@ -98,7 +116,7 @@ def see_jafs(request):
             jaf_list = jaf_list.filter(application__student=student)
 
         if 'pre_deadline' in request.POST.keys():
-            jaf_list = jaf_list.filter(deadline__lt=datetime.date.today())
+            jaf_list = jaf_list.filter(deadline__gt=datetime.date.today())
 
         try:
             min_stipend = float(request.POST['minstipend'])
@@ -114,8 +132,6 @@ def see_jafs(request):
         except:
             pass
 
-
-
     data = {'jaf_list': jaf_list,
             'job_profile_list': JobProfile.objects.all(),
             'company_category_list':Category.objects.all()
@@ -123,14 +139,55 @@ def see_jafs(request):
     return render(request, "student/jaf_list.html", context=data)
 
 @login_required()
-def sign_jafs(request):
+def sign_jaf(request):
     if not auth(request.user):
         return redirect(HOME_URL)
 
+    student = get_student(request.user);
     if (request.method == "POST"):
-        student = get_student(request.user)
-        jaf_id = request.POST.get("jaf_id")
-        jaf = JAF.objects.get(id = jaf_id)
-        application = Application(student = student, jaf = jaf)
-        application.save()
-        return redirect('/student/')
+        jaf = JAF.objects.get(id = request.POST.get("jaf_id"))
+        if is_eligible(student, jaf)[0] == 'Can Sign':
+            application = Application(student = student, jaf = jaf)
+            application.save()
+        return redirect('/student/see_jafs/')
+
+@login_required()
+def unsign_jaf(request):
+    if not auth(request.user):
+        return redirect(HOME_URL)
+
+    student = get_student(request.user);
+    if (request.method == "POST"):
+        jaf = JAF.objects.get(id = request.POST.get("jaf_id"))
+        if is_eligible(student, jaf)[0] == 'Signed':
+            application = Application.objects.get(student = student, jaf = jaf)
+            application.delete()
+        return redirect('/student/see_jafs/')
+
+@login_required()
+def view_jaf(request,pk):
+    if (not auth(request.user)):
+        return redirect(HOME_URL)
+    jaf = JAF.objects.get(pk = pk)
+    if (jaf is None):
+        return redirect(HOME_URL)
+    eligibility_list = Eligibility.objects.filter(jaf = jaf)
+
+    program_list = set()
+    department_list = set()
+        
+    for e in eligibility_list:  
+         program_list.add(e.program)
+         department_list.add(e.department)
+    
+    test_list = JAFTest.objects.filter(jaf = jaf)
+    jaf.student_count = Application.objects.filter(jaf = jaf).count()
+    signing_status = is_eligible(get_student(request.user),jaf)[0]
+    data = {'jaf':jaf, 
+            'eligibility_list':eligibility_list, 
+            'program_list': program_list,
+            'department_list': department_list,
+            'test_list': test_list,
+            'status': signing_status
+            }
+    return render(request, "student/student_view_jaf.html", context = data)

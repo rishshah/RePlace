@@ -17,6 +17,9 @@
 					<p><h6>Description</h6>{{jaf.description}}</p>
 				</div>
 				<div class="row">
+					<p><h6>Additional Info</h6>{{jaf.other_details}}</p>
+				</div>
+				<div class="row">
 					<p><h6>Requirements</h6>{{jaf.requirements}}</p>
 				</div>
 				<div class="row">
@@ -29,31 +32,41 @@
 				</div>
 				<hr>
 				<div class="row">
-					<p><h6>Salary Details</h6></p>
+					<p><h6>Eligibily Details</h6></p>
 					<table class="striped bordered centered">
 						<thead>
 							<tr>
-								<th>Department</th>
-								<th>Program</th>
-								<th>CPI CutOff</th>
-								<th>Stipend</th>
+								<th>Departments</th>
+								{% for program in program_list %}
+								<th>{{program.name}}</th>
+								{% endfor %}
 							</tr>
 						</thead>
 						<tbody>
-							{% for eligibility in eligibility_list %}
-								<tr>
-									<td>{{ eligibility.department }}</td>
-									<td>{{ eligibility.program }}</td>
-									<td>{{ eligibility.cpi_cutoff }}</td>
-									<td>{{ eligibility.stipend }} &nbsp {{ eligibility.currency }}</td>
-								</tr>
+							{% for department in department_list %}
+							<tr>
+								<th>{{department.name}}</th>
+								{% for program in program_list %}	
+									<td id="{{forloop.parentloop.counter}}_{{forloop.counter}}"><i class="material-icons icon-red small">clear</i></td>
+								{% endfor %}
+							</tr>
 							{% endfor %}
 						</tbody>
 					</table>
 				</div>
+				<hr>
+				<div class="row">
+					<p><h6>Stipend</h6>{{jaf.stipend}} &nbsp {{ jaf.currency }}</p>
+				</div>
+				<hr>
 				<div class="row">
 					<p><h6>Selection Procedure</h6></p>
 					<table class="striped bordered centered">
+						<col width="100px" />
+						<col width="150px" />
+						<col width="100px" />
+						<col width="100px" />
+						<col width="100px" />
 						<thead>
 							<tr>
 								<th>Test</th>
@@ -78,7 +91,7 @@
 				</div>
 				<hr>
 				<div class="row">
-					<p><h6>Additional Info</h6>{{jaf.other_details}}</p>
+					<p><h6>Students Applied</h6>{{jaf.student_count}}</p>
 				</div>
 			</div>
 		</div>
@@ -93,9 +106,9 @@
 					<table class="striped bordered centered">
 						<col width="100px" />
 						<col width="150px" />
+						<col width="50px" />
 						<col width="100px" />
-						<col width="100px" />
-						<col width="100px" />
+						<col width="200px" />
 						<thead>
 							<tr>
 								<th>Test</th>
@@ -130,7 +143,17 @@
 	{{ block.super }}
 	<script type="text/javascript">
 		$(document).ready(function(){
-		$('#modal3').modal();
+			$('#modal3').modal();
+			{% for e in eligibility_list %}
+				{% for d in department_list %}
+					{% for p in program_list %}	
+						{% if e.department.name == d.name and  e.program.name == p.name %}	
+							$("#{{forloop.parentloop.counter}}__{{forloop.counter}}").html('<i class="material-icons small icon-green">done</i>');
+						{% endif %}
+
+					{% endfor %}
+				{% endfor %}
+			{% endfor %}
 		});
 		function editJaf(){
 			$('#modal3').modal('open');

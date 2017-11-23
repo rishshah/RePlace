@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
 		<link rel="stylesheet" href="{% static 'css/materialize-icon.css' %}">
+		<link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
 		
 		{% block css %}
 		{% endblock %}
@@ -21,7 +22,7 @@
 		{% block script %}
 		{% endblock %}
 	</head>
-	<body  background="{% static 'images/placements.jpg' %}";   style="background-size: 150%; background-repeat: no-repeat;" >
+	<body background="{% static 'images/placements.jpg' %}">
 		<nav>
 			<div class="nav-wrapper black">
 				<a href="{% url 'replace:index' %}" class="brand-logo">
