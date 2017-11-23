@@ -100,27 +100,25 @@ def see_jafs(request):
 
     student = get_student(request.user)
     jaf_list = JAF.objects.all()
-    for jaf in jaf_list:
-        jaf.student_count  = Application.objects.filter(jaf = jaf).count()
-        jaf.eligibility,jaf.eligibility_color = is_eligible(student,jaf)
 
     if request.method=="POST":
-        all_categorys = [category.type for category in Category.objects.all()]
-        categorys = [key for key in request.POST.keys() if key in all_categorys]
-        jaf_list = jaf_list.filter(company__category__type__in=categorys)
 
         if 'cansign' in request.POST.keys():
+            print(1)
             jaf_list = jaf_list.filter(eligibility__department=student.department, eligibility__program=student.program, cpi_cutoff__lt=student.cpi, deadline__lt=datetime.date.today())
 
         if 'signed' in request.POST.keys():
+            print(2)
             jaf_list = jaf_list.filter(application__student=student)
 
         if 'pre_deadline' in request.POST.keys():
+            print(3)
             jaf_list = jaf_list.filter(deadline__gt=datetime.date.today())
 
         try:
             min_stipend = float(request.POST['minstipend'])
             max_stipend = float(request.POST['maxstipend'])
+            print(4)
             jaf_list = jaf_list.filter(stipend__gt=min_stipend, stipend__lt=max_stipend)
         except:
             pass
@@ -128,9 +126,22 @@ def see_jafs(request):
         try:
             min_cpi = float(request.POST['mincpi'])
             max_cpi = float(request.POST['maxcpi'])
+            print(5)
             jaf_list = jaf_list.filter(cpi_cutoff__gt=min_cpi, cpi_cutoff__lt=max_cpi)
         except:
             pass
+
+        if 'job_profile' in request.POST:
+            jaf_list = jaf_list.filter(profile__name__in=request.POST.getlist('job_profile'))
+        if 'company_category' in request.POST:
+            jaf_list = jaf_list.filter(company__category__type__in=request.POST.getlist('company_category'))
+
+        print(request.POST)
+
+
+    for jaf in jaf_list:
+        jaf.student_count  = Application.objects.filter(jaf = jaf).count()
+        jaf.eligibility,jaf.eligibility_color = is_eligible(student,jaf)
 
     data = {'jaf_list': jaf_list,
             'job_profile_list': JobProfile.objects.all(),
@@ -156,7 +167,7 @@ def unsign_jaf(request):
     if not auth(request.user):
         return redirect(HOME_URL)
 
-    student = get_student(request.user);
+    student = get_student(request.user)
     if (request.method == "POST"):
         jaf = JAF.objects.get(id = request.POST.get("jaf_id"))
         if is_eligible(student, jaf)[0] == 'Signed':
@@ -193,6 +204,7 @@ def view_jaf(request,pk):
             'status': signing_status,
             'related_jaf_list':related_jaf_list
             }
+
     return render(request, "student/student_view_jaf.html", context = data)
 
 def related_jaf_view(request, jaf_id):
