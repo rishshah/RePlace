@@ -44,7 +44,7 @@
 							<tr>
 								<th>{{department.name}}</th>
 								{% for program in program_list %}	
-									<td id="{{forloop.parentloop.counter}}__{{forloop.counter}}"><i class="material-icons icon-red small">clear</i></td>
+									<td id="{{forloop.parentloop.counter}}_{{forloop.counter}}"><i class="material-icons icon-red small">clear</i></td>
 								{% endfor %}
 							</tr>
 							{% endfor %}
@@ -54,7 +54,7 @@
 				<hr>
 				<div class="row">
 					<div class="col">
-						<p><h6>Stipend</h6>{{jaf.stipend}} &nbsp {{ jaf.currency }}</p>
+						<p><h6>Stipend</h6>{{jaf.stipend}} {{ jaf.currency }}</p>
 					</div>
 				</div>
 				<hr>

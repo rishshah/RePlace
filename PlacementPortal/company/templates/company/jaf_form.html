@@ -93,25 +93,33 @@
 						<div class="step-title waves-effect">Eligibility</div>
 						<div class="step-content">
 							<div class="row">
-								<div class="input-field col s6">
+								<div class="input-field col m12">
 									<i class="material-icons prefix tiny">school</i>
-									<select multiple>
-										<option value="" disabled selected>Choose Programs</option>
-										{% for program in program_list%}
-											<option value="{{program.name}}">{{program.name}}</option>
-										{% endfor %}
-									</select>
+									
+										<table class="striped bordered centered">
+											<thead>
+												<tr>
+													<th>Departments</th>
+													{% for program in program_list %}
+													<th>{{program.name}}</th>
+													{% endfor %}
+												</tr>
+											</thead>
+											<tbody>
+												{% for department in department_list %}
+												<tr>
+													<th>{{department.name}}</th>
+													{% for program in program_list %}	
+														<td><p>
+															<input id="{{forloop.parentloop.counter}}_{{forloop.counter}}" type="checkbox"/>
+															<label for="{{forloop.parentloop.counter}}_{{forloop.counter}}">&nbsp;</label>
+														</p></td>
+													{% endfor %}
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
 									<label>Programs</label>
-								</div>
-								<div class="input-field col s6">
-									<i class="material-icons prefix tiny">school</i>
-									<select multiple>
-										<option value="" disabled selected>Choose Departments</option>
-										{% for dept in department_list%}
-										<option value="{{dept.name}}">{{dept.name}}</option>
-										{% endfor %}
-									</select>
-									<label>Departments</label>
 								</div>
 							</div>
 							<div class="row">
