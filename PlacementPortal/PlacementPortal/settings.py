@@ -134,11 +134,11 @@ LOGIN_URL = '/login/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'resume')
 MEDIA_URL = '/resume/'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
-# EMAIL_USE_TLS = False
-# EMAIL_HOST = 'smtp.gmail.com' 
-# EMAIL_PORT = 1025
-# EMAIL_HOST_USER = 'rishshah17@gmail.com' 
-# DEFAULT_FROM_EMAIL = 'testing@testing.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'replace.notify@gmail.com'
+EMAIL_HOST_PASSWORD = 'passypass'
+EMAIL_PORT = 587
+
 
 django.setup()
