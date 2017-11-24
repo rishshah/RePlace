@@ -48,28 +48,39 @@ def view_students(request, pk):
 
     jaf = JAF.objects.get(id=pk)
     student_applied_list = Student.objects.filter(application__jaf__pk=pk)
-    test_list = JAFTest.objects.filter(jaf=jaf)
+    test_list = JAFTest.objects.filter(jaf=jaf).order_by('test_number')
+   
+    for student in student_applied_list:
+        student.progress = Application.objects.get(jaf__pk=pk, student=student).progress
+    data = {'student_list':student_applied_list, 'test_list': test_list, 'jaf':jaf, 'total_tests': len(test_list), 'confirmation': 0}
+    return render(request, "company/students.html", context = data)
 
-    if request.method == "POST":
-        pass
-    else:
-        jaf = JAF.objects.get(id=pk)
-        student_applied_list = Student.objects.filter(application__jaf__pk=pk)
-        for student in student_applied_list:
-            student.progress = Application.objects.get(jaf__pk=pk, student=student).progress
-        test_list = JAFTest.objects.filter(jaf=jaf)
-        data = {'student_list':student_applied_list, 'test_list': test_list, 'jaf':jaf}
-        return render(request, "company/students.html", context = data)
-
+@login_required()
+def confirmation(request, pk):
+    if (not auth(request.user)):
+        return redirect(HOME_URL)
+    
+    #send mail
+    return redirect('/company/jaf/'+pk)
 
 @login_required()
 def shortlist(request):
-    if auth(request.user) and request.method=="POST":
+    if auth(request.user) and request.method == "POST":
         application = Application.objects.get(jaf__pk=request.POST['jaf'], student__id=request.POST['student_id'])
-        application.progress = request.POST['test_number']
+        if request.POST['value'] == 'true':
+            application.progress = request.POST['test_number']
+        else:
+            application.progress = application.progress - 1    
         application.save()
-        if request.POST['test_number']==JAFTest.objects.filter(jaf__pk=request.POST['jaf']).count():
-            pass
+        if int(request.POST['test_number']) == JAFTest.objects.filter(jaf__pk=request.POST['jaf']).count() :
+            if request.POST['value'] == 'true':
+                application.is_selected = True
+                application.save()
+            else:
+                application.is_selected = False
+                application.save()
+            return HttpResponse("finalized")
+
         return HttpResponse("true")
     else:
         return HttpResponse("false")

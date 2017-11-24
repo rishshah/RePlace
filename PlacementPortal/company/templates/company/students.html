@@ -1,9 +1,12 @@
 {% extends 'company/root.html' %}
 {% block content %}
 	<div class="row">
-		<div class="card_container grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
+		<div class="card_container grey lighten-5 col xl10 offset-xl1 l10 offset-l1 m12 s12">
 			<div class="row">
 				<h4> List Of Applicants </h4>
+				{% if confirmation ==  0 %} 
+					<a href="{% url 'company:confirmation' jaf.id %}" class="right waves-effect waves-light btn grey darken-4">Confirm Selections</a>
+				{% endif %}
 			</div>
 			<div class="row">
 				<table class="highlight bordered centered">
@@ -29,7 +32,23 @@
 								<td>{{ student.cpi }}</td>
                                 {% for test in test_list %}
                                 <td data-field="name">
-                                    <input type="checkbox" id="{{student.id}}-{{test.test_number}}" onchange="shortlist({{student.id}},{{test.test_number}},this);" debug="{{test.test_number}}, {{student.progress}}" {% if test.test_number <= student.progress %}checked="true" disabled="disabled" {%endif%}>
+                                    <input type="checkbox" id="{{student.id}}-{{test.test_number}}" onchange="shortlist('{{student.name}}', {{student.id}}, {{test.test_number}}, this);" debug="{{test.test_number}}, {{student.progress}}"  
+                                    {% if confirmation ==  0 %} 
+	                                    {% if test.test_number ==  total_tests  and  total_tests ==  student.progress %} 
+	                                    	checked = "checked"
+	                                    {% elif test.test_number < student.progress|add:"1" %} 
+	                                    	checked = "checked" disabled="disabled" 
+	                                    {% elif test.test_number > student.progress|add:"1"%}
+	                                    	disabled="disabled" 
+	                                    {% endif %} 
+	                                {% else %}
+	                                	disabled="disabled"
+	                                	{% if test.test_number < student.progress|add:"1" %} 
+	                                    	checked = "checked" 
+	                                    {% endif %} 
+	                                {% endif %}   
+	                                    />
+
                                     <label for="{{student.id}}-{{test.test_number}}"></label>
                                 </td>
                                 {% endfor %}
@@ -45,7 +64,7 @@
 {% block script %}
 	{{ block.super }}
 	<script type="text/javascript">
-	    function shortlist(student_id, test_num, box){
+	    function shortlist(student_name, student_id, test_num, box){
 	        $.ajax({
                 url:'{% url 'company:shortlist' %}',
                 type:'post',
@@ -57,12 +76,32 @@
                     jaf:'{{jaf.id}}'
                 },
                 success:function(data){
-                if(data)
-                    Materialize.toast('Updated.', 1000);
-                else{
-                    box.checked = !box.checked;
-                    Materialize.toast('Failed to update.', 4000);
-                }
+	                if(data == 'finalized'){
+	                    if (box.checked){
+	                    	Materialize.toast(student_name + '  Selected!', 1000);
+	                		$("#" + student_id + "-" + (parseInt(test_num) + 1)).removeAttr("disabled");  
+		              		$("#" + student_id + "-" + (parseInt(test_num) - 1)).attr("disabled", true);  	
+		              	}
+		              	else{
+	                    	Materialize.toast(student_name + '  Deselected!', 1000);	
+		              		$("#" + student_id + "-" + (parseInt(test_num) + 1)).attr("disabled", true);  
+							$("#" + student_id + "-" + (parseInt(test_num) - 1)).removeAttr("disabled");  
+		              	}
+	                }
+	                else if(data == 'true'){
+	                    Materialize.toast('Updated.', 1000);
+	              		if (box.checked){
+		              		$("#" + student_id + "-" + (parseInt(test_num) + 1)).removeAttr("disabled");  
+		              		$("#" + student_id + "-" + (parseInt(test_num) - 1)).attr("disabled", true);  	
+	              		} else {
+							$("#" + student_id + "-" + (parseInt(test_num) + 1)).attr("disabled", true);  
+							$("#" + student_id + "-" + (parseInt(test_num) - 1)).removeAttr("disabled");  
+	              		}
+	                }
+	                else{
+	                    box.checked = !box.checked;
+	                    Materialize.toast('Failed to update.', 4000);
+	                }
                 },
                 failure:function(){
                     box.checked = !box.checked;
@@ -71,9 +110,4 @@
             });
 	    }
 	</script>
-<!--
-    {% for student in student_list %}{% for test in test_list %}{% if student.progress %}
-        $("{{student.id}}-{{test.test_number}}")
-    {% endif %}{% endfor %}{% endfor %}
-    -->
 {% endblock %}

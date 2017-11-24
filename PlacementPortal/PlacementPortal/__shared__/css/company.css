@@ -58,10 +58,44 @@ ul.stepper.horizontal .step-actions{
     border: 2px solid #2196f3;
     background-color: #2196f3;
 }
-
-[type="checkbox"]:checked+label:before{
-    border-right: 2px solid #2196f3;
+.checkbox-black[type="checkbox"]:checked+label:before{
+    border-ght: 2px solid #2196f3;
     border-bottom: 2px solid #2196f3;
+}
+
+/**/ 
+[type="checkbox"]+label:before{
+    border: 2px solid orange;
+    background-color: white;
+}
+[type="checkbox"]:checked+label:before{
+    border-right: 2px solid orange;
+    border-bottom: 2px solid orange;
+    background-color: transparent;
+}
+
+
+[type="checkbox"]:checked:disabled+label:before{
+    border-right: 2px solid green;
+    border-bottom: 2px solid green;
+    background-color: transparent;
+}
+
+[type="checkbox"]:not(:checked):disabled+label:after{
+    border: 2px solid grey;
+    background-color: grey;
+}
+[type="checkbox"]:not(:checked):disabled+label:before{
+    border: 2px solid grey;
+    background-color: grey;
+}
+
+input:checked + label {
+    color: green;
+}
+
+input:not(:checked) + label {
+    color: red;
 }
 
 .checkbox-black[type="checkbox"].filled-in:not(:checked)+label:after{
