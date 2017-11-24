@@ -12,9 +12,11 @@
 							<th data-field="id">Roll no.</th>
 							<th data-field="name">Name</th>
 							<th data-field="name">Department</th>
-							<th data-field="number">Program</th>
+							<th data-field="name">Program</th>
 							<th data-field="number">CPI</th>
-
+                            {% for test in test_list %}
+                            <th data-field="name">{{test.test_number}}: test.test_type</th>
+                            {% endfor %}
 						</tr>
 					</thead>
 					<tbody>
