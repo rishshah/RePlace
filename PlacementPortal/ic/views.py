@@ -22,7 +22,7 @@ from student.models import *
 from datetime import datetime
 
 
-HOME_URL = '/'
+HOME_URL = '/login/'
 
 def auth(user):
     return IC.objects.filter(user=user).exists()

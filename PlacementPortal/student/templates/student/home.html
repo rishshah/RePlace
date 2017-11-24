@@ -100,8 +100,10 @@
 	{{block.super}}
 	<script type="text/javascript">
 	$( document ).ready(function() {
-		$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal2">Resume</a></li>' );
-		$('.links-dropdown li:eq(1)').after( '<li><a class="waves-effect modal-trigger" href="#modal2">Resume</a></li>' );
+		{% if student.resume_verified == False %}
+			$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal2">Resume</a></li>' );
+			$('.links-dropdown li:eq(1)').after( '<li><a class="waves-effect modal-trigger" href="#modal2">Resume</a></li>' );
+		{% endif %}
 		$('.modal').modal();
 	});
 	</script>

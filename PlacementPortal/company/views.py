@@ -16,7 +16,7 @@ from replace.models import *
 
 from datetime import datetime
 
-HOME_URL = '/'
+HOME_URL = '/login/'
 
 def auth(user):
     return Company.objects.filter(user=user).exists()
@@ -52,14 +52,16 @@ def view_students(request, pk):
    
     for student in student_applied_list:
         student.progress = Application.objects.get(jaf__pk=pk, student=student).progress
-    data = {'student_list':student_applied_list, 'test_list': test_list, 'jaf':jaf, 'total_tests': len(test_list), 'confirmation': 0}
+    data = {'student_list':student_applied_list, 'test_list': test_list, 'jaf':jaf, 'total_tests': len(test_list)}
     return render(request, "company/students.html", context = data)
 
 @login_required()
 def confirmation(request, pk):
     if (not auth(request.user)):
         return redirect(HOME_URL)
-    
+    jaf = JAF.objects.get(id=pk)
+    jaf.confirmed_selections = True
+    jaf.save()
     #send mail
     return redirect('/company/jaf/'+pk)
 

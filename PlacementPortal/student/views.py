@@ -13,7 +13,7 @@ from django.utils import timezone
 import datetime
 now = datetime.datetime.now()
 
-HOME_URL = '/'
+HOME_URL = '/login/'
 
 def auth(user):
     return Student.objects.filter(user=user).exists()

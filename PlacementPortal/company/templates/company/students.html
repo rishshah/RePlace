@@ -4,7 +4,7 @@
 		<div class="card_container grey lighten-5 col xl10 offset-xl1 l10 offset-l1 m12 s12">
 			<div class="row">
 				<h4> List Of Applicants </h4>
-				{% if confirmation ==  0 %} 
+				{% if jaf.confirmed_selections ==  0 %} 
 					<a href="{% url 'company:confirmation' jaf.id %}" class="right waves-effect waves-light btn grey darken-4">Confirm Selections</a>
 				{% endif %}
 			</div>
@@ -33,7 +33,7 @@
                                 {% for test in test_list %}
                                 <td data-field="name">
                                     <input type="checkbox" id="{{student.id}}-{{test.test_number}}" onchange="shortlist('{{student.name}}', {{student.id}}, {{test.test_number}}, this);" debug="{{test.test_number}}, {{student.progress}}"  
-                                    {% if confirmation ==  0 %} 
+                                    {% if jaf.confirmed_selections ==  0 %} 
 	                                    {% if test.test_number ==  total_tests  and  total_tests ==  student.progress %} 
 	                                    	checked = "checked"
 	                                    {% elif test.test_number < student.progress|add:"1" %} 
