@@ -1,7 +1,7 @@
 #for basic rendering of html pages
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404, FileResponse
 
 #for authentication login and logout
 from django.contrib.auth import login as auth_login
@@ -100,18 +100,35 @@ def verify_resume(request):
         return redirect(HOME_URL)
     verified_students = Student.objects.filter(resume_verified = True)
     unverified_students = Student.objects.filter(resume_verified = False)
-    data = {'verified_students':verified_students, 'unverified_students':unverified_students}
+    resume_type_list = Resume._meta.get_field("resume_number").choices
+    data = {'verified_students':verified_students, 'unverified_students':unverified_students, 'resume_type_list':resume_type_list}
     return render(request, "ic/resume.html", context = data)
+
+@login_required()
+def student_verification(request, pk, status):
+    if (not auth(request.user)):
+        return redirect(HOME_URL)  
+    student = Student.objects.get(pk=pk)
+    if(student is None):
+         return redirect(HOME_URL)
+         
+    if(int(status) == 1):
+        student.resume_verified = True
+    else:
+        student.resume_verified = False
+
+    student.save()
+    return verify_resume(request)
 
 @login_required()
 def view_resume(request, id, resume_number):
     if (not auth(request.user)):
         return redirect(HOME_URL)
-    filepath = '/resume/'+id+"-"+resume_number+".pdf"
     try:
-        with open(filepath, 'r') as pdf:
-            response = HttpResponse(pdf.read(), mimetype='application/pdf')
-        pdf.close()
+        student =  Student.objects.get(id = id)
+        resume = Resume.objects.get(student = student, resume_number = resume_number)
+        filepath = resume.file.path
+        response = FileResponse(open(filepath, 'rb'), content_type ='application/pdf')
         return response
-    except:
-        return redirect(HOME_URL)
+    except Exception as e:
+        raise Http404("Resume Not Found")

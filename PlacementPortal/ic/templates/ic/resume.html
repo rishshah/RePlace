@@ -2,16 +2,31 @@
 {% load static from staticfiles %}
 {% block content %}
 	<div class="row">
-		<div class="card_container grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
+		<div class="card_container grey lighten-5 col xl10 offset-xl1 l10 offset-l1 m12 s12">
 			<div class="row">
 				<h4> Resume Verification</h4>
 			</div>
 			<div class="row">
 				<table class="highlight bordered centered">
+					<col width="15%" />
+					<col width="15%" />
+					
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+					
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+
 					<thead>
 						<tr>
 							<th data-field="id">Name</th>
 							<th data-field="name">Email</th>
+							{% for resume_type in resume_type_list%}
+							<th data-field="{{resume_type.0}}">{{resume_type.1}}</th>
+							{% endfor %}
 							<th data-field="name">Contact</th>
 							<th data-field="number">Department</th>
 							<th data-field="number">Verification Status</th>
@@ -23,14 +38,19 @@
 								<td>
 									<a href="{% url 'ic:view_resume' student.id 0 %}">{{ student.name }}</a>
 								</td>
+								
 								<td>
 									<a href="mailto:student.email?subject=ResumeVerification&cc=cc@example.com">{{ student.email }}</a>
 								</td>
+								{% for resume_type in resume_type_list%}
+									<td><a href="{% url 'ic:view_resume' student.id resume_type.0 %}">{{ resume_type.0 }}</a></td>
+								{% endfor %}
+
 								<td>{{ student.phone_number }}</td>
 								<td>{{ student.department.name }}</td>
 								<td>
 									<p>
-      									<input onclick="location.href='{% url 'ic:view_jaf' jaf.id %}';"  type="checkbox" id="student_{{student.id}}" />
+      									<input onclick="location.href='{% url 'ic:student_verification' student.id 1 %}';"  type="checkbox" id="student_{{student.id}}" />
       									<label for="student_{{student.id}}"></label>
    									 </p>
 								</td>
@@ -44,11 +64,16 @@
 								<td>
 									<a href="mailto:student.email?subject=ResumeVerification&cc=cc@example.com">{{ student.email }}</a>
 								</td>
+								
+								{% for resume_type in resume_type_list%}
+									<td><a href="{% url 'ic:view_resume' student.id resume_type.0 %}">{{ resume_type.0 }}</a></td>
+								{% endfor %}
+
 								<td>{{ student.phone_number }}</td>
 								<td>{{ student.department.name }}</td>
 								<td>
 									<p>
-      									<input onclick="reject()" type="checkbox" id="student_{{student.id}}" checked="checked" />
+      									<input onclick="location.href='{% url 'ic:student_verification' student.id 0 %}';" type="checkbox" id="student_{{student.id}}" checked="checked" />
       									<label for="student_{{student.id}}"></label>
    									 </p>
 								</td>
@@ -59,35 +84,10 @@
 			</div>
 		</div>
 	</div>
-	<div id="modal1" class="modal col l6">
-		<form action="{% url 'student:see_jafs' %}" method="post">{% csrf_token %}
-			<div class="modal-content">
-				<h5 class="center">Filters</h5>
-				<div class="row">
-					<div class="col m6">
-						<input type="checkbox" id="inp1" name="verified" />
-						<label for="inp1" class="black-text">Only Verified Resume</label>
-					</div>
-					<div class="col m6">
-						<input type="checkbox" id="inp2" name="unverified" />
-						<label for="inp2" class="black-text">Only Unverified Resume</label>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<input type="submit" class="modal-action modal-close waves-effect waves-green btn-flat" value="DONE" />
-			</div>
-		</form>
-	</div>
 {% endblock %}
 {% block script %}
 	{{block.super}}
 	<script type="text/javascript">
-		$( document ).ready(function() {
-			$('.links li:eq(1)').after( '<li><a class="waves-effect hoverable modal-trigger" href="#modal1">Filter</a></li>' );
-			$('.links-dropdown li:eq(1)').after( '<li><a class="waves-effect modal-trigger" href="#modal1">Filter</a></li>' );
-			$('.modal').modal();
-		});
 		function verify() {
 		}
 		function reject() {
