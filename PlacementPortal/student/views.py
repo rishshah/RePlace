@@ -225,8 +225,8 @@ def view_jaf(request,pk):
     test_list = JAFTest.objects.filter(jaf = jaf)
     jaf.student_count = Application.objects.filter(jaf = jaf).count()
     signing_status = is_eligible(get_student(request.user),jaf)[0]
-    # related_jaf_list = JAF.objects.filter(company=jaf.company, job_year__lt=jaf.job_year)
-    related_jaf_list = JAF.objects.all()#(company=jaf.company, profile=jaf.profile)
+    related_jaf_list = JAF.objects.filter(company=jaf.company, job_year__lt=jaf.job_year)
+    # related_jaf_list = JAF.objects.all()#(company=jaf.company, profile=jaf.profile)
     data = {'jaf':jaf, 
             'eligibility_list':eligibility_list, 
             'program_list': program_list,

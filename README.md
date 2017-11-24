@@ -1,5 +1,6 @@
 # RePlace
 Placement Portal IITB
+
 ### How to run?
 Run the following commands in the same directory as the fetched repo.
 ```
@@ -39,12 +40,12 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 #### Company
 - Company registration form created 
 - Jaf creation form almost complete
-- Post company jaf form (partial)
+- Post company jaf form
 
 #### IC
 - Make resume upload, view
-- IC tabs for resume selection status (posting the form remaining) SOURABH, backend DEPAL
-- Update​ database​ regarding​ ​test​​ location,​​ timing​ ​and​​ other​ updates (date parsing error) DEPAL
+- IC tabs for resume selection status
+- Update​ database​ regarding​ ​test​​ location,​​ timing​ ​and​​ other​ updates
 
 #### Student
 - Student Home page done
@@ -57,6 +58,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 ### Plans 
 - Login​ ​ and​ ​ Logout​ ​ for​ ​ all​ ​ users (DONE)
 - Mailing system (DONE)  testing DEPAL
+
 #### Admin
 - Initially​ ​ populate​ ​ the​ ​ database (DONE)
 - Update​ ​ database​ ​ at​ ​ end​ ​ of​ ​ the​ ​ semester/year​ ​ regarding​ ​ new​ ​ admissions,​ ​ CPI change​ ​ etc,.​ ​ (if​ ​ time​ ​ permits) (CANCEL)
@@ -68,7 +70,7 @@ Open [127.0.0.1:8000](http://127.0.0.1:8000/) to get to the home page of **RePla
 - Search​ ​ current​ ​ JAFs​ ​ according​ ​ to​ ​ various​ ​ filters (DONE)
 - View​ ​ all​ ​ data​ ​ regarding​ ​ past​ ​ interns​ ​ including​ ​ reviews,​ ​ selections​ ​ and​ ​ procedures (DONE)
 - Upload​ ​ resume​ ​ and​ ​ see​ ​ status​ ​ of​ ​ verification​ (if​ ​ time​ ​ permits) (DONE)
-- Confirm​ ​ final​ ​ selection​ ​ for​ ​ students​ ​ finally​ ​ shortlisted​ ​ by​ ​ companies (CANCEL) 
+- Confirm​ ​ final​ ​ selection​ ​ for​ ​ students​ ​ finally​ ​ shortlisted​ ​ by​ ​ companies (DONE) 
 - View final selections of all jafs (DONE) 
 
 #### IC
