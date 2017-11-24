@@ -9,6 +9,8 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+
 from .models import *
 from student.models import *
 from replace.models import *
@@ -62,7 +64,16 @@ def confirmation(request, pk):
     jaf = JAF.objects.get(id=pk)
     jaf.confirmed_selections = True
     jaf.save()
-    #send mail
+    application_pass = Application.objects.filter(jaf = jaf, is_selected = True)
+    application_fail = Application.objects.filter(jaf = jaf, is_selected = False)
+    email_pass = [ application.student.email for application in application_pass]
+    email_fail = [ application.student.email for application in application_fail]
+    message_pass = "Congratulations! You have been selected by " + jaf.company.name + " for JAF no. " + str(jaf.id)
+    message_fail = "Tough Luck! " + jaf.company.name + " - " + str(jaf.id) + " JAF"
+    print (email_pass)
+    print (email_fail)
+    send_mail("JAF Final Selections", message_pass, "replace.notify@gmail.com", email_pass)
+    send_mail("JAF Final Selections", message_fail, "replace.notify@gmail.com", email_fail)
     return redirect('/company/jaf/'+pk)
 
 @login_required()
