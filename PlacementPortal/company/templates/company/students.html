@@ -15,19 +15,24 @@
 							<th data-field="name">Program</th>
 							<th data-field="number">CPI</th>
                             {% for test in test_list %}
-                            <th data-field="name">{{test.test_number}}: test.test_type</th>
+                            <th data-field="name">{{test.test_number}}: {{ test.test_type }}</th>
                             {% endfor %}
 						</tr>
 					</thead>
 					<tbody>
 						{% for student in student_list %}
-							<tr class='clickable-row' data-href="">
+							<tr data-href="">
 								<td>{{ student.roll_number }}</td>
 								<td>{{ student.name }}</td>
 								<td>{{ student.department }}</td>
 								<td>{{ student.program }}</td>
 								<td>{{ student.cpi }}</td>
-								<td>{{ jaf.student_count }}</td>
+                                {% for test in test_list %}
+                                <td data-field="name">
+                                    <input type="checkbox" id="{{student.id}}-{{test.test_number}}" onchange="shortlist({{student.id}},{{test.test_number}},this);" debug="{{test.test_number}}, {{student.progress}}" {% if test.test_number <= student.progress %}checked="true" disabled="disabled" {%endif%}>
+                                    <label for="{{student.id}}-{{test.test_number}}"></label>
+                                </td>
+                                {% endfor %}
 							</tr>
 						{% endfor %}
 					</tbody>
@@ -40,10 +45,35 @@
 {% block script %}
 	{{ block.super }}
 	<script type="text/javascript">
-		$( document ).ready(function() {
-			$(".clickable-row").click(function() {
-		        window.location = $(this).data("href");
-		    });
-		});
+	    function shortlist(student_id, test_num, box){
+	        $.ajax({
+                url:'{% url 'company:shortlist' %}',
+                type:'post',
+                data:{
+                    student_id:student_id,
+                    test_number:test_num,
+                    value:box.checked,
+                    csrfmiddlewaretoken:'{{csrf_token}}',
+                    jaf:'{{jaf.id}}'
+                },
+                success:function(data){
+                if(data)
+                    Materialize.toast('Updated.', 1000);
+                else{
+                    box.checked = !box.checked;
+                    Materialize.toast('Failed to update.', 4000);
+                }
+                },
+                failure:function(){
+                    box.checked = !box.checked;
+                    Materialize.toast('Failed to update.', 4000);
+                }
+            });
+	    }
 	</script>
+<!--
+    {% for student in student_list %}{% for test in test_list %}{% if student.progress %}
+        $("{{student.id}}-{{test.test_number}}")
+    {% endif %}{% endfor %}{% endfor %}
+    -->
 {% endblock %}

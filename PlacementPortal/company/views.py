@@ -51,10 +51,23 @@ def view_students(request, pk):
     else:
         jaf = JAF.objects.get(id=pk)
         student_applied_list = Student.objects.filter(application__jaf__pk=pk)
+        for student in student_applied_list:
+            student.progress = Application.objects.get(jaf__pk=pk, student=student).progress
         test_list = JAFTest.objects.filter(jaf=jaf)
-        data = {'student_list':student_applied_list, 'test_list': test_list}
+        data = {'student_list':student_applied_list, 'test_list': test_list, 'jaf':jaf}
         return render(request, "company/students.html", context = data)
 
+@login_required()
+def shortlist(request):
+    if auth(request.user) and request.method=="POST":
+        application = Application.objects.get(jaf__pk=request.POST['jaf'], student__id=request.POST['student_id'])
+        application.progress = request.POST['test_number']
+        application.save()
+        if request.POST['test_number']==JAFTest.objects.filter(jaf__pk=request.POST['jaf']).count():
+            pass
+        return HttpResponse("true")
+    else:
+        return HttpResponse("false")
 
 @login_required()
 def new_jaf(request):

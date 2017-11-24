@@ -18,6 +18,7 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
+    url(r'shortlist/$', views.shortlist, name = 'shortlist'),
     url(r'new_jaf/$', views.new_jaf, name = 'new_jaf'),
     url(r'jaf/(?P<pk>[0-9]+)$', views.view_students, name = 'view_students'),
     url(r'logout/$', views.logout, name = 'logout'),
