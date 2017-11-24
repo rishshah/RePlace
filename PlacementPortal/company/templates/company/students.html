@@ -1,28 +1,30 @@
-{% extends 'ic/root.html' %}
+{% extends 'company/root.html' %}
 {% block content %}
 	<div class="row">
 		<div class="card_container grey lighten-5 col xl8 offset-xl2 l8 offset-l2 m12 s12">
 			<div class="row">
-				<h4> List Of JAFs </h4>
+				<h4> List Of Applicants </h4>
 			</div>
 			<div class="row">
 				<table class="highlight bordered centered">
 					<thead>
 						<tr>
-							<th data-field="id">Jaf ID</th>
-							<th data-field="name">Company</th>
-							<th data-field="name">Job Profile</th>
-							<th data-field="number">Resume Number</th>
-							<th data-field="number">Students Applied</th>
+							<th data-field="id">Roll no.</th>
+							<th data-field="name">Name</th>
+							<th data-field="name">Department</th>
+							<th data-field="number">Program</th>
+							<th data-field="number">CPI</th>
+
 						</tr>
 					</thead>
 					<tbody>
-						{% for jaf in jaf_list %}
-							<tr class='clickable-row' data-href="{% url 'ic:view_jaf' jaf.id %}">
-								<td>{{ jaf.id }}</td>
-								<td>{{ jaf.company }}</td>
-								<td>{{ jaf.profile.name }}</td>
-								<td>{{ jaf.get_resume_number_display}}</td>
+						{% for student in student_list %}
+							<tr class='clickable-row' data-href="">
+								<td>{{ student.roll_number }}</td>
+								<td>{{ student.name }}</td>
+								<td>{{ student.department }}</td>
+								<td>{{ student.program }}</td>
+								<td>{{ student.cpi }}</td>
 								<td>{{ jaf.student_count }}</td>
 							</tr>
 						{% endfor %}
@@ -33,7 +35,7 @@
 	</div>
 {% endblock %}
 
-{% block script%}
+{% block script %}
 	{{ block.super }}
 	<script type="text/javascript">
 		$( document ).ready(function() {

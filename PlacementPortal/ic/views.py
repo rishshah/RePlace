@@ -86,7 +86,6 @@ def view_jaf(request,pk):
             'department_list': department_list,
             'test_list': test_list
             }
-    print(eligibility_list)
     return render(request, "ic/ic_view_jaf.html", context = data)
 
 
