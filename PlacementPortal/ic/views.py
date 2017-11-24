@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 from company.models import JAF
 from student.models import Student
 from replace.models import Application
+from django.core.mail import send_mail
+
 
 from django.utils.dateparse import parse_datetime
 
@@ -81,8 +83,7 @@ def view_jaf(request,pk):
         email_list = [ application.student.email for application in application_list]
         message = jaf.company.name + " - " + str(jaf.id) +  " JAF has been updated"
         print (email_list)
-        # send_mail("JAF Updated", message, "replace.notify@gmail.com", email_list)
-
+        send_mail("JAF Updated", message, "replace.notify@gmail.com", email_list)
 
     data = {'jaf':jaf, 
             'application_list':application_list, 
